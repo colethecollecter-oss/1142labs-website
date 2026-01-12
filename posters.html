@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poster Gallery | 1142 Labs</title>
+    <link rel="stylesheet" href="assets/fonts/fonts.css">
+    <link rel="stylesheet" href="assets/enhanced-style.css">
+    <style>
+        /* Poster Gallery Specific Styles */
+        .poster-gallery {
+            padding: 4rem 2rem;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .gallery-header h1 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #00D4FF, #8B5CF6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+            margin-bottom: 1rem;
+        }
+        
+        .gallery-header p {
+            color: #94A3B8;
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .poster-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 1rem;
+        }
+        
+        .poster-card {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            background: linear-gradient(145deg, rgba(0, 212, 255, 0.1), rgba(139, 92, 246, 0.1));
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            aspect-ratio: auto;
+        }
+        
+        .poster-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(0, 212, 255, 0.6);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.4),
+                0 0 30px rgba(0, 212, 255, 0.3),
+                inset 0 0 20px rgba(0, 212, 255, 0.1);
+        }
+        
+        .poster-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+        
+        .poster-card:hover img {
+            transform: scale(1.05);
+        }
+        
+        .poster-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            background: linear-gradient(transparent, rgba(5, 5, 16, 0.95));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .poster-card:hover .poster-overlay {
+            opacity: 1;
+        }
+        
+        .poster-title {
+            color: #00D4FF;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 5, 16, 0.98);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        
+        .lightbox.active {
+            display: flex;
+        }
+        
+        .lightbox-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            position: relative;
+        }
+        
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 0 60px rgba(0, 212, 255, 0.3);
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: #00D4FF;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .lightbox-close:hover {
+            transform: rotate(90deg);
+        }
+        
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 212, 255, 0.2);
+            border: 1px solid rgba(0, 212, 255, 0.4);
+            color: #00D4FF;
+            font-size: 2rem;
+            padding: 1rem;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .lightbox-nav:hover {
+            background: rgba(0, 212, 255, 0.4);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+        
+        .lightbox-prev {
+            left: -60px;
+        }
+        
+        .lightbox-next {
+            right: -60px;
+        }
+        
+        /* Filter buttons */
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            color: #00D4FF;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .poster-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 1rem;
+            }
+            
+            .gallery-header h1 {
+                font-size: 2rem;
+            }
+            
+            .lightbox-nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="scanlines">
+    <!-- Floating Animated Vortex Decorations -->
+    <img src="/assets/animations/vortex_transparent_main.webp" class="floating-vortex top-left spin-slow" alt="">
+    <img src="/assets/animations/vortex_neon_glow.webp" class="floating-vortex top-right spin-reverse" alt="">
+    <img src="assets/animations/vortex_spin_1.gif" class="gif-decoration corner-tl" alt="">
+    <img src="assets/animations/neon_chaos_1.gif" class="gif-decoration corner-br" alt="">
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/finallogo.gif" alt="1142 Labs Logo" class="logo-img">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+                <li><a href="research.html">RESEARCH</a></li>
+                <li><a href="creators.html">CREATORS</a></li>
+                <li><a href="resources.html">RESOURCES</a></li>
+                <li><a href="calculator.html">CALCULATOR</a></li>
+                <li><a href="posters.html" class="active">POSTERS</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Poster Gallery -->
+    <section class="poster-gallery">
+        <div class="gallery-header">
+            <h1>∞ POSTER GALLERY ∞</h1>
+            <p>Visual artifacts from the 1142 universe. Propaganda, art, and cosmic transmissions.</p>
+        </div>
+        
+        <div class="poster-grid">
+            <div class="poster-card" onclick="openLightbox(0)">
+                <img src="posters/poster_01_vortex.webp" alt="Vortex" loading="lazy">
+                <div class="poster-overlay"><span class="poster-title">Vortex</span></div>
+            </div>
+            <div class="poster-card" onclick="openLightbox(1)">
+                <img src="posters/poster_02_blue_burst.webp" alt="Blue Burst" loading="lazy">
+                <div class="poster-overlay"><span class="poster-title">Blue Burst</span></div>
+            </div>
+            <div class="poster-card" onclick="openLightbox(2)">
+                <img src="posters/poster_03_traveler_vortex.webp" alt="Traveler Vortex" loading="lazy">
+                <div class="poster-overlay"><span class="poster-title">Traveler Vortex</span></div>
+            </div>
+            <div class="poster-card" onclick="openLightbox(3)">
+                <img src="posters/poster_04_1142_logo.webp" alt="1142 Logo" loading="lazy">
+                <div class="poster-overlay"><span class="poster-title">1142 Logo</span></div>
+            </div>
+            <div class="poster-card" onclick="openLightbox(4)">
+                <img src="posters/poster_05_city_skyline.webp" alt="City Skyline" loading="lazy">
+                <div class="poster-overlay"><span class="poster-title">City Skyline</span></div>
+            </div>
+            <div class="poster-card" onclick="openLightbox(5)">
+                <img src="posters/poster_06_city_portrait.webp" alt="City Portrait" loading="lazy">
+                <div class="poster-overlay"><span class="poster-title">City Portrait</span></div>
+            </div>
+            <div class="poster-card" onclick="openLightbox(6)">
+                <img src="posters/poster_07_city_landscape.webp" alt="City Landscape" loading="lazy">
+                <div class="poster-overlay"><span class="poster-title">City Landscape</span></div>
+            </div>
+            <div class="poster-card" onclick="openLightbox(7)">
+                <img src="posters/poster_08_synthwave_grid.webp" alt="Synthwave Grid" loading="lazy">
+                <div class="poster-overlay"><span class="poster-title">Synthwave Grid</span></div>
+            </div>
+            <div class="poster-card" onclick="openLightbox(8)">
+                <img src="posters/poster_09_st_jimmy_reprise.webp" alt="St. Jimmy Reprise" loading="lazy">
+                <div class="poster-overlay"><span class="poster-title">St. Jimmy Reprise</span></div>
+            </div>
+            <div class="poster-card" onclick="openLightbox(9)">
+                <img src="posters/poster_10_we_want_you.webp" alt="We Want You" loading="lazy">
+                <div class="poster-overlay"><span class="poster-title">We Want You</span></div>
+            </div>
+            <div class="poster-card" onclick="openLightbox(10)">
+                <img src="posters/poster_11_we_want_you_landscape.webp" alt="We Want You Landscape" loading="lazy">
+                <div class="poster-overlay"><span class="poster-title">We Want You Landscape</span></div>
+            </div>
+            <div class="poster-card" onclick="openLightbox(11)">
+                <img src="posters/poster_12_ripping_ritalin.webp" alt="Ripping Around on Ritalin" loading="lazy">
+                <div class="poster-overlay"><span class="poster-title">Ripping Around on Ritalin</span></div>
+            </div>
+            <div class="poster-card" onclick="openLightbox(12)">
+                <img src="posters/poster_13_ritalin_grin.webp" alt="Ritalin Grin" loading="lazy">
+                <div class="poster-overlay"><span class="poster-title">Ritalin Grin</span></div>
+            </div>
+            <div class="poster-card" onclick="openLightbox(13)">
+                <img src="posters/poster_14_drop_tabs_1142.webp" alt="Drop Tabs at 11:42" loading="lazy">
+                <div class="poster-overlay"><span class="poster-title">Drop Tabs at 11:42</span></div>
+            </div>
+            <div class="poster-card" onclick="openLightbox(14)">
+                <img src="posters/poster_15_dead_hours.webp" alt="Dead Hours" loading="lazy">
+                <div class="poster-overlay"><span class="poster-title">Dead Hours</span></div>
+            </div>
+            <div class="poster-card" onclick="openLightbox(15)">
+                <img src="posters/poster_16_cyber_uncle_sam.webp" alt="Cyber Uncle Sam" loading="lazy">
+                <div class="poster-overlay"><span class="poster-title">Cyber Uncle Sam</span></div>
+            </div>
+            <div class="poster-card" onclick="openLightbox(16)">
+                <img src="posters/poster_17_gold_bottom.webp" alt="Gold at the Bottom" loading="lazy">
+                <div class="poster-overlay"><span class="poster-title">Gold at the Bottom</span></div>
+            </div>
+            <div class="poster-card" onclick="openLightbox(17)">
+                <img src="posters/poster_18_widowers_luck.webp" alt="Widower's Luck" loading="lazy">
+                <div class="poster-overlay"><span class="poster-title">Widower's Luck</span></div>
+            </div>
+            <div class="poster-card" onclick="openLightbox(18)">
+                <img src="posters/poster_19_devils_ritalin.webp" alt="Devil's on Ritalin" loading="lazy">
+                <div class="poster-overlay"><span class="poster-title">Devil's on Ritalin</span></div>
+            </div>
+            <div class="poster-card" onclick="openLightbox(19)">
+                <img src="posters/poster_20_hippie_drop_tabs.webp" alt="Hippie Drop Tabs" loading="lazy">
+                <div class="poster-overlay"><span class="poster-title">Hippie Drop Tabs</span></div>
+            </div>
+            <div class="poster-card" onclick="openLightbox(20)">
+                <img src="posters/poster_21_7eleven_ritalin.webp" alt="7-Eleven Ritalin" loading="lazy">
+                <div class="poster-overlay"><span class="poster-title">7-Eleven Ritalin</span></div>
+            </div>
+            <div class="poster-card" onclick="openLightbox(21)">
+                <img src="posters/poster_22_booster_boy.webp" alt="Booster Boy" loading="lazy">
+                <div class="poster-overlay"><span class="poster-title">Booster Boy</span></div>
+            </div>
+            <div class="poster-card" onclick="openLightbox(22)">
+                <img src="posters/poster_23_call_it_a_day.webp" alt="Call It A Day" loading="lazy">
+                <div class="poster-overlay"><span class="poster-title">Call It A Day</span></div>
+            </div>
+            <div class="poster-card" onclick="openLightbox(23)">
+                <img src="posters/poster_24_ritalin_dial.webp" alt="Ritalin Dial" loading="lazy">
+                <div class="poster-overlay"><span class="poster-title">Ritalin Dial</span></div>
+            </div>
+            <div class="poster-card" onclick="openLightbox(24)">
+                <img src="posters/poster_25_1142_ritalin_dial.webp" alt="1142 Ritalin Dial" loading="lazy">
+                <div class="poster-overlay"><span class="poster-title">1142 Ritalin Dial</span></div>
+            </div>
+            <div class="poster-card" onclick="openLightbox(25)">
+                <img src="posters/poster_26_wizard_drop_tabs.webp" alt="Wizard Drop Tabs" loading="lazy">
+                <div class="poster-overlay"><span class="poster-title">Wizard Drop Tabs</span></div>
+            </div>
+            <div class="poster-card" onclick="openLightbox(26)">
+                <img src="posters/poster_27_booster_man.webp" alt="Booster Man" loading="lazy">
+                <div class="poster-overlay"><span class="poster-title">Booster Man</span></div>
+            </div>
+            <div class="poster-card" onclick="openLightbox(27)">
+                <img src="posters/poster_28_1142_lightbulb_city.webp" alt="1142 Lightbulb City" loading="lazy">
+                <div class="poster-overlay"><span class="poster-title">1142 Lightbulb City</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" onclick="closeLightbox()">×</button>
+            <button class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1)">‹</button>
+            <img id="lightbox-img" src="" alt="Poster">
+            <button class="lightbox-nav lightbox-next" onclick="navigateLightbox(1)">›</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>1142 Labs</h3>
+                <p>Exploring the intersection of neuroscience, technology, and consciousness.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <p>Join the 1142 community and stay updated on our latest research and developments.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 1142 Labs. All rights reserved. | 11:42 - The moment of awakening</p>
+        </div>
+    </footer>
+
+    <script>
+        const posters = [
+            'posters/poster_01_vortex.webp',
+            'posters/poster_02_blue_burst.webp',
+            'posters/poster_03_traveler_vortex.webp',
+            'posters/poster_04_1142_logo.webp',
+            'posters/poster_05_city_skyline.webp',
+            'posters/poster_06_city_portrait.webp',
+            'posters/poster_07_city_landscape.webp',
+            'posters/poster_08_synthwave_grid.webp',
+            'posters/poster_09_st_jimmy_reprise.webp',
+            'posters/poster_10_we_want_you.webp',
+            'posters/poster_11_we_want_you_landscape.webp',
+            'posters/poster_12_ripping_ritalin.webp',
+            'posters/poster_13_ritalin_grin.webp',
+            'posters/poster_14_drop_tabs_1142.webp',
+            'posters/poster_15_dead_hours.webp',
+            'posters/poster_16_cyber_uncle_sam.webp',
+            'posters/poster_17_gold_bottom.webp',
+            'posters/poster_18_widowers_luck.webp',
+            'posters/poster_19_devils_ritalin.webp',
+            'posters/poster_20_hippie_drop_tabs.webp',
+            'posters/poster_21_7eleven_ritalin.webp',
+            'posters/poster_22_booster_boy.webp',
+            'posters/poster_23_call_it_a_day.webp',
+            'posters/poster_24_ritalin_dial.webp',
+            'posters/poster_25_1142_ritalin_dial.webp',
+            'posters/poster_26_wizard_drop_tabs.webp',
+            'posters/poster_27_booster_man.webp',
+            'posters/poster_28_1142_lightbulb_city.webp'
+        ];
+        
+        let currentIndex = 0;
+        
+        function openLightbox(index) {
+            currentIndex = index;
+            document.getElementById('lightbox-img').src = posters[index];
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        function navigateLightbox(direction) {
+            currentIndex += direction;
+            if (currentIndex < 0) currentIndex = posters.length - 1;
+            if (currentIndex >= posters.length) currentIndex = 0;
+            document.getElementById('lightbox-img').src = posters[currentIndex];
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!document.getElementById('lightbox').classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') navigateLightbox(-1);
+            if (e.key === 'ArrowRight') navigateLightbox(1);
+        });
+        
+        // Close lightbox on background click
+        document.getElementById('lightbox').addEventListener('click', (e) => {
+            if (e.target.id === 'lightbox') closeLightbox();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Withdrawal Calculator - 1142 Labs</title>
+    <link rel="stylesheet" href="assets/fonts/fonts.css">
+    <link rel="stylesheet" href="assets/enhanced-style.css">
+    <style>
+        /* Calculator-specific styles */
+        .calc-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .calc-hero {
+            text-align: center;
+            padding: 60px 40px;
+            margin-bottom: 40px;
+            border: 2px solid rgba(0, 212, 255, 0.2);
+            border-radius: 12px;
+            background: 
+                radial-gradient(ellipse at center, rgba(0, 212, 255, 0.08) 0%, transparent 60%),
+                linear-gradient(180deg, rgba(5, 5, 16, 0.9) 0%, rgba(10, 10, 26, 0.95) 100%);
+        }
+
+        .calc-hero h1 {
+            font-size: 2.5em;
+            color: var(--color-primary-neon);
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+            margin-bottom: 15px;
+        }
+
+        .calc-hero p {
+            color: var(--color-compliant-text);
+            font-size: 1.1em;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .calc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .tool {
+            padding: 30px;
+            border: 2px solid rgba(0, 212, 255, 0.2);
+            border-radius: 12px;
+            background: 
+                linear-gradient(135deg, rgba(0, 212, 255, 0.03) 0%, rgba(139, 92, 246, 0.03) 100%),
+                rgba(5, 5, 16, 0.95);
+            transition: all 0.3s ease;
+        }
+
+        .tool:hover {
+            border-color: rgba(0, 212, 255, 0.4);
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.1);
+        }
+
+        .tool h3 {
+            color: var(--color-primary-neon);
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+        }
+
+        .inline {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-family: var(--font-mono);
+            font-size: 0.9em;
+            color: var(--color-compliant-text);
+        }
+
+        .field input {
+            padding: 12px 15px;
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.4);
+            color: var(--color-primary-neon);
+            font-family: var(--font-mono);
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .field input:focus {
+            outline: none;
+            border-color: var(--color-primary-neon);
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+        }
+
+        .field input::placeholder {
+            color: rgba(0, 212, 255, 0.4);
+        }
+
+        .calc-btn {
+            width: 100%;
+            padding: 15px 25px;
+            border: 2px solid var(--color-primary-neon);
+            border-radius: 8px;
+            background: rgba(0, 212, 255, 0.1);
+            color: var(--color-primary-neon);
+            font-family: var(--font-mono);
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .calc-btn:hover {
+            background: rgba(0, 212, 255, 0.2);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 8px;
+            background: rgba(139, 92, 246, 0.05);
+            color: var(--color-accent-purple);
+            font-family: var(--font-mono);
+            font-size: 1.2em;
+            text-align: center;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .schedule {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.3);
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .schedule-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 15px;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+            font-family: var(--font-mono);
+            font-size: 0.9em;
+        }
+
+        .schedule-item:last-child {
+            border-bottom: none;
+        }
+
+        .schedule-item .step {
+            color: var(--color-primary-neon);
+        }
+
+        .schedule-item .dose {
+            color: var(--color-accent-purple);
+        }
+
+        .schedule-item .date {
+            color: var(--color-compliant-text);
+            opacity: 0.7;
+        }
+
+        .copy-btn {
+            margin-top: 15px;
+            padding: 10px 20px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 6px;
+            background: transparent;
+            color: var(--color-primary-neon);
+            font-family: var(--font-mono);
+            font-size: 0.85em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        .notice-line {
+            margin-top: 15px;
+            padding: 15px;
+            border-left: 3px solid var(--color-primary-neon);
+            background: rgba(0, 212, 255, 0.05);
+            font-family: var(--font-mono);
+            font-size: 0.9em;
+            color: var(--color-compliant-text);
+        }
+
+        .warning-notice {
+            margin-top: 40px;
+            padding: 25px;
+            border: 2px solid rgba(255, 51, 102, 0.3);
+            border-radius: 12px;
+            background: rgba(255, 51, 102, 0.05);
+            text-align: center;
+        }
+
+        .warning-notice h4 {
+            color: #FF3366;
+            margin-bottom: 10px;
+        }
+
+        .warning-notice p {
+            color: var(--color-compliant-text);
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        /* Scrollbar for schedule */
+        .schedule::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .schedule::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+        }
+
+        .schedule::-webkit-scrollbar-thumb {
+            background: var(--color-primary-neon);
+            border-radius: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .calc-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .calc-hero h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body class="scanlines">
+    <!-- Floating Animated Vortex Decorations -->
+    <img src="/assets/animations/vortex_transparent_main.webp" class="floating-vortex top-left spin-slow" alt="">
+    <img src="/assets/animations/vortex_neon_glow.webp" class="floating-vortex top-right spin-reverse" alt="">
+    <img src="/assets/animations/vortex_spin_1.gif" class="gif-decoration corner-tl" alt="">
+    <img src="/assets/animations/neon_chaos_1.gif" class="gif-decoration corner-br" alt="">
+    <!-- Cosmic Background -->
+    <div class="cosmic-background"></div>
+
+    <!-- Header -->
+    <header class="header-nav">
+        <div class="logo-container">
+            <div class="logo-showcase">
+                <img src="assets/finallogo.gif" alt="1142 Labs Logo" class="logo-primary">
+            </div>
+            <div class="header-text">
+                <h1 class="neon-text">1142 LABS</h1>
+                <p class="tagline">Research Foundation V7.0</p>
+            </div>
+        </div>
+        <nav class="skeleton-menu">
+            <a href="index.html" class="nav-link neon-text">HOME</a>
+            <a href="about.html" class="nav-link neon-text">ABOUT</a>
+            <a href="research.html" class="nav-link neon-text">RESEARCH</a>
+            <a href="creators.html" class="nav-link neon-text">CREATORS</a>
+            <a href="resources.html" class="nav-link neon-text">RESOURCES</a>
+            <a href="calculator.html" class="nav-link neon-text active">CALCULATOR</a>
+            <a href="posters.html" class="nav-link neon-text">POSTERS</a>
+            <a href="blog.html" class="nav-link neon-text">BLOG</a>
+        </nav>
+    </header>
+
+    <main class="calc-container">
+        <!-- Hero Section -->
+        <section class="calc-hero">
+            <h1>Withdrawal Calculator</h1>
+            <p>Professional tools for planning and tracking medication tapering schedules. Calculate doses, plan tapers, and understand pharmacokinetics.</p>
+        </section>
+
+        <!-- Calculator Tools Grid -->
+        <section class="calc-grid">
+            <!-- Dose Calculator -->
+            <div class="tool">
+                <h3>Dose Calculator</h3>
+                <div class="inline">
+                    <label class="field">
+                        Current Dose (mg)
+                        <input id="doseCurrent" type="number" min="0" step="0.1" value="10">
+                    </label>
+                    <label class="field">
+                        Target Effect (%)
+                        <input id="doseTarget" type="number" min="1" max="300" value="120">
+                    </label>
+                </div>
+                <button class="calc-btn" onclick="calcDose()">Calculate Adjusted Dose</button>
+                <div class="result" id="doseResult">Enter values and calculate</div>
+            </div>
+
+            <!-- Taper Planner -->
+            <div class="tool">
+                <h3>Taper Planner</h3>
+                <div class="inline">
+                    <label class="field">
+                        Starting Dose (mg)
+                        <input id="wdStart" type="number" min="0" step="0.1" value="40">
+                    </label>
+                    <label class="field">
+                        Target Dose (mg)
+                        <input id="wdTarget" type="number" min="0" step="0.1" value="0">
+                    </label>
+                    <label class="field">
+                        Reduction Per Step (%)
+                        <input id="wdStepPct" type="number" min="1" max="50" step="1" value="10">
+                    </label>
+                    <label class="field">
+                        Days Between Steps
+                        <input id="wdInterval" type="number" min="1" step="1" value="7">
+                    </label>
+                    <label class="field">
+                        Max Steps
+                        <input id="wdMaxSteps" type="number" value="30">
+                    </label>
+                </div>
+                <button class="calc-btn" onclick="calcWithdrawal()">Generate Taper Schedule</button>
+                <div class="schedule" id="wdSchedule" style="display:none"></div>
+                <button class="copy-btn" id="copyScheduleBtn" style="display:none" onclick="copySchedule()">Copy Schedule</button>
+                <div class="notice-line" id="wdSummary"></div>
+            </div>
+
+            <!-- Half-Life Calculator -->
+            <div class="tool">
+                <h3>Half-Life Calculator</h3>
+                <div class="inline">
+                    <label class="field">
+                        Half-Life (hours)
+                        <input id="hlValue" type="number" min="0" step="0.1" value="3.5">
+                    </label>
+                    <label class="field">
+                        Time Elapsed (hours)
+                        <input id="hlTotal" type="number" min="0" step="1" value="12">
+                    </label>
+                </div>
+                <button class="calc-btn" onclick="calcHL()">Calculate Remaining</button>
+                <div class="result" id="hlResult">Enter values and calculate</div>
+            </div>
+
+            <!-- Stack Calculator -->
+            <div class="tool">
+                <h3>Stack Calculator</h3>
+                <div class="inline">
+                    <label class="field">
+                        Intensity Values (comma-separated)
+                        <input id="stackInput" type="text" placeholder="6,8,5,7" value="6,8,5">
+                    </label>
+                </div>
+                <button class="calc-btn" onclick="calcStack()">Analyze Stack</button>
+                <div class="result" id="stackResult">Enter values and calculate</div>
+            </div>
+        </section>
+
+        <!-- Withdrawal Support Tables -->
+        <section style="margin-top: 60px;">
+            <h2 style="color: var(--color-primary-neon); text-align: center; font-size: 2em; margin-bottom: 40px; text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);">Withdrawal Support Programs</h2>
+            
+            <!-- Methamphetamine Withdrawal Support -->
+            <div style="margin-bottom: 60px; padding: 30px; border: 2px solid rgba(0, 212, 255, 0.2); border-radius: 12px; background: rgba(5, 5, 16, 0.95);">
+                <h3 style="color: var(--color-primary-neon); font-size: 1.6em; margin-bottom: 20px;">Methamphetamine Withdrawal Support</h3>
+                <p style="color: var(--color-compliant-text); line-height: 1.8; margin-bottom: 20px;">At 1142, we believe that every individual possesses the strength to overcome addiction. Our methamphetamine withdrawal support program integrates medical expertise, emotional support, and educational resources to guide individuals through withdrawal and empower them to build a foundation for lasting recovery.</p>
+                <p style="color: var(--color-compliant-text); line-height: 1.8; margin-bottom: 20px;">Our approach considers the idea of replacing methamphetamine with alternative solutions to help individuals maintain their daily lives while working towards recovery.</p>
+                <p style="color: #8B5CF6; font-style: italic; margin-bottom: 30px;">This system was developed thanks to Cole Chenard, the original Biphentine man.</p>
+                
+                <h4 style="color: var(--color-primary-neon); font-size: 1.3em; margin: 30px 0 20px;">Replacement Therapy Guide</h4>
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: 0.9em;">
+                        <thead>
+                            <tr style="background: rgba(0, 212, 255, 0.1);">
+                                <th style="padding: 12px; border: 1px solid rgba(0, 212, 255, 0.3); color: var(--color-primary-neon);">METH</th>
+                                <th style="padding: 12px; border: 1px solid rgba(0, 212, 255, 0.3); color: var(--color-primary-neon);">TIME WEEKS</th>
+                                <th style="padding: 12px; border: 1px solid rgba(0, 212, 255, 0.3); color: var(--color-primary-neon);">METHYLPHENIDATE</th>
+                                <th style="padding: 12px; border: 1px solid rgba(0, 212, 255, 0.3); color: var(--color-primary-neon);">WEED</th>
+                                <th style="padding: 12px; border: 1px solid rgba(0, 212, 255, 0.3); color: var(--color-primary-neon);">Vyvanse/ADDERALL</th>
+                                <th style="padding: 12px; border: 1px solid rgba(0, 212, 255, 0.3); color: var(--color-primary-neon);">LSD</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">0.1</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">2</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">20 mg</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">1 gram</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">5 mg</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">125 uag x 14 day</td></tr>
+                            <tr><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">0.2</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">4</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">30 mg</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">1.5 gram</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">10 mg</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">125 uag x 14 days</td></tr>
+                            <tr><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">0.3</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">8</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">40 mg</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">2 gram</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">15 mg</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">125 uags x 7 days</td></tr>
+                            <tr><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">0.4</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">16</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">50 mg</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">2.5 gram</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">20 mg</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">200 uag x 14 days</td></tr>
+                            <tr><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">0.5</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">32</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">60 mg</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">3 gram</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">25 mg</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">225 x 2 weeks</td></tr>
+                            <tr><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">0.6</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">64</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">70 mg</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">3.5 gram</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">30 mg</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">225 uag x 2 weeks</td></tr>
+                            <tr><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">0.7</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">128</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">80 mg</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">4 gram</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">35 mg</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">300 uag 7 days</td></tr>
+                            <tr><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">0.8</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">256</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">90 mg</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">4.5 gram</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">40 mg</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">300 uag 7 days</td></tr>
+                            <tr><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">0.9</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">512</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">100 mg</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">5 gram</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">45 mg</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">1000 uag X 2 weeks</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h4 style="color: var(--color-primary-neon); font-size: 1.3em; margin: 40px 0 20px;">Withdrawal Symptoms Timeline</h4>
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: 0.9em;">
+                        <thead>
+                            <tr style="background: rgba(0, 212, 255, 0.1);">
+                                <th style="padding: 12px; border: 1px solid rgba(0, 212, 255, 0.3); color: var(--color-primary-neon);">Symptom</th>
+                                <th style="padding: 12px; border: 1px solid rgba(0, 212, 255, 0.3); color: var(--color-primary-neon);">Onset</th>
+                                <th style="padding: 12px; border: 1px solid rgba(0, 212, 255, 0.3); color: var(--color-primary-neon);">Duration</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">Depression</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">Within 24 hours</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">Up to 2 weeks</td></tr>
+                            <tr><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">Fatigue</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">Within 24 hours</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">Several days</td></tr>
+                            <tr><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">Cravings</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">Within 24 hours</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">Weeks to months</td></tr>
+                            <tr><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">Increased Appetite</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">Within 24 hours</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">Several days</td></tr>
+                            <tr><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">Psychosis</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">Within 24-48 hours</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">Up to 1 week</td></tr>
+                            <tr><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">Suicidal Thoughts</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">Within 24-48 hours</td><td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">Variable</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Crack Cocaine Withdrawal Support -->
+            <div style="margin-bottom: 60px; padding: 30px; border: 2px solid rgba(0, 212, 255, 0.2); border-radius: 12px; background: rgba(5, 5, 16, 0.95);">
+                <h3 style="color: var(--color-primary-neon); font-size: 1.6em; margin-bottom: 20px;">Crack Cocaine Withdrawal Support</h3>
+                <p style="color: var(--color-compliant-text); line-height: 1.8; margin-bottom: 20px;">Taking the brave step towards overcoming crack cocaine addiction requires dedicated support, particularly during the challenging phase of withdrawal. Withdrawal from crack cocaine can be physically and emotionally taxing, demanding specialized assistance to manage symptoms and navigate the path toward recovery. Our comprehensive crack cocaine withdrawal support program is designed to offer compassionate care, addressing the unique needs of individuals seeking freedom from crack cocaine addiction.</p>
+                <p style="color: #FF3366; font-style: italic; margin-bottom: 30px;">This initiative is dedicated to the memory of Katrina JJ Halser Ox. Her legacy inspires our commitment to supporting those in need.</p>
+                
+                <h4 style="color: var(--color-primary-neon); font-size: 1.3em; margin: 30px 0 20px;">Withdrawal Timeline Reference</h4>
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: 0.85em;">
+                        <thead>
+                            <tr style="background: rgba(0, 212, 255, 0.1);">
+                                <th style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.3); color: var(--color-primary-neon);">AMOUNT</th>
+                                <th style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.3); color: var(--color-primary-neon);">IMMEDIATE</th>
+                                <th style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.3); color: var(--color-primary-neon);">HALF LIFE</th>
+                                <th style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.3); color: var(--color-primary-neon);">COME DOWN</th>
+                                <th style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.3); color: var(--color-primary-neon);">PHYSICAL</th>
+                                <th style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.3); color: var(--color-primary-neon);">MENTAL</th>
+                                <th style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.3); color: var(--color-primary-neon);">DAILY USE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">0.1</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">42 DAYS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">37 DAYS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">1 MONTH</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">91 DAYS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">1 YR</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">1 YEAR</td></tr>
+                            <tr><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">0.2</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">84 DAYS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">74 DAYS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">2 MONTHS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">182 DAYS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">2 YRS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">1 YEAR</td></tr>
+                            <tr><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">0.3</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">126 DAYS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">111 DAYS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">3 MONTHS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">273 DAYS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">3 YRS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">1 YEAR</td></tr>
+                            <tr><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">0.4</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">168 DAYS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">148 DAYS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">4 MONTHS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">364 DAYS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">4 YRS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">1 YEAR</td></tr>
+                            <tr><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">0.5</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">210 DAYS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">185 DAYS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">5 MONTHS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">455 DAYS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">5 YRS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">1 YEAR</td></tr>
+                            <tr><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">0.6</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">294 DAYS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">222 DAYS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">6 MONTHS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">546 DAYS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">6 YRS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">1 YEAR</td></tr>
+                            <tr><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">0.7</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">336 DAYS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">259 DAYS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">7 MONTHS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">637 DAYS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">7 YRS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">1 YEAR</td></tr>
+                            <tr><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">0.8</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">378 DAYS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">296 DAYS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">8 MONTHS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">728 DAYS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">8 YRS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">1 YEAR</td></tr>
+                            <tr><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">0.9</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">420 DAYS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">333 DAYS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">9 MONTHS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">819 DAYS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">9 YRS</td><td style="padding: 8px; border: 1px solid rgba(0, 212, 255, 0.2); color: var(--color-compliant-text);">1 YEAR</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Warning Notice -->
+        <div class="warning-notice">
+            <h4>⚠️ Important Medical Disclaimer</h4>
+            <p>This calculator is for informational purposes only and should not replace professional medical advice. Always consult with a healthcare provider before making any changes to your medication regimen. Withdrawal from certain medications can be dangerous and should be supervised by a medical professional.</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="creators.html">Creators</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="calculator.html">Calculator</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+        <div class="footer-bottom">
+            <p><p><p>&copy; 2025 1142 Labscopy; December 22nd, 2019 1142 Labs. Research Foundation V7.0. All rights reserved.</p>copy; 2025 1142 Labs. Research Foundation V7.0. All rights reserved.</p>copy; 2025 1142 Labs. Research Foundation V7.0. All rights reserved.</p>
+            <p style="margin-top: 10px; color: #00D4FF; font-weight: bold;">An EverDark Production</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dose Calculator
+        function calcDose() {
+            const current = parseFloat(document.getElementById('doseCurrent').value);
+            const targetPct = parseFloat(document.getElementById('doseTarget').value);
+            
+            if (isNaN(current) || isNaN(targetPct) || current <= 0 || targetPct <= 0) {
+                document.getElementById('doseResult').innerHTML = 'Please enter valid positive numbers';
+                return;
+            }
+            
+            const adjusted = (current * targetPct / 100).toFixed(2);
+            document.getElementById('doseResult').innerHTML = `Adjusted Dose: <strong>${adjusted} mg</strong>`;
+        }
+
+        // Taper Planner
+        let scheduleData = [];
+        
+        function calcWithdrawal() {
+            const start = parseFloat(document.getElementById('wdStart').value);
+            const target = parseFloat(document.getElementById('wdTarget').value);
+            const stepPct = parseFloat(document.getElementById('wdStepPct').value);
+            const interval = parseInt(document.getElementById('wdInterval').value);
+            const maxSteps = parseInt(document.getElementById('wdMaxSteps').value);
+            
+            if (isNaN(start) || isNaN(target) || isNaN(stepPct) || isNaN(interval) || isNaN(maxSteps)) {
+                document.getElementById('wdSummary').innerHTML = 'Please enter valid numbers';
+                return;
+            }
+            
+            if (start <= target) {
+                document.getElementById('wdSummary').innerHTML = 'Starting dose must be greater than target dose';
+                return;
+            }
+            
+            scheduleData = [];
+            let currentDose = start;
+            let step = 0;
+            let currentDate = new Date();
+            
+            while (currentDose > target && step < maxSteps) {
+                scheduleData.push({
+                    step: step + 1,
+                    dose: currentDose.toFixed(2),
+                    date: currentDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+                });
+                
+                currentDose = currentDose * (1 - stepPct / 100);
+                if (currentDose < target) currentDose = target;
+                
+                currentDate = new Date(currentDate.getTime() + interval * 24 * 60 * 60 * 1000);
+                step++;
+            }
+            
+            // Add final step at target
+            if (currentDose === target || scheduleData[scheduleData.length - 1].dose !== target.toFixed(2)) {
+                scheduleData.push({
+                    step: step + 1,
+                    dose: target.toFixed(2),
+                    date: currentDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+                });
+            }
+            
+            // Render schedule
+            const scheduleEl = document.getElementById('wdSchedule');
+            scheduleEl.innerHTML = scheduleData.map(item => `
+                <div class="schedule-item">
+                    <span class="step">Step ${item.step}</span>
+                    <span class="dose">${item.dose} mg</span>
+                    <span class="date">${item.date}</span>
+                </div>
+            `).join('');
+            
+            scheduleEl.style.display = 'block';
+            document.getElementById('copyScheduleBtn').style.display = 'inline-block';
+            
+            const totalDays = (scheduleData.length - 1) * interval;
+            const totalWeeks = Math.ceil(totalDays / 7);
+            document.getElementById('wdSummary').innerHTML = `
+                Total duration: <strong>${totalDays} days</strong> (~${totalWeeks} weeks) | 
+                <strong>${scheduleData.length} steps</strong> to reach target
+            `;
+        }
+
+        function copySchedule() {
+            const text = scheduleData.map(item => 
+                `Step ${item.step}: ${item.dose} mg - ${item.date}`
+            ).join('\n');
+            
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = document.getElementById('copyScheduleBtn');
+                btn.textContent = 'Copied!';
+                setTimeout(() => btn.textContent = 'Copy Schedule', 2000);
+            });
+        }
+
+        // Half-Life Calculator
+        function calcHL() {
+            const halfLife = parseFloat(document.getElementById('hlValue').value);
+            const elapsed = parseFloat(document.getElementById('hlTotal').value);
+            
+            if (isNaN(halfLife) || isNaN(elapsed) || halfLife <= 0 || elapsed < 0) {
+                document.getElementById('hlResult').innerHTML = 'Please enter valid positive numbers';
+                return;
+            }
+            
+            const halfLives = elapsed / halfLife;
+            const remaining = (100 * Math.pow(0.5, halfLives)).toFixed(2);
+            
+            document.getElementById('hlResult').innerHTML = `
+                After ${elapsed}h: <strong>${remaining}%</strong> remaining<br>
+                <small>(${halfLives.toFixed(1)} half-lives elapsed)</small>
+            `;
+        }
+
+        // Stack Calculator
+        function calcStack() {
+            const input = document.getElementById('stackInput').value;
+            const values = input.split(',').map(v => parseFloat(v.trim())).filter(v => !isNaN(v));
+            
+            if (values.length === 0) {
+                document.getElementById('stackResult').innerHTML = 'Please enter valid numbers';
+                return;
+            }
+            
+            const sum = values.reduce((a, b) => a + b, 0);
+            const avg = (sum / values.length).toFixed(2);
+            const max = Math.max(...values);
+            const min = Math.min(...values);
+            
+            document.getElementById('stackResult').innerHTML = `
+                Sum: <strong>${sum}</strong> | Avg: <strong>${avg}</strong><br>
+                Range: ${min} - ${max}
+            `;
+        }
+    </script>
+</body>
+</html>
