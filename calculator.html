@@ -361,18 +361,7 @@
                 <div class="result" id="hlResult">Enter values and calculate</div>
             </div>
 
-            <!-- Stack Calculator -->
-            <div class="tool">
-                <h3>Stack Calculator</h3>
-                <div class="inline">
-                    <label class="field">
-                        Intensity Values (comma-separated)
-                        <input id="stackInput" type="text" placeholder="6,8,5,7" value="6,8,5">
-                    </label>
-                </div>
-                <button class="calc-btn" onclick="calcStack()">Analyze Stack</button>
-                <div class="result" id="stackResult">Enter values and calculate</div>
-            </div>
+
         </section>
 
         <!-- Withdrawal Support Tables -->
@@ -725,26 +714,7 @@
             `;
         }
 
-        // Stack Calculator
-        function calcStack() {
-            const input = document.getElementById('stackInput').value;
-            const values = input.split(',').map(v => parseFloat(v.trim())).filter(v => !isNaN(v));
-            
-            if (values.length === 0) {
-                document.getElementById('stackResult').innerHTML = 'Please enter valid numbers';
-                return;
-            }
-            
-            const sum = values.reduce((a, b) => a + b, 0);
-            const avg = (sum / values.length).toFixed(2);
-            const max = Math.max(...values);
-            const min = Math.min(...values);
-            
-            document.getElementById('stackResult').innerHTML = `
-                Sum: <strong>${sum}</strong> | Avg: <strong>${avg}</strong><br>
-                Range: ${min} - ${max}
-            `;
-        }
+
     </script>
 </body>
 </html>
