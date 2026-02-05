@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Verification - 1142 LABS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0A0E1A;
+            color: #ffffff;
+            overflow: hidden;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Animated background */
+        .bg-animated {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 240, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(109, 40, 217, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 20% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 50%);
+            animation: bgPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes bgPulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.1); }
+        }
+
+        /* Scanlines effect */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 240, 255, 0.03) 0px,
+                transparent 2px,
+                transparent 4px
+            );
+            pointer-events: none;
+            z-index: 1;
+            animation: scanlineMove 8s linear infinite;
+        }
+
+        @keyframes scanlineMove {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(20px); }
+        }
+
+        /* Main container */
+        .verify-container {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 600px;
+            padding: 60px 40px;
+            background: rgba(10, 14, 26, 0.9);
+            border: 2px solid rgba(0, 240, 255, 0.3);
+            border-radius: 20px;
+            box-shadow: 0 0 60px rgba(0, 240, 255, 0.3),
+                        inset 0 0 40px rgba(0, 240, 255, 0.05);
+            animation: containerGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes containerGlow {
+            0%, 100% { box-shadow: 0 0 60px rgba(0, 240, 255, 0.3), inset 0 0 40px rgba(0, 240, 255, 0.05); }
+            50% { box-shadow: 0 0 80px rgba(0, 240, 255, 0.5), inset 0 0 60px rgba(0, 240, 255, 0.1); }
+        }
+
+        /* Logo */
+        .logo {
+            width: 200px;
+            height: auto;
+            margin: 0 auto 30px;
+            filter: drop-shadow(0 0 20px rgba(0, 240, 255, 0.6));
+            animation: logoFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Title */
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #00F0FF 0%, #6D28D9 50%, #EC4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(0, 240, 255, 0.5);
+            animation: textGradient 3s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes textGradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Warning text */
+        .warning-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            color: #E0E0E0;
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+        }
+
+        .warning-text strong {
+            color: #00F0FF;
+            font-weight: 600;
+        }
+
+        /* Age question */
+        .age-question {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            margin: 40px 0 30px;
+            color: #00F0FF;
+            text-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
+        }
+
+        /* Buttons container */
+        .buttons {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        /* Button styles */
+        .btn {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            padding: 20px 60px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Yes button */
+        .btn-yes {
+            background: linear-gradient(135deg, #00F0FF 0%, #6D28D9 100%);
+            color: #ffffff;
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.5);
+        }
+
+        .btn-yes:hover {
+            box-shadow: 0 0 50px rgba(0, 240, 255, 0.8);
+            transform: translateY(-3px);
+        }
+
+        /* No button */
+        .btn-no {
+            background: linear-gradient(135deg, #EC4899 0%, #B91C1C 100%);
+            color: #ffffff;
+            box-shadow: 0 0 30px rgba(236, 72, 153, 0.5);
+        }
+
+        .btn-no:hover {
+            box-shadow: 0 0 50px rgba(236, 72, 153, 0.8);
+            transform: translateY(-3px);
+        }
+
+        /* Disclaimer */
+        .disclaimer {
+            margin-top: 40px;
+            font-size: 0.85rem;
+            color: #888;
+            line-height: 1.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .verify-container {
+                padding: 40px 30px;
+                margin: 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .logo {
+                width: 150px;
+            }
+
+            .buttons {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .btn {
+                width: 100%;
+                padding: 18px 40px;
+                font-size: 1.1rem;
+            }
+
+            .age-question {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animated"></div>
+    <div class="scanlines"></div>
+
+    <div class="verify-container">
+        <img src="assets/1142labs-new-logo.png" alt="1142 LABS" class="logo">
+        
+        <h1>AGE VERIFICATION</h1>
+        
+        <div class="warning-text">
+            <p>This website contains <strong>research and information about psychoactive substances, neuroscience, and cognitive enhancement</strong>.</p>
+            <p>The content is intended for <strong>educational and harm reduction purposes</strong> for mature audiences.</p>
+        </div>
+
+        <div class="age-question">
+            Are you 18 years of age or older?
+        </div>
+
+        <div class="buttons">
+            <button class="btn btn-yes" onclick="verifyAge(true)">
+                <span>YES, I AM 18+</span>
+            </button>
+            <button class="btn btn-no" onclick="verifyAge(false)">
+                <span>NO, I AM NOT</span>
+            </button>
+        </div>
+
+        <div class="disclaimer">
+            By entering this site, you acknowledge that you are of legal age and agree to view content related to neuroscience research, psychopharmacology, and cognitive enhancement.
+        </div>
+    </div>
+
+    <script>
+        function verifyAge(isAdult) {
+            if (isAdult) {
+                // Set cookie/localStorage to remember verification
+                localStorage.setItem('1142_age_verified', 'true');
+                localStorage.setItem('1142_verify_timestamp', Date.now());
+                
+                // Redirect to main site
+                window.location.href = 'index.html';
+            } else {
+                // Redirect to external site or show message
+                alert('You must be 18 or older to access this website.');
+                window.location.href = 'https://www.google.com';
+            }
+        }
+
+        // Check if already verified (within 30 days)
+        window.onload = function() {
+            const verified = localStorage.getItem('1142_age_verified');
+            const timestamp = localStorage.getItem('1142_verify_timestamp');
+            const thirtyDays = 30 * 24 * 60 * 60 * 1000;
+            
+            if (verified === 'true' && timestamp && (Date.now() - timestamp < thirtyDays)) {
+                // Already verified, redirect to main site
+                window.location.href = 'index.html';
+            }
+        };
+    </script>
+</body>
+</html>
