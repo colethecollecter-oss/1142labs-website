@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+    <meta name="description" content="The History of 1142 LABS - From founding on December 22, 2019 to present day. A journey through neuroscience breakthroughs, research milestones, and the evolution of consciousness studies.">
+    <title>History of 1142 | The Journey 2019-2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/1142-ritual-system.css">
+    <link rel="stylesheet" href="assets/css/epic-artistic.css">
+    <link rel="stylesheet" href="assets/css/3d-effects.css">
+    <style>
+        :root {
+            --primary-cyan: #00FFFF;
+            --secondary-purple: #6D28D9;
+            --secondary-pink: #EC4899;
+            --bg-black: #0F172A;
+            --text-gray: #94A3B8;
+        }
+
+        body {
+            background: var(--bg-black);
+            color: var(--text-gray);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Hero Banner */
+        .history-hero {
+            position: relative;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-bottom: 4rem;
+        }
+
+        .history-hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+            z-index: 0;
+        }
+
+        .history-hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .history-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary-cyan), var(--secondary-purple), var(--secondary-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 40px rgba(0, 255, 255, 0.5);
+        }
+
+        .history-subtitle {
+            font-size: 1.5rem;
+            color: var(--primary-cyan);
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 3px;
+        }
+
+        /* Timeline Container */
+        .timeline-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            position: relative;
+        }
+
+        /* Vertical Timeline Line */
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, var(--primary-cyan), var(--secondary-purple), var(--secondary-pink));
+            transform: translateX(-50%);
+            box-shadow: 0 0 20px var(--primary-cyan);
+        }
+
+        /* Timeline Item */
+        .timeline-item {
+            position: relative;
+            margin-bottom: 6rem;
+            display: flex;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+
+        /* Timeline Node */
+        .timeline-node {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 30px;
+            background: var(--primary-cyan);
+            border-radius: 50%;
+            box-shadow: 0 0 30px var(--primary-cyan);
+            z-index: 10;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 30px var(--primary-cyan);
+                transform: translateX(-50%) scale(1);
+            }
+            50% {
+                box-shadow: 0 0 50px var(--primary-cyan);
+                transform: translateX(-50%) scale(1.2);
+            }
+        }
+
+        /* Timeline Content */
+        .timeline-content {
+            width: 45%;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--primary-cyan);
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(0, 255, 255, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 255, 255, 0.4);
+            border-color: var(--secondary-pink);
+        }
+
+        .timeline-date {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-cyan);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px var(--primary-cyan);
+        }
+
+        .timeline-phase {
+            font-size: 0.9rem;
+            color: var(--secondary-pink);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: #FFFFFF;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-description {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .timeline-highlights {
+            list-style: none;
+            padding: 0;
+        }
+
+        .timeline-highlights li {
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            color: var(--text-gray);
+        }
+
+        .timeline-highlights li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--primary-cyan);
+        }
+
+        /* Timeline Image */
+        .timeline-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-cyan);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+            margin: 0 3rem;
+        }
+
+        /* Phase Sections */
+        .phase-section {
+            margin: 6rem 0;
+            padding: 3rem;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.05), rgba(109, 40, 217, 0.05));
+            border-radius: 20px;
+            border: 2px solid rgba(0, 255, 255, 0.3);
+        }
+
+        .phase-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .phase-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--primary-cyan);
+            text-shadow: 0 0 20px var(--primary-cyan);
+        }
+
+        .phase-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            color: var(--secondary-pink);
+            margin: 1rem 0;
+        }
+
+        .phase-years {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            letter-spacing: 2px;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .stat-card {
+            background: rgba(0, 255, 255, 0.1);
+            border: 2px solid var(--primary-cyan);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+        }
+
+        .stat-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--primary-cyan);
+            text-shadow: 0 0 20px var(--primary-cyan);
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.5rem;
+        }
+
+        /* Philosophy Section */
+        .philosophy-section {
+            background: rgba(109, 40, 217, 0.1);
+            border: 2px solid var(--secondary-purple);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 4rem 0;
+        }
+
+        .philosophy-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            color: var(--secondary-purple);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .philosophy-item {
+            background: rgba(15, 23, 42, 0.6);
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-cyan);
+        }
+
+        .philosophy-item h4 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--primary-cyan);
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .history-title {
+                font-size: 2.5rem;
+            }
+
+            .timeline-line {
+                left: 30px;
+            }
+
+            .timeline-item {
+                flex-direction: column !important;
+            }
+
+            .timeline-content {
+                width: 100%;
+                margin-left: 60px;
+            }
+
+            .timeline-node {
+                left: 30px;
+            }
+
+            .timeline-image {
+                margin: 2rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particle Background -->
+    <div id="particles-js" style="position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: -1;"></div>
+
+    <!-- Navigation -->
+    <nav style="position: sticky; top: 0; z-index: 1000; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); border-bottom: 2px solid #00FFFF; box-shadow: 0 4px 20px rgba(0, 255, 255, 0.3);">
+        <div style="max-width: 1400px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <img src="/assets/1142labs-new-logo.png" alt="1142 Labs Logo" style="width: 60px; height: 60px; filter: drop-shadow(0 0 15px rgba(0, 255, 255, 0.6));">
+                <h1 style="font-family: 'Orbitron', sans-serif; font-size: 1.8rem; color: #00FFFF;">1142 LABS</h1>
+            </div>
+            <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
+                <a href="index.html" style="color: #94A3B8; text-decoration: none; font-weight: 600;">HOME</a>
+                <a href="about.html" style="color: #94A3B8; text-decoration: none; font-weight: 600;">ABOUT</a>
+                <a href="history.html" style="color: #00FFFF; text-decoration: none; font-weight: 600;">HISTORY</a>
+                <a href="research.html" style="color: #94A3B8; text-decoration: none; font-weight: 600;">RESEARCH</a>
+                <a href="links.html" style="color: #94A3B8; text-decoration: none; font-weight: 600;">LINKS</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Banner -->
+    <section class="history-hero">
+        <img src="assets/history-hero-banner.png" alt="1142 Journey" class="history-hero-bg">
+        <div class="history-hero-content">
+            <h1 class="history-title text-3d">THE HISTORY OF 1142</h1>
+            <p class="history-subtitle">2019-2026: THE JOURNEY</p>
+        </div>
+    </section>
+
+    <!-- Stats Overview -->
+    <section style="max-width: 1400px; margin: 0 auto; padding: 0 2rem;">
+        <div class="stats-grid">
+            <div class="stat-card card-3d">
+                <div class="stat-number">7</div>
+                <div class="stat-label">Years of Research</div>
+            </div>
+            <div class="stat-card card-3d">
+                <div class="stat-number">20</div>
+                <div class="stat-label">Research Papers</div>
+            </div>
+            <div class="stat-card card-3d">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Evolution Phases</div>
+            </div>
+            <div class="stat-card card-3d">
+                <div class="stat-number">1000+</div>
+                <div class="stat-label">Lives Impacted</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="timeline-container">
+        <div class="timeline-line"></div>
+
+        <!-- 2019: THE FOUNDING -->
+        <div class="timeline-item">
+            <div class="timeline-node"></div>
+            <img src="assets/founding-moment-2019.png" alt="Founding Moment" class="timeline-image">
+            <div class="timeline-content card-3d">
+                <div class="timeline-phase">PHASE I: FOUNDATION</div>
+                <div class="timeline-date">DECEMBER 22, 2019</div>
+                <h3 class="timeline-title">THE FOUNDING</h3>
+                <p class="timeline-description">
+                    1142 LABS is born from a singular vision: to bridge the gap between neuroscience, pharmacology, and consciousness research. Founded by Cole EverDark, the lab emerges not from traditional academia, but from lived experience—from the intersection of personal struggle and scientific curiosity.
+                </p>
+                <ul class="timeline-highlights">
+                    <li>Initial focus on methylphenidate pharmacology</li>
+                    <li>Core question: How do stimulants actually work?</li>
+                    <li>Harm reduction framework development begins</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 2020: FIRST BREAKTHROUGHS -->
+        <div class="timeline-item">
+            <div class="timeline-node"></div>
+            <img src="assets/molecular-structure.png" alt="Molecular Research" class="timeline-image">
+            <div class="timeline-content card-3d">
+                <div class="timeline-phase">PHASE I: FOUNDATION</div>
+                <div class="timeline-date">EARLY 2020</div>
+                <h3 class="timeline-title">FIRST BREAKTHROUGHS</h3>
+                <p class="timeline-description">
+                    The first comprehensive research papers emerge, exploring methylphenidate mechanisms, dopamine dysregulation, and the neurochemical basis of ADHD. The relationship between dopamine transporter blockade and cognitive enhancement proves more nuanced than mainstream understanding suggests.
+                </p>
+                <ul class="timeline-highlights">
+                    <li>Research Papers #1-4 published</li>
+                    <li>Dopamine and executive function explored</li>
+                    <li>Stimulant withdrawal protocols developed</li>
+                    <li>First tapering calculator created</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 2020-2021: NEURODIVERSITY FRAMEWORK -->
+        <div class="timeline-item">
+            <div class="timeline-node"></div>
+            <img src="assets/adhd-brain-visual.png" alt="ADHD Neurodiversity" class="timeline-image">
+            <div class="timeline-content card-3d">
+                <div class="timeline-phase">PHASE II: EXPANSION</div>
+                <div class="timeline-date">LATE 2020 - EARLY 2021</div>
+                <h3 class="timeline-title">NEURODIVERSITY FRAMEWORK</h3>
+                <p class="timeline-description">
+                    A philosophical shift occurs: moving from "disorder" language to neurodiversity-affirming perspectives. ADHD and Autism are explored not as deficits, but as different ways of processing the world. The community begins to grow.
+                </p>
+                <ul class="timeline-highlights">
+                    <li>Research Papers #5-6: Beyond the deficit model</li>
+                    <li>ADHD and Autism overlap explored</li>
+                    <li>Neurodivergent community connections formed</li>
+                    <li>Compassionate science framework established</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 2021: CONSCIOUSNESS RESEARCH -->
+        <div class="timeline-item">
+            <div class="timeline-node"></div>
+            <img src="assets/consciousness-portal.png" alt="Consciousness Portal" class="timeline-image">
+            <div class="timeline-content card-3d">
+                <div class="timeline-phase">PHASE II: EXPANSION</div>
+                <div class="timeline-date">MID 2021</div>
+                <h3 class="timeline-title">CONSCIOUSNESS RESEARCH BEGINS</h3>
+                <p class="timeline-description">
+                    Expanding beyond ADHD into broader consciousness studies. Psychedelics, neuroplasticity, and the neuroscience of transcendence become new territories. Phenomenology meets rigorous neuroscience.
+                </p>
+                <ul class="timeline-highlights">
+                    <li>Research Papers #7-8: Psychedelics & DMT</li>
+                    <li>Neuroplasticity mechanisms explored</li>
+                    <li>Integration of subjective experience with science</li>
+                    <li>New research methodologies developed</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 2021: MENTAL HEALTH DEEP DIVE -->
+        <div class="timeline-item">
+            <div class="timeline-node"></div>
+            <img src="assets/depression-brain-visual.png" alt="Depression Research" class="timeline-image">
+            <div class="timeline-content card-3d">
+                <div class="timeline-phase">PHASE II: EXPANSION</div>
+                <div class="timeline-date">LATE 2021</div>
+                <h3 class="timeline-title">MENTAL HEALTH DEEP DIVE</h3>
+                <p class="timeline-description">
+                    Comprehensive exploration of depression, PTSD, and anxiety from a neuroplasticity perspective. Combining rigorous neuroscience with empathetic understanding. The "Smiling Depression" paper resonates deeply with readers.
+                </p>
+                <ul class="timeline-highlights">
+                    <li>Research Papers #9-11: Depression, PTSD, Anxiety</li>
+                    <li>Neuroplasticity disorder framework</li>
+                    <li>Trauma's neurological footprint mapped</li>
+                    <li>Compassionate science approach refined</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 2022: PHARMACOLOGY MASTERY -->
+        <div class="timeline-item">
+            <div class="timeline-node"></div>
+            <img src="assets/neural-network-bg.png" alt="Neural Network" class="timeline-image">
+            <div class="timeline-content card-3d">
+                <div class="timeline-phase">PHASE III: BREAKTHROUGH ERA</div>
+                <div class="timeline-date">2022</div>
+                <h3 class="timeline-title">PHARMACOLOGY MASTERY</h3>
+                <p class="timeline-description">
+                    1142 establishes itself as a trusted source for pharmacological harm reduction. Comprehensive research on norepinephrine, GABA, serotonin syndrome, and drug interactions. Safety through education becomes the mission.
+                </p>
+                <ul class="timeline-highlights">
+                    <li>Research Papers #12-16: Advanced pharmacology</li>
+                    <li>Drug interaction matrix developed</li>
+                    <li>Combination checker tool created</li>
+                    <li>Harm reduction protocols expanded</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 2022-2023: ADVANCED NEUROSCIENCE -->
+        <div class="timeline-item">
+            <div class="timeline-node"></div>
+            <img src="assets/autism-spectrum-visual.png" alt="Neuroscience" class="timeline-image">
+            <div class="timeline-content card-3d">
+                <div class="timeline-phase">PHASE III: BREAKTHROUGH ERA</div>
+                <div class="timeline-date">LATE 2022 - 2023</div>
+                <h3 class="timeline-title">ADVANCED NEUROSCIENCE</h3>
+                <p class="timeline-description">
+                    Exploring cutting-edge topics: neuroplasticity across the lifespan, the default mode network, and epigenetics. Research Paper #20 completes the initial collection with a holistic biopsychosocial model of neurodivergence.
+                </p>
+                <ul class="timeline-highlights">
+                    <li>Research Papers #17-20: Cutting-edge neuroscience</li>
+                    <li>20 comprehensive papers milestone reached</li>
+                    <li>Epigenetics and environment explored</li>
+                    <li>Holistic integration achieved</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 2023-2024: DIGITAL PRESENCE -->
+        <div class="timeline-item">
+            <div class="timeline-node"></div>
+            <img src="assets/research-milestone-20-papers.png" alt="20 Papers Milestone" class="timeline-image">
+            <div class="timeline-content card-3d">
+                <div class="timeline-phase">PHASE IV: MATURATION</div>
+                <div class="timeline-date">2023-2024</div>
+                <h3 class="timeline-title">DIGITAL PRESENCE EXPANSION</h3>
+                <p class="timeline-description">
+                    The first official 1142 LABS website launches. Interactive calculators, comprehensive guides, and educational materials become freely available. The community grows to thousands of monthly visitors. Accessibility becomes paramount.
+                </p>
+                <ul class="timeline-highlights">
+                    <li>Website launch with resource hub</li>
+                    <li>Advanced calculators for dosing and tapering</li>
+                    <li>Infographics and data visualizations</li>
+                    <li>Community growth and engagement</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 2025: PERSONA MATRIX -->
+        <div class="timeline-item">
+            <div class="timeline-node"></div>
+            <img src="assets/dna-helix-animated.png" alt="Evolution" class="timeline-image">
+            <div class="timeline-content card-3d">
+                <div class="timeline-phase">PHASE V: EVOLUTION</div>
+                <div class="timeline-date">2025</div>
+                <h3 class="timeline-title">THE PERSONA MATRIX</h3>
+                <p class="timeline-description">
+                    Creative expansion through the introduction of Creator personas. Cole EverDark and St. Jimmy emerge as distinct voices. Science meets storytelling. Philosophy deepens. Identity and consciousness become art.
+                </p>
+                <ul class="timeline-highlights">
+                    <li>Cole EverDark: The primary researcher</li>
+                    <li>St. Jimmy: The revolutionary voice</li>
+                    <li>Artistic integration with science</li>
+                    <li>Philosophical depth exploration</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 2026: ULTIMATE VISUAL UPGRADE -->
+        <div class="timeline-item">
+            <div class="timeline-node"></div>
+            <img src="assets/hero-video-poster.png" alt="Visual Upgrade" class="timeline-image">
+            <div class="timeline-content card-3d">
+                <div class="timeline-phase">PHASE V: EVOLUTION</div>
+                <div class="timeline-date">FEBRUARY 2026</div>
+                <h3 class="timeline-title">ULTIMATE VISUAL UPGRADE</h3>
+                <p class="timeline-description">
+                    The digital frontier fully realized. WebGL shaders, 3D CSS effects, AI-generated art, video backgrounds, and particle systems transform the website into an immersive cyberpunk experience. The aesthetic achievement matches the scientific rigor.
+                </p>
+                <ul class="timeline-highlights">
+                    <li>10+ AI-generated visual assets</li>
+                    <li>WebGL neural network simulations</li>
+                    <li>3D holographic interfaces</li>
+                    <li>Interactive molecular visualizations</li>
+                </ul>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Evolution Phases Diagram -->
+    <section style="max-width: 1400px; margin: 4rem auto; padding: 0 2rem;">
+        <img src="assets/evolution-phases-diagram.png" alt="Evolution Phases" style="width: 100%; border-radius: 20px; box-shadow: 0 20px 60px rgba(0, 255, 255, 0.3);">
+    </section>
+
+    <!-- Philosophy Section -->
+    <section class="philosophy-section" style="max-width: 1400px; margin: 4rem auto;">
+        <h2 class="philosophy-title text-3d">THE PHILOSOPHY OF 1142</h2>
+        <div class="philosophy-grid">
+            <div class="philosophy-item">
+                <h4>1. Science Without Stigma</h4>
+                <p>Neuroscience research that treats mental health conditions with respect and compassion, never pathologizing human experience.</p>
+            </div>
+            <div class="philosophy-item">
+                <h4>2. Harm Reduction First</h4>
+                <p>Practical, non-judgmental information that helps people make safer choices about their neurobiology and medication use.</p>
+            </div>
+            <div class="philosophy-item">
+                <h4>3. Neurodiversity Affirmation</h4>
+                <p>Celebrating different ways of thinking and being, moving beyond deficit-based models of ADHD, autism, and other neurodivergences.</p>
+            </div>
+            <div class="philosophy-item">
+                <h4>4. Open Access Knowledge</h4>
+                <p>Making complex neuroscience accessible to everyone, not just academics. Free resources, clear explanations, no paywalls.</p>
+            </div>
+            <div class="philosophy-item">
+                <h4>5. Lived Experience Matters</h4>
+                <p>Integrating personal experience with scientific research, acknowledging that those who live with conditions have valuable insights.</p>
+            </div>
+            <div class="philosophy-item">
+                <h4>6. Aesthetic Intentionality</h4>
+                <p>The visual language of 1142—cyberpunk, neon, futuristic—reflects the belief that science can be both rigorous and beautiful.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Legacy Section -->
+    <section style="max-width: 1200px; margin: 6rem auto; padding: 3rem; text-align: center; background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(236, 72, 153, 0.1)); border-radius: 20px; border: 2px solid var(--primary-cyan);">
+        <h2 class="text-3d" style="font-family: 'Orbitron', sans-serif; font-size: 2.5rem; color: var(--primary-cyan); margin-bottom: 2rem;">
+            LEGACY AND IMPACT
+        </h2>
+        <p style="font-size: 1.2rem; line-height: 2; color: var(--text-gray); max-width: 900px; margin: 0 auto;">
+            1142 LABS represents more than research papers and calculators. It represents a commitment to democratizing neuroscience knowledge, reducing harm in medication use, celebrating neurodiversity, bridging science and art, supporting those who struggle, and advancing human understanding.
+        </p>
+        <p style="font-size: 1.3rem; color: var(--primary-cyan); margin-top: 2rem; font-family: 'Orbitron', sans-serif; letter-spacing: 2px;">
+            From a single founding moment on December 22, 2019, to a comprehensive digital laboratory in 2026, 1142 has grown into a beacon for those seeking to understand their minds, their medications, and their place in the universe.
+        </p>
+        <div class="neon-tube-3d" style="display: inline-block; margin-top: 3rem; font-size: 1.5rem; padding: 1.5rem 3rem;">
+            THE WORK CONTINUES. THE FRONTIER EXPANDS. THE FUTURE IS 1142.
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section style="text-align: center; padding: 4rem 2rem;">
+        <h3 style="font-family: 'Orbitron', sans-serif; font-size: 2rem; color: var(--primary-cyan); margin-bottom: 2rem;">
+            EXPLORE THE RESEARCH
+        </h3>
+        <a href="research.html" class="neon-tube-3d" style="text-decoration: none; display: inline-block;">
+            VIEW 20 BREAKTHROUGH PAPERS
+        </a>
+    </section>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Particles.js configuration
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: '#00FFFF' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#00FFFF',
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: 'none',
+                    random: true,
+                    out_mode: 'out'
+                }
+            }
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.timeline-item').forEach(el => observer.observe(el));
+    </script>
+    <script src="assets/js/1142-ritual-effects.js"></script>
+    <script src="assets/js/epic-artistic.js"></script>
+</body>
+</html>
