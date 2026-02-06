@@ -1,0 +1,490 @@
+/* 3D GLASSES VIBE + BLUE NEON GLITCH EFFECTS */
+/* Inspired by anaglyph 3D glasses (red/cyan) with cyberpunk neon twist */
+
+:root {
+  --glitch-cyan: #00FFFF;
+  --glitch-red: #FF0040;
+  --glitch-blue: #0080FF;
+  --glitch-magenta: #FF00FF;
+}
+
+/* ==================== */
+/* 3D ANAGLYPH TEXT EFFECT */
+/* ==================== */
+
+.text-3d-glasses {
+  position: relative;
+  display: inline-block;
+  color: #FFFFFF;
+  text-shadow: 
+    -2px 0 var(--glitch-red),
+    2px 0 var(--glitch-cyan);
+  animation: anaglyph-shift 3s ease-in-out infinite;
+}
+
+@keyframes anaglyph-shift {
+  0%, 100% {
+    text-shadow: 
+      -2px 0 var(--glitch-red),
+      2px 0 var(--glitch-cyan);
+  }
+  50% {
+    text-shadow: 
+      -3px 0 var(--glitch-red),
+      3px 0 var(--glitch-cyan);
+  }
+}
+
+/* Intense 3D effect for hero text */
+.text-3d-hero {
+  position: relative;
+  color: #FFFFFF;
+  text-shadow: 
+    -4px 0 var(--glitch-red),
+    4px 0 var(--glitch-cyan),
+    0 0 20px var(--glitch-blue),
+    0 0 40px var(--glitch-blue);
+  animation: hero-anaglyph 4s ease-in-out infinite;
+}
+
+@keyframes hero-anaglyph {
+  0%, 100% {
+    text-shadow: 
+      -4px 0 var(--glitch-red),
+      4px 0 var(--glitch-cyan),
+      0 0 20px var(--glitch-blue);
+  }
+  25% {
+    text-shadow: 
+      -6px 0 var(--glitch-red),
+      6px 0 var(--glitch-cyan),
+      0 0 30px var(--glitch-blue);
+  }
+  50% {
+    text-shadow: 
+      -3px 0 var(--glitch-red),
+      5px 0 var(--glitch-cyan),
+      0 0 40px var(--glitch-blue);
+  }
+  75% {
+    text-shadow: 
+      -5px 0 var(--glitch-red),
+      3px 0 var(--glitch-cyan),
+      0 0 25px var(--glitch-blue);
+  }
+}
+
+/* ==================== */
+/* RGB SPLIT GLITCH EFFECT */
+/* ==================== */
+
+.glitch-rgb-split {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch-rgb-split::before,
+.glitch-rgb-split::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  mix-blend-mode: screen;
+}
+
+.glitch-rgb-split::before {
+  color: var(--glitch-red);
+  animation: glitch-red 2s infinite;
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+}
+
+.glitch-rgb-split::after {
+  color: var(--glitch-cyan);
+  animation: glitch-cyan 3s infinite;
+  clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+}
+
+@keyframes glitch-red {
+  0%, 100% { transform: translate(0, 0); }
+  20% { transform: translate(-3px, 2px); }
+  40% { transform: translate(-2px, -1px); }
+  60% { transform: translate(3px, 1px); }
+  80% { transform: translate(2px, -2px); }
+}
+
+@keyframes glitch-cyan {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(3px, -2px); }
+  50% { transform: translate(-3px, 2px); }
+  75% { transform: translate(2px, 1px); }
+}
+
+/* ==================== */
+/* CHROMATIC ABERRATION ON HOVER */
+/* ==================== */
+
+.chromatic-hover {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.chromatic-hover:hover {
+  text-shadow: 
+    -3px 0 var(--glitch-red),
+    3px 0 var(--glitch-cyan),
+    0 0 15px var(--glitch-blue);
+  transform: scale(1.05);
+}
+
+/* ==================== */
+/* IMAGE 3D GLASSES EFFECT */
+/* ==================== */
+
+.image-3d-glasses {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-3d-glasses::before,
+.image-3d-glasses::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: inherit;
+  background-size: cover;
+  background-position: center;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.image-3d-glasses::before {
+  filter: brightness(1.2) contrast(1.1);
+  background-color: rgba(255, 0, 64, 0.3);
+  transform: translateX(-3px);
+}
+
+.image-3d-glasses::after {
+  filter: brightness(1.2) contrast(1.1);
+  background-color: rgba(0, 255, 255, 0.3);
+  transform: translateX(3px);
+}
+
+.image-3d-glasses:hover::before {
+  transform: translateX(-5px);
+}
+
+.image-3d-glasses:hover::after {
+  transform: translateX(5px);
+}
+
+/* ==================== */
+/* BLUE NEON GLITCH PULSE */
+/* ==================== */
+
+.neon-glitch-pulse {
+  animation: neon-pulse-glitch 2s ease-in-out infinite;
+  text-shadow: 
+    0 0 10px var(--glitch-cyan),
+    0 0 20px var(--glitch-cyan),
+    0 0 30px var(--glitch-blue),
+    0 0 40px var(--glitch-blue);
+}
+
+@keyframes neon-pulse-glitch {
+  0%, 100% {
+    text-shadow: 
+      0 0 10px var(--glitch-cyan),
+      0 0 20px var(--glitch-cyan),
+      0 0 30px var(--glitch-blue);
+    opacity: 1;
+  }
+  10% {
+    text-shadow: 
+      0 0 5px var(--glitch-cyan),
+      0 0 10px var(--glitch-cyan);
+    opacity: 0.8;
+  }
+  20% {
+    text-shadow: 
+      0 0 15px var(--glitch-cyan),
+      0 0 25px var(--glitch-cyan),
+      0 0 35px var(--glitch-blue);
+    opacity: 1;
+  }
+  50% {
+    text-shadow: 
+      0 0 20px var(--glitch-cyan),
+      0 0 30px var(--glitch-cyan),
+      0 0 40px var(--glitch-blue),
+      0 0 50px var(--glitch-blue);
+    opacity: 1;
+  }
+}
+
+/* ==================== */
+/* GLITCH SCAN LINES */
+/* ==================== */
+
+.glitch-scanlines {
+  position: relative;
+  overflow: hidden;
+}
+
+.glitch-scanlines::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 255, 255, 0.03) 0px,
+    rgba(0, 255, 255, 0.03) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 10;
+  animation: scanline-move 8s linear infinite;
+}
+
+@keyframes scanline-move {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(100%); }
+}
+
+/* ==================== */
+/* GLITCH DISTORTION EFFECT */
+/* ==================== */
+
+.glitch-distort {
+  position: relative;
+  animation: glitch-distortion 5s infinite;
+}
+
+@keyframes glitch-distortion {
+  0%, 100% {
+    transform: translate(0, 0) skew(0deg);
+    filter: hue-rotate(0deg);
+  }
+  10% {
+    transform: translate(-2px, 1px) skew(0.5deg);
+    filter: hue-rotate(90deg);
+  }
+  20% {
+    transform: translate(2px, -1px) skew(-0.5deg);
+    filter: hue-rotate(0deg);
+  }
+  30% {
+    transform: translate(-1px, 2px) skew(0.3deg);
+    filter: hue-rotate(180deg);
+  }
+  40% {
+    transform: translate(1px, -2px) skew(-0.3deg);
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    transform: translate(0, 0) skew(0deg);
+    filter: hue-rotate(270deg);
+  }
+}
+
+/* ==================== */
+/* 3D DEPTH CARD EFFECT */
+/* ==================== */
+
+.card-3d-depth {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+  box-shadow: 
+    -5px 0 15px rgba(255, 0, 64, 0.3),
+    5px 0 15px rgba(0, 255, 255, 0.3),
+    0 0 30px rgba(0, 128, 255, 0.2);
+}
+
+.card-3d-depth:hover {
+  transform: translateZ(20px) rotateY(2deg) rotateX(-2deg);
+  box-shadow: 
+    -8px 0 25px rgba(255, 0, 64, 0.5),
+    8px 0 25px rgba(0, 255, 255, 0.5),
+    0 0 50px rgba(0, 128, 255, 0.4);
+}
+
+/* ==================== */
+/* GLITCH SEPARATOR LINE */
+/* ==================== */
+
+.glitch-separator {
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--glitch-red) 25%,
+    var(--glitch-cyan) 50%,
+    var(--glitch-blue) 75%,
+    transparent 100%
+  );
+  animation: glitch-line-move 3s linear infinite;
+  box-shadow: 
+    0 0 10px var(--glitch-cyan),
+    0 0 20px var(--glitch-blue);
+}
+
+@keyframes glitch-line-move {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* ==================== */
+/* BUTTON 3D GLASSES EFFECT */
+/* ==================== */
+
+.btn-3d-glasses {
+  position: relative;
+  background: linear-gradient(135deg, var(--glitch-blue), var(--glitch-cyan));
+  border: 2px solid var(--glitch-cyan);
+  color: #FFFFFF;
+  padding: 12px 30px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 
+    -3px 0 10px rgba(255, 0, 64, 0.4),
+    3px 0 10px rgba(0, 255, 255, 0.4);
+}
+
+.btn-3d-glasses::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.btn-3d-glasses:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    -5px 0 20px rgba(255, 0, 64, 0.6),
+    5px 0 20px rgba(0, 255, 255, 0.6),
+    0 5px 30px rgba(0, 128, 255, 0.5);
+  text-shadow: 
+    -2px 0 var(--glitch-red),
+    2px 0 var(--glitch-cyan);
+}
+
+.btn-3d-glasses:hover::before {
+  left: 100%;
+}
+
+/* ==================== */
+/* LOGO 3D GLASSES EFFECT */
+/* ==================== */
+
+.logo-3d-glasses {
+  position: relative;
+  display: inline-block;
+  filter: drop-shadow(-3px 0 2px var(--glitch-red))
+          drop-shadow(3px 0 2px var(--glitch-cyan))
+          drop-shadow(0 0 10px var(--glitch-blue));
+  animation: logo-anaglyph 4s ease-in-out infinite;
+}
+
+@keyframes logo-anaglyph {
+  0%, 100% {
+    filter: drop-shadow(-3px 0 2px var(--glitch-red))
+            drop-shadow(3px 0 2px var(--glitch-cyan))
+            drop-shadow(0 0 10px var(--glitch-blue));
+  }
+  50% {
+    filter: drop-shadow(-5px 0 3px var(--glitch-red))
+            drop-shadow(5px 0 3px var(--glitch-cyan))
+            drop-shadow(0 0 20px var(--glitch-blue));
+  }
+}
+
+/* ==================== */
+/* GLITCH FLICKER EFFECT */
+/* ==================== */
+
+.glitch-flicker {
+  animation: flicker-glitch 0.5s infinite alternate;
+}
+
+@keyframes flicker-glitch {
+  0%, 100% {
+    opacity: 1;
+    text-shadow: 
+      0 0 10px var(--glitch-cyan),
+      0 0 20px var(--glitch-blue);
+  }
+  25% {
+    opacity: 0.8;
+    text-shadow: 
+      -2px 0 5px var(--glitch-red),
+      2px 0 5px var(--glitch-cyan);
+  }
+  50% {
+    opacity: 1;
+    text-shadow: 
+      0 0 15px var(--glitch-cyan),
+      0 0 25px var(--glitch-blue);
+  }
+  75% {
+    opacity: 0.9;
+    text-shadow: 
+      2px 0 5px var(--glitch-red),
+      -2px 0 5px var(--glitch-cyan);
+  }
+}
+
+/* ==================== */
+/* RESPONSIVE ADJUSTMENTS */
+/* ==================== */
+
+@media (max-width: 768px) {
+  .text-3d-glasses {
+    text-shadow: 
+      -1px 0 var(--glitch-red),
+      1px 0 var(--glitch-cyan);
+  }
+  
+  .text-3d-hero {
+    text-shadow: 
+      -2px 0 var(--glitch-red),
+      2px 0 var(--glitch-cyan),
+      0 0 15px var(--glitch-blue);
+  }
+  
+  .card-3d-depth {
+    box-shadow: 
+      -3px 0 10px rgba(255, 0, 64, 0.3),
+      3px 0 10px rgba(0, 255, 255, 0.3);
+  }
+}
