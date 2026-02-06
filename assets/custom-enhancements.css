@@ -1,0 +1,119 @@
+/*
+ * Cosmic-Retrowave/Cyberpunk Enhancements - Manus Protocol V7.0
+ * Aesthetic Mandate: High-saturation neon on Deep Violet/Dark Gray (#0D1117)
+ */
+
+/* 1. Background Enhancement: Deep Dark Mode Base */
+body {
+  background-color: #0D1117 !important; /* Mandated Deep Violet/Dark Gray */
+  color: #C9D1D9; /* WCAG Compliant Text Color */
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* 2. Full-Viewport Animated Background Layer (Using the new GIF as a repeating texture) */
+.cosmic-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../assets/lightbulb-logo.gif'); /* The new logo GIF is now the background */
+  background-repeat: repeat;
+  background-size: 200px 200px; /* Repeat a small version of the GIF */
+  opacity: 0.05; /* Very subtle background effect */
+  z-index: -1; /* Keep it behind all content */
+  animation: background-scroll 60s linear infinite;
+}
+
+@keyframes background-scroll {
+  from { background-position: 0 0; }
+  to { background-position: 100% 100%; }
+}
+
+/* 3. GUI Enhancement: Neon Glow Text (WCAG Compliant Text with Aesthetic Glow Layer) */
+.neon-text {
+  color: #00F0FF; /* VORTEX Primary: Electric Blue / Neon Cyan */
+  text-shadow: 0 0 5px #00F0FF, 0 0 10px #00F0FF, 0 0 20px #FF10F0; /* Aesthetic Glow Layer */
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  letter-spacing: 2px;
+  animation: pulse 1.5s infinite alternate;
+}
+
+@keyframes pulse {
+  from { text-shadow: 0 0 5px #00F0FF, 0 0 10px #00F0FF; }
+  to { text-shadow: 0 0 10px #00F0FF, 0 0 20px #FF10F0; }
+}
+
+/* 4. GUI Enhancement: Pink Neon Flamingo (Crucial Brand Signature) */
+.pink-neon-flamingo {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 100px;
+  height: 100px;
+  background-color: transparent;
+  border: 2px solid #EC4899; /* Cyber Pink */
+  border-radius: 50%;
+  box-shadow: 0 0 15px #EC4899, 0 0 30px #EC4899;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  animation: flicker 0.1s infinite alternate;
+}
+
+.pink-neon-flamingo:hover {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 0 20px #EC4899, 0 0 40px #EC4899, 0 0 60px #FF10F0;
+}
+
+@keyframes flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 15px #EC4899, 0 0 30px #EC4899;
+  }
+  20%, 24%, 55% {
+    opacity: 0.8;
+    box-shadow: 0 0 5px #EC4899, 0 0 10px #EC4899;
+  }
+}
+
+/* 5. Glitch Effect for Headers (as much as possible) */
+h1, h2, h3 {
+  position: relative;
+  color: #FF10F0; /* VORTEX Secondary: Neon Pink */
+  text-shadow: 0 0 5px #FF10F0;
+  font-family: 'Space Grotesk', sans-serif;
+  animation: glitch-flicker 4s infinite linear alternate;
+}
+
+@keyframes glitch-flicker {
+  0% { transform: translate(0); }
+  2% { transform: translate(-2px, 2px); }
+  4% { transform: translate(-2px, -2px); }
+  6% { transform: translate(2px, 2px); }
+  8% { transform: translate(0); }
+  10% { transform: translate(2px, -2px); }
+  12% { transform: translate(-2px, 2px); }
+  14% { transform: translate(0); }
+  100% { transform: translate(0); }
+}
+
+/* Apply neon glow to the logo image */
+img[src*="lightbulb-logo.gif"] {
+  box-shadow: 0 0 10px #00F0FF, 0 0 20px #FF10F0;
+  border-radius: 50%;
+  transition: all 0.5s;
+}
+
+img[src*="lightbulb-logo.gif"]:hover {
+  box-shadow: 0 0 20px #00F0FF, 0 0 40px #FF10F0, 0 0 60px #00F0FF;
+}

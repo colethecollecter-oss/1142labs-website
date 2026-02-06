@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.1142labs.com/sitemap.xml
+
+# Disallow backup files
+Disallow: *.backup
+
+# Allow all research PDFs
+Allow: /assets/pdfs/
+
+# Allow all posters
+Allow: /posters/
+
+# Allow all assets
+Allow: /assets/

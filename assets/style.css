@@ -1,0 +1,251 @@
+/*
+ * 1142 Labs - Cyber-Retrowave Manifesto & Contrast Layering Protocol
+ * Based on Manus Protocol V7.0
+ */
+
+/* -------------------------------------------------------------------------- */
+/* 1. CORE AESTHETIC & TYPOGRAPHY */
+/* -------------------------------------------------------------------------- */
+
+:root {
+    /* Color Palette: Resurrection Spectrum */
+    --color-foundation: #0D1117; /* Deep Violet / Dark Gray */
+    --color-primary-neon: #00F0FF; /* VORTEX Primary: Electric Blue / Neon Cyan */
+    --color-secondary-neon: #FF10F0; /* VORTEX Secondary: Cyber Pink */
+    --color-compliant-text: #C9D1D9; /* WCAG Compliant Light Gray */
+    --color-warning: #FF4136; /* Flashing Red / Corrupted Black */
+    --color-active: #4ADE80; /* Neon Green / System Online */
+    
+    /* Typography */
+    --font-cyber: 'Space Grotesk', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* Base Styling: Dark Mode & WCAG Compliance */
+body {
+    background-color: var(--color-foundation);
+    color: var(--color-compliant-text); /* Functional Readability Layer */
+    font-family: var(--font-cyber);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    position: relative;
+    line-height: 1.6;
+}
+
+/* Headings: Glitch & Neon */
+h1, h2, h3 {
+    font-family: var(--font-cyber);
+    color: var(--color-secondary-neon);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-top: 0;
+}
+
+/* Neon Text Class: Aesthetic Glow Layer */
+.neon-text {
+    color: var(--color-primary-neon);
+    text-shadow: 0 0 5px var(--color-primary-neon), 0 0 10px var(--color-secondary-neon);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    letter-spacing: 1px;
+    animation: pulse 1.5s infinite alternate;
+}
+
+.warning-text {
+    color: var(--color-warning);
+    font-weight: bold;
+    text-shadow: 0 0 5px var(--color-warning);
+}
+
+/* -------------------------------------------------------------------------- */
+/* 2. ANIMATIONS & EFFECTS */
+/* -------------------------------------------------------------------------- */
+
+/* Glitch Flicker Animation (for headers) */
+@keyframes glitch-flicker {
+    0% { transform: translate(0); }
+    2% { transform: translate(-2px, 2px); }
+    4% { transform: translate(-2px, -2px); }
+    6% { transform: translate(2px, 2px); }
+    8% { transform: translate(0); }
+    10% { transform: translate(2px, -2px); }
+    12% { transform: translate(-2px, 2px); }
+    14% { transform: translate(0); }
+    100% { transform: translate(0); }
+}
+
+.glitch-flicker {
+    animation: glitch-flicker 4s infinite linear alternate;
+}
+
+/* Neon Pulse Animation (for text) */
+@keyframes pulse {
+    from { text-shadow: 0 0 5px var(--color-primary-neon), 0 0 10px var(--color-secondary-neon); }
+    to { text-shadow: 0 0 10px var(--color-primary-neon), 0 0 20px var(--color-secondary-neon); }
+}
+
+/* Background Scroll Animation (for cosmic-background) */
+@keyframes background-scroll {
+    from { background-position: 0 0; }
+    to { background-position: 100% 100%; }
+}
+
+/* Flamingo Flicker Animation */
+@keyframes flicker {
+    0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; box-shadow: 0 0 15px var(--color-secondary-neon), 0 0 30px var(--color-secondary-neon); }
+    20%, 24%, 55% { opacity: 0.8; box-shadow: 0 0 5px var(--color-secondary-neon), 0 0 10px var(--color-secondary-neon); }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 3. LAYOUT & STRUCTURE (Skeleton Menu Protocol) */
+/* -------------------------------------------------------------------------- */
+
+.header-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: rgba(13, 17, 23, 0.9); /* Semi-transparent background */
+    backdrop-filter: blur(5px);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-glow {
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+    box-shadow: 0 0 10px var(--color-primary-neon), 0 0 20px var(--color-secondary-neon);
+    border-radius: 50%;
+    transition: all 0.5s;
+}
+
+.logo-glow:hover {
+    box-shadow: 0 0 20px var(--color-primary-neon), 0 0 40px var(--color-secondary-neon), 0 0 60px var(--color-primary-neon);
+}
+
+.skeleton-menu a {
+    margin-left: 25px;
+    text-decoration: none;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.skeleton-menu a:hover {
+    color: var(--color-secondary-neon);
+    text-shadow: 0 0 8px var(--color-secondary-neon);
+}
+
+.content-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.hero-section {
+    text-align: center;
+    padding: 100px 0;
+    border-bottom: 2px dashed rgba(255, 255, 255, 0.1);
+}
+
+.content-block {
+    padding: 60px 0;
+    border-bottom: 1px solid rgba(0, 240, 255, 0.1);
+}
+
+.calculator-placeholder {
+    border: 2px solid var(--color-warning);
+    padding: 20px;
+    margin: 20px 0;
+    background-color: rgba(255, 65, 54, 0.1);
+    box-shadow: 0 0 10px var(--color-warning);
+}
+
+.footer {
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid rgba(0, 240, 255, 0.2);
+    font-family: var(--font-mono);
+    font-size: 0.8em;
+    color: rgba(201, 209, 217, 0.7);
+}
+
+/* -------------------------------------------------------------------------- */
+/* 4. GUI ENHANCEMENTS (Maximum Possible) */
+/* -------------------------------------------------------------------------- */
+
+/* Cosmic Background */
+.cosmic-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../assets/lightbulb-logo.gif'); /* New GIF as repeating texture */
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    opacity: 0.05;
+    z-index: -1;
+    animation: background-scroll 60s linear infinite;
+}
+
+/* Pink Neon Flamingo */
+.pink-neon-flamingo {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: var(--color-foundation);
+    border: 2px solid var(--color-secondary-neon);
+    border-radius: 50%;
+    box-shadow: 0 0 15px var(--color-secondary-neon), 0 0 30px var(--color-secondary-neon);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    animation: flicker 0.1s infinite alternate;
+}
+
+.pink-neon-flamingo:hover {
+    transform: scale(1.2) rotate(5deg);
+    box-shadow: 0 0 20px var(--color-secondary-neon), 0 0 40px var(--color-secondary-neon), 0 0 60px var(--color-primary-neon);
+}
+
+/* ASCII Glyphs as Structural Punctuation */
+.ascii-divider {
+    font-family: var(--font-mono);
+    color: var(--color-primary-neon);
+    text-align: center;
+    margin: 30px 0;
+    font-size: 1.2em;
+    text-shadow: 0 0 5px var(--color-primary-neon);
+}
+
+.cta-button {
+    font-family: var(--font-mono);
+    color: var(--color-primary-neon);
+    text-align: center;
+    margin: 40px 0;
+    padding: 15px 30px;
+    border: 2px solid var(--color-primary-neon);
+    box-shadow: 0 0 10px var(--color-primary-neon), inset 0 0 10px var(--color-primary-neon);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.cta-button:hover {
+    background-color: rgba(0, 240, 255, 0.1);
+    box-shadow: 0 0 20px var(--color-primary-neon), inset 0 0 20px var(--color-primary-neon);
+}
