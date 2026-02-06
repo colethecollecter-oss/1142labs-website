@@ -1,0 +1,133 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradient definitions -->
+    <linearGradient id="cyanGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00FFFF;stop-opacity:1">
+        <animate attributeName="stop-color" values="#00FFFF;#0088FF;#00FFFF" dur="3s" repeatCount="indefinite"/>
+      </stop>
+      <stop offset="100%" style="stop-color:#0088FF;stop-opacity:1">
+        <animate attributeName="stop-color" values="#0088FF;#00FFFF;#0088FF" dur="3s" repeatCount="indefinite"/>
+      </stop>
+    </linearGradient>
+    
+    <linearGradient id="magentaGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#EC4899;stop-opacity:1">
+        <animate attributeName="stop-color" values="#EC4899;#FF00FF;#EC4899" dur="3s" repeatCount="indefinite"/>
+      </stop>
+      <stop offset="100%" style="stop-color:#FF00FF;stop-opacity:1">
+        <animate attributeName="stop-color" values="#FF00FF;#EC4899;#FF00FF" dur="3s" repeatCount="indefinite"/>
+      </stop>
+    </linearGradient>
+    
+    <!-- Glow filters -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <filter id="strongGlow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background circle pulse -->
+  <circle cx="200" cy="200" r="150" fill="none" stroke="url(#cyanGradient)" stroke-width="2" opacity="0.3" filter="url(#glow)">
+    <animate attributeName="r" values="150;160;150" dur="2s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.3;0.5;0.3" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  
+  <circle cx="200" cy="200" r="130" fill="none" stroke="url(#magentaGradient)" stroke-width="2" opacity="0.3" filter="url(#glow)">
+    <animate attributeName="r" values="130;140;130" dur="2.5s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.3;0.5;0.3" dur="2.5s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Neural network nodes -->
+  <g id="neurons">
+    <circle cx="200" cy="100" r="8" fill="url(#cyanGradient)" filter="url(#strongGlow)">
+      <animate attributeName="r" values="8;10;8" dur="1.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="280" cy="150" r="6" fill="url(#cyanGradient)" filter="url(#strongGlow)">
+      <animate attributeName="r" values="6;8;6" dur="1.8s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="300" cy="230" r="7" fill="url(#magentaGradient)" filter="url(#strongGlow)">
+      <animate attributeName="r" values="7;9;7" dur="1.6s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="260" cy="290" r="6" fill="url(#magentaGradient)" filter="url(#strongGlow)">
+      <animate attributeName="r" values="6;8;6" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="180" cy="310" r="7" fill="url(#cyanGradient)" filter="url(#strongGlow)">
+      <animate attributeName="r" values="7;9;7" dur="1.7s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="120" cy="280" r="6" fill="url(#magentaGradient)" filter="url(#strongGlow)">
+      <animate attributeName="r" values="6;8;6" dur="1.9s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="100" cy="210" r="7" fill="url(#cyanGradient)" filter="url(#strongGlow)">
+      <animate attributeName="r" values="7;9;7" dur="1.4s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="130" cy="140" r="6" fill="url(#magentaGradient)" filter="url(#strongGlow)">
+      <animate attributeName="r" values="6;8;6" dur="2.1s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- Synaptic connections -->
+  <g id="connections" opacity="0.6">
+    <line x1="200" y1="100" x2="280" y2="150" stroke="url(#cyanGradient)" stroke-width="2" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite"/>
+    </line>
+    <line x1="280" y1="150" x2="300" y2="230" stroke="url(#magentaGradient)" stroke-width="2" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2.2s" repeatCount="indefinite"/>
+    </line>
+    <line x1="300" y1="230" x2="260" y2="290" stroke="url(#cyanGradient)" stroke-width="2" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.3;0.8;0.3" dur="1.8s" repeatCount="indefinite"/>
+    </line>
+    <line x1="260" y1="290" x2="180" y2="310" stroke="url(#magentaGradient)" stroke-width="2" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2.4s" repeatCount="indefinite"/>
+    </line>
+    <line x1="180" y1="310" x2="120" y2="280" stroke="url(#cyanGradient)" stroke-width="2" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.3;0.8;0.3" dur="1.6s" repeatCount="indefinite"/>
+    </line>
+    <line x1="120" y1="280" x2="100" y2="210" stroke="url(#magentaGradient)" stroke-width="2" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2.6s" repeatCount="indefinite"/>
+    </line>
+    <line x1="100" y1="210" x2="130" y2="140" stroke="url(#cyanGradient)" stroke-width="2" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.3;0.8;0.3" dur="1.9s" repeatCount="indefinite"/>
+    </line>
+    <line x1="130" y1="140" x2="200" y2="100" stroke="url(#magentaGradient)" stroke-width="2" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2.3s" repeatCount="indefinite"/>
+    </line>
+  </g>
+  
+  <!-- Central text -->
+  <text x="200" y="190" font-family="Orbitron, sans-serif" font-size="48" font-weight="900" fill="url(#cyanGradient)" text-anchor="middle" filter="url(#strongGlow)">
+    1142
+    <animate attributeName="opacity" values="1;0.7;1" dur="2s" repeatCount="indefinite"/>
+  </text>
+  <text x="200" y="225" font-family="Orbitron, sans-serif" font-size="24" font-weight="700" fill="url(#magentaGradient)" text-anchor="middle" filter="url(#glow)">
+    LABS
+    <animate attributeName="opacity" values="1;0.7;1" dur="2s" begin="0.5s" repeatCount="indefinite"/>
+  </text>
+  
+  <!-- Rotating particles -->
+  <g id="particles">
+    <circle cx="200" cy="200" r="3" fill="#00FFFF" opacity="0.8">
+      <animateTransform attributeName="transform" type="rotate" from="0 200 200" to="360 200 200" dur="10s" repeatCount="indefinite"/>
+      <animateTransform attributeName="transform" type="translate" values="0,0; 80,0; 0,0" dur="10s" repeatCount="indefinite" additive="sum"/>
+    </circle>
+    <circle cx="200" cy="200" r="2" fill="#EC4899" opacity="0.8">
+      <animateTransform attributeName="transform" type="rotate" from="120 200 200" to="480 200 200" dur="8s" repeatCount="indefinite"/>
+      <animateTransform attributeName="transform" type="translate" values="0,0; 60,0; 0,0" dur="8s" repeatCount="indefinite" additive="sum"/>
+    </circle>
+    <circle cx="200" cy="200" r="2" fill="#00FFFF" opacity="0.8">
+      <animateTransform attributeName="transform" type="rotate" from="240 200 200" to="600 200 200" dur="12s" repeatCount="indefinite"/>
+      <animateTransform attributeName="transform" type="translate" values="0,0; 70,0; 0,0" dur="12s" repeatCount="indefinite" additive="sum"/>
+    </circle>
+  </g>
+</svg>
