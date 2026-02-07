@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>In Loving Memory | 1142 LABS</title>
+    <meta name="description" content="A memorial tribute to Katrina - forever remembered, forever missed.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/3d-effects.css">
+    <link rel="stylesheet" href="assets/css/3d-glasses-glitch.css">
+    
+    <style>
+        body {
+            background: #0F172A;
+            color: #E2E8F0;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .hero-memorial {
+            position: relative;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(180deg, #0A0F1E, #1E293B);
+            overflow: hidden;
+        }
+        
+        .hero-memorial::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(255, 0, 255, 0.1), transparent 70%);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 80px 20px;
+            max-width: 900px;
+        }
+        
+        .memorial-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 700;
+            margin: 0 0 20px 0;
+            line-height: 1.2;
+            color: #FF00FF;
+            text-shadow: 0 0 30px rgba(255, 0, 255, 0.6);
+        }
+        
+        .memorial-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(4rem, 10vw, 8rem);
+            font-weight: 900;
+            margin: 0 0 30px 0;
+            line-height: 1;
+            background: linear-gradient(135deg, #FF00FF, #00FFFF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .memorial-dates {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.3rem, 3vw, 2rem);
+            color: #CBD5E1;
+            margin: 0 0 50px 0;
+            letter-spacing: 2px;
+        }
+        
+        .memorial-quote {
+            font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+            font-style: italic;
+            line-height: 1.8;
+            color: #E2E8F0;
+            margin: 0 0 40px 0;
+            padding: 30px;
+            border-left: 4px solid #FF00FF;
+            background: rgba(255, 0, 255, 0.05);
+            border-radius: 8px;
+        }
+        
+        .memorial-symbol {
+            font-size: 4rem;
+            color: #FF00FF;
+            margin: 40px 0;
+            opacity: 0.6;
+        }
+        
+        .content-section {
+            padding: 100px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: #FF00FF;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .memorial-text {
+            font-size: 1.2rem;
+            line-height: 2;
+            color: #CBD5E1;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .memorial-text strong {
+            color: #FF00FF;
+            font-weight: 600;
+        }
+        
+        .tribute-box {
+            background: rgba(30, 41, 59, 0.6);
+            border: 2px solid rgba(255, 0, 255, 0.3);
+            border-radius: 16px;
+            padding: 50px;
+            margin: 60px 0;
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+        
+        .tribute-box h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            color: #FF00FF;
+            margin-bottom: 25px;
+        }
+        
+        .tribute-box p {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: #E2E8F0;
+            margin: 0;
+        }
+        
+        .awareness-section {
+            background: linear-gradient(180deg, #1E293B, #0F172A);
+            padding: 100px 20px;
+        }
+        
+        .awareness-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .awareness-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            color: #00FFFF;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .awareness-text {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: #CBD5E1;
+            margin-bottom: 25px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+        
+        .stat-card {
+            background: rgba(30, 41, 59, 0.6);
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        
+        .stat-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            color: #00FFFF;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: #CBD5E1;
+            line-height: 1.5;
+        }
+        
+        .resources-box {
+            background: rgba(0, 255, 255, 0.05);
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            border-radius: 12px;
+            padding: 40px;
+            margin-top: 60px;
+        }
+        
+        .resources-box h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            color: #00FFFF;
+            margin-bottom: 25px;
+        }
+        
+        .resources-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .resources-box li {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #E2E8F0;
+            margin: 15px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .resources-box li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #00FFFF;
+            font-weight: bold;
+        }
+        
+        .resources-box a {
+            color: #00FFFF;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .resources-box a:hover {
+            text-decoration: underline;
+        }
+        
+        .closing-section {
+            padding: 100px 20px;
+            text-align: center;
+            background: #0A0F1E;
+        }
+        
+        .closing-message {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.3rem;
+            line-height: 2;
+            color: #E2E8F0;
+            font-style: italic;
+        }
+        
+        .eternal-flame {
+            width: 100px;
+            height: 100px;
+            margin: 50px auto;
+            background: radial-gradient(circle, #FF00FF, transparent);
+            border-radius: 50%;
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.6;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.1);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav style="position: fixed; top: 0; width: 100%; background: rgba(15, 23, 42, 0.98); backdrop-filter: blur(15px); z-index: 1000; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid rgba(255, 0, 255, 0.3); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);">
+        <a href="index.html" style="text-decoration: none;">
+            <img src="assets/3d-glitch-logo-1142.png" alt="1142 LABS" style="height: 55px;" class="logo-3d-glasses">
+        </a>
+        <div style="display: flex; gap: 35px; flex-wrap: wrap;">
+            <a href="index.html" class="chromatic-hover" style="color: #E2E8F0; text-decoration: none; font-weight: 600; font-size: 1.05rem;">HOME</a>
+            <a href="history.html" class="chromatic-hover" style="color: #E2E8F0; text-decoration: none; font-weight: 600; font-size: 1.05rem;">HISTORY</a>
+            <a href="breakthroughs.html" class="chromatic-hover" style="color: #E2E8F0; text-decoration: none; font-weight: 600; font-size: 1.05rem;">BREAKTHROUGHS</a>
+            <a href="chemicals.html" class="chromatic-hover" style="color: #E2E8F0; text-decoration: none; font-weight: 600; font-size: 1.05rem;">CHEMICALS</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-memorial" style="margin-top: 95px;">
+        <div class="hero-content">
+            <h1 class="memorial-title">In Loving Memory</h1>
+            <h2 class="memorial-name text-3d-hero">KATRINA</h2>
+            <p class="memorial-dates">Forever in Our Hearts</p>
+            
+            <div class="memorial-symbol">✦</div>
+            
+            <blockquote class="memorial-quote">
+                "Some lights burn so bright they leave an afterglow that never fades. Katrina was one of those lights—fierce, beautiful, and irreplaceable."
+            </blockquote>
+        </div>
+    </section>
+
+    <!-- Tribute Section -->
+    <section class="content-section">
+        <h2 class="section-title text-3d-glasses">A Life Remembered</h2>
+        
+        <p class="memorial-text">
+            Katrina was more than a name. She was a presence—someone who could light up a room with her laughter, challenge you with her mind, and remind you what it meant to be fully alive. Her spirit was electric, her heart was vast, and her loss left a wound that will never fully heal.
+        </p>
+        
+        <p class="memorial-text">
+            She was taken too soon by <strong>fentanyl</strong>—a substance that has claimed too many lives, destroyed too many families, and left too many questions unanswered. Her death was not a statistic. It was a tragedy. And it is the reason 1142 LABS exists.
+        </p>
+        
+        <div class="tribute-box card-3d-depth">
+            <h3>Why We Remember</h3>
+            <p>
+                Katrina's death was preventable. The opioid crisis is not an accident—it is a failure of policy, compassion, and understanding. 1142 LABS was founded in the wake of her loss, driven by the belief that knowledge, harm reduction, and honest conversation can save lives. We remember Katrina not just with grief, but with action. Every research breakthrough, every tool built, every life helped—it's all for her.
+            </p>
+        </div>
+        
+        <p class="memorial-text">
+            She would have loved this work. She would have challenged it, improved it, and made it better. In her absence, we carry that torch. We ask the hard questions. We refuse to look away. We honor her by refusing to let anyone else become a statistic.
+        </p>
+    </section>
+
+    <!-- Awareness Section -->
+    <section class="awareness-section">
+        <div class="awareness-content">
+            <h2 class="awareness-title text-3d-glasses">The Opioid Crisis: A National Emergency</h2>
+            
+            <p class="awareness-text">
+                Fentanyl is a synthetic opioid 50-100 times more potent than morphine. It is cheap, easy to produce, and deadly. A dose the size of a few grains of salt can kill. It is often mixed into other drugs without the user's knowledge, turning every pill, every powder, into a game of Russian roulette.
+            </p>
+            
+            <p class="awareness-text">
+                The opioid epidemic has claimed over <strong>500,000 lives in the United States</strong> since 1999. In Canada, opioid-related deaths have increased by over <strong>400% in the past decade</strong>. Fentanyl is now the leading cause of overdose deaths in North America.
+            </p>
+            
+            <div class="stats-grid">
+                <div class="stat-card card-3d-depth">
+                    <div class="stat-number">107K</div>
+                    <div class="stat-label">Drug overdose deaths in the U.S. in 2021</div>
+                </div>
+                <div class="stat-card card-3d-depth">
+                    <div class="stat-number">67%</div>
+                    <div class="stat-label">Involved synthetic opioids like fentanyl</div>
+                </div>
+                <div class="stat-card card-3d-depth">
+                    <div class="stat-number">2mg</div>
+                    <div class="stat-label">Lethal dose of fentanyl for most people</div>
+                </div>
+            </div>
+            
+            <p class="awareness-text">
+                This is not a moral failing. This is a public health crisis. People who use drugs are not criminals—they are human beings who deserve compassion, support, and access to life-saving resources.
+            </p>
+            
+            <div class="resources-box">
+                <h3>Harm Reduction Resources</h3>
+                <ul>
+                    <li><strong>Naloxone (Narcan):</strong> A life-saving medication that reverses opioid overdoses. Available at most pharmacies without a prescription.</li>
+                    <li><strong>Fentanyl Test Strips:</strong> Inexpensive strips that detect fentanyl in drugs before use. Available through harm reduction organizations.</li>
+                    <li><strong>Never Use Alone:</strong> Call 1-800-484-3731 (US) or use the Never Use Alone hotline for supervised use.</li>
+                    <li><strong>SAMHSA National Helpline:</strong> 1-800-662-4357 (24/7 confidential support for substance use disorders)</li>
+                    <li><strong>Local Harm Reduction Centers:</strong> Many cities have needle exchanges, supervised consumption sites, and free naloxone distribution.</li>
+                </ul>
+            </div>
+            
+            <p class="awareness-text" style="margin-top: 50px;">
+                If you or someone you know is struggling with substance use, <strong>you are not alone</strong>. Help is available. Recovery is possible. And every life is worth saving.
+            </p>
+        </div>
+    </section>
+
+    <!-- Closing Section -->
+    <section class="closing-section">
+        <div class="eternal-flame"></div>
+        
+        <p class="closing-message">
+            Katrina, you are missed every single day. Your laughter, your fire, your brilliance—they live on in the work we do and the lives we touch. This is for you. This has always been for you.
+        </p>
+        
+        <p class="closing-message" style="margin-top: 40px; font-size: 1.5rem; color: #FF00FF;">
+            Rest in power. ✦
+        </p>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: #0A0F1E; padding: 50px 20px; text-align: center; border-top: 2px solid rgba(255, 0, 255, 0.3);">
+        <p style="margin: 0; color: #64748B; font-size: 1.05rem;">
+            1142 · Founded Dec 22, 2019 · 11:42 PM · 11-42.ca · an Everdark production · Tomorrow's Answers Today
+        </p>
+        <p style="margin: 15px 0 0 0; color: #64748B;">
+            © 1142 · All Rights Reserved
+        </p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/3d-glitch-effects.js"></script>
+</body>
+</html>

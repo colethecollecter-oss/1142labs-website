@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chemical Database | 1142 LABS</title>
+    <meta name="description" content="Comprehensive database of substances studied at 1142 LABS - molecular structures, pharmacology, effects, and research findings.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/3d-effects.css">
+    <link rel="stylesheet" href="assets/css/3d-glasses-glitch.css">
+    
+    <style>
+        body {
+            background: #0F172A;
+            color: #E2E8F0;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .hero-chemicals {
+            position: relative;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url('assets/molecular-structure.png') center/cover;
+            overflow: hidden;
+        }
+        
+        .hero-chemicals::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.95));
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 60px 20px;
+            max-width: 1200px;
+        }
+        
+        .hero-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 900;
+            margin: 0 0 30px 0;
+            line-height: 1.1;
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            font-weight: 300;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+        
+        .database-section {
+            padding: 100px 20px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        .section-intro {
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto 80px auto;
+        }
+        
+        .section-intro h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            color: #00FFFF;
+            margin-bottom: 25px;
+        }
+        
+        .section-intro p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #CBD5E1;
+        }
+        
+        .chemical-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 40px;
+        }
+        
+        .chemical-card {
+            background: rgba(30, 41, 59, 0.6);
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            border-radius: 20px;
+            padding: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .chemical-card:hover {
+            border-color: #00FFFF;
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 255, 255, 0.4);
+        }
+        
+        .chemical-header {
+            padding: 35px;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.15), rgba(255, 0, 255, 0.15));
+            border-bottom: 2px solid rgba(0, 255, 255, 0.3);
+        }
+        
+        .chemical-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            color: #00FFFF;
+            margin: 0 0 10px 0;
+        }
+        
+        .chemical-formula {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            color: #FF00FF;
+            margin: 0 0 15px 0;
+        }
+        
+        .chemical-class {
+            display: inline-block;
+            background: rgba(0, 255, 255, 0.2);
+            border: 1px solid #00FFFF;
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            color: #00FFFF;
+            font-weight: 600;
+        }
+        
+        .chemical-molecule {
+            width: 100%;
+            height: 250px;
+            object-fit: contain;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+        }
+        
+        .chemical-body {
+            padding: 35px;
+        }
+        
+        .chemical-section {
+            margin-bottom: 25px;
+        }
+        
+        .chemical-section h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            color: #00FFFF;
+            margin: 0 0 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .chemical-section p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #CBD5E1;
+            margin: 0;
+        }
+        
+        .chemical-section ul {
+            margin: 10px 0;
+            padding-left: 20px;
+            color: #CBD5E1;
+        }
+        
+        .chemical-section li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+        
+        .property-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .property-item {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 12px 15px;
+            border-radius: 8px;
+            border-left: 3px solid #00FFFF;
+        }
+        
+        .property-label {
+            font-size: 0.85rem;
+            color: #94A3B8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+        
+        .property-value {
+            font-size: 1.05rem;
+            color: #E2E8F0;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .chemical-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .property-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav style="position: fixed; top: 0; width: 100%; background: rgba(15, 23, 42, 0.98); backdrop-filter: blur(15px); z-index: 1000; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid rgba(0, 255, 255, 0.3); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);">
+        <a href="index.html" style="text-decoration: none;">
+            <img src="assets/3d-glitch-logo-1142.png" alt="1142 LABS" style="height: 55px;" class="logo-3d-glasses">
+        </a>
+        <div style="display: flex; gap: 35px; flex-wrap: wrap;">
+            <a href="index.html" class="chromatic-hover" style="color: #E2E8F0; text-decoration: none; font-weight: 600; font-size: 1.05rem;">HOME</a>
+            <a href="history.html" class="chromatic-hover" style="color: #E2E8F0; text-decoration: none; font-weight: 600; font-size: 1.05rem;">HISTORY</a>
+            <a href="breakthroughs.html" class="chromatic-hover" style="color: #E2E8F0; text-decoration: none; font-weight: 600; font-size: 1.05rem;">BREAKTHROUGHS</a>
+            <a href="chemicals.html" class="chromatic-hover" style="color: #00FFFF; text-decoration: none; font-weight: 700; font-size: 1.05rem;">CHEMICALS</a>
+            <a href="#research" class="chromatic-hover" style="color: #E2E8F0; text-decoration: none; font-weight: 600; font-size: 1.05rem;">RESEARCH</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-chemicals glitch-scanlines" style="margin-top: 95px;">
+        <div class="hero-content">
+            <h1 class="hero-title text-3d-hero">CHEMICAL DATABASE</h1>
+            <p class="hero-subtitle text-3d-glasses">
+                11 substances studied. Molecular structures decoded. Pharmacological profiles mapped. This is the chemical foundation of 1142 research.
+            </p>
+        </div>
+    </section>
+
+    <!-- Database Section -->
+    <section class="database-section">
+        <div class="section-intro">
+            <h2 class="text-3d-glasses">Studied Substances</h2>
+            <p>Each substance in this database has been researched, analyzed, and documented through direct experience and scientific inquiry. These are not recreational drugs—they are tools for understanding consciousness, cognition, and the human mind.</p>
+        </div>
+
+        <div class="chemical-grid">
+            
+            <!-- LSD -->
+            <div class="chemical-card card-3d-depth">
+                <div class="chemical-header">
+                    <h3 class="chemical-name">LSD</h3>
+                    <p class="chemical-formula">C₂₀H₂₅N₃O</p>
+                    <span class="chemical-class">Psychedelic</span>
+                </div>
+                <img src="assets/substance-lsd-molecule.png" alt="LSD Molecule" class="chemical-molecule image-3d-glasses">
+                <div class="chemical-body">
+                    <div class="chemical-section">
+                        <h4>Overview</h4>
+                        <p>Lysergic acid diethylamide (LSD) is a potent serotonergic psychedelic that profoundly alters perception, cognition, and consciousness. The cornerstone of 1142 research, particularly the 11:42 ritual.</p>
+                    </div>
+                    <div class="chemical-section">
+                        <h4>Key Properties</h4>
+                        <div class="property-grid">
+                            <div class="property-item">
+                                <div class="property-label">Half-Life</div>
+                                <div class="property-value">3.6 hours</div>
+                            </div>
+                            <div class="property-item">
+                                <div class="property-label">Duration</div>
+                                <div class="property-value">8-12 hours</div>
+                            </div>
+                            <div class="property-item">
+                                <div class="property-label">Typical Dose</div>
+                                <div class="property-value">100-200 µg</div>
+                            </div>
+                            <div class="property-item">
+                                <div class="property-label">ROA</div>
+                                <div class="property-value">Oral, Sublingual</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chemical-section">
+                        <h4>Mechanism of Action</h4>
+                        <p>5-HT2A receptor agonist with additional activity at 5-HT1A, dopamine D1/D2 receptors. Reduces default mode network activity, enabling novel neural connections.</p>
+                    </div>
+                    <div class="chemical-section">
+                        <h4>Research Applications</h4>
+                        <ul>
+                            <li>Memory archive access and trauma processing</li>
+                            <li>Creative problem-solving and insight generation</li>
+                            <li>Neuroplasticity enhancement</li>
+                            <li>Consciousness exploration (11:42 ritual)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Methylphenidate -->
+            <div class="chemical-card card-3d-depth">
+                <div class="chemical-header">
+                    <h3 class="chemical-name">Methylphenidate</h3>
+                    <p class="chemical-formula">C₁₄H₁₉NO₂</p>
+                    <span class="chemical-class">Stimulant</span>
+                </div>
+                <img src="assets/substance-methylphenidate-molecule.png" alt="Methylphenidate Molecule" class="chemical-molecule image-3d-glasses">
+                <div class="chemical-body">
+                    <div class="chemical-section">
+                        <h4>Overview</h4>
+                        <p>Methylphenidate (Ritalin) is a dopamine-norepinephrine reuptake inhibitor used for cognitive enhancement, ADHD treatment, and neurodivergence support. Central to 1142's stimulant research.</p>
+                    </div>
+                    <div class="chemical-section">
+                        <h4>Key Properties</h4>
+                        <div class="property-grid">
+                            <div class="property-item">
+                                <div class="property-label">Half-Life</div>
+                                <div class="property-value">3.5 hours</div>
+                            </div>
+                            <div class="property-item">
+                                <div class="property-label">Duration</div>
+                                <div class="property-value">3-6 hours</div>
+                            </div>
+                            <div class="property-item">
+                                <div class="property-label">Typical Dose</div>
+                                <div class="property-value">10-40 mg</div>
+                            </div>
+                            <div class="property-item">
+                                <div class="property-label">ROA</div>
+                                <div class="property-value">Oral</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chemical-section">
+                        <h4>Mechanism of Action</h4>
+                        <p>Blocks dopamine and norepinephrine reuptake, increasing synaptic concentrations. Enhances prefrontal cortex function, improving attention, executive function, and working memory.</p>
+                    </div>
+                    <div class="chemical-section">
+                        <h4>Research Applications</h4>
+                        <ul>
+                            <li>Cognitive enhancement and focus optimization</li>
+                            <li>ADHD and Down syndrome treatment</li>
+                            <li>Synergy with psychedelics (Brainstorm Nights)</li>
+                            <li>Weight management and appetite regulation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DMT -->
+            <div class="chemical-card card-3d-depth">
+                <div class="chemical-header">
+                    <h3 class="chemical-name">DMT</h3>
+                    <p class="chemical-formula">C₁₂H₁₆N₂</p>
+                    <span class="chemical-class">Psychedelic</span>
+                </div>
+                <img src="assets/neurotransmitter-serotonin.png" alt="DMT Structure" class="chemical-molecule image-3d-glasses">
+                <div class="chemical-body">
+                    <div class="chemical-section">
+                        <h4>Overview</h4>
+                        <p>N,N-Dimethyltryptamine (DMT) is a powerful, short-acting psychedelic known for producing intense visionary experiences and profound alterations in consciousness.</p>
+                    </div>
+                    <div class="chemical-section">
+                        <h4>Key Properties</h4>
+                        <div class="property-grid">
+                            <div class="property-item">
+                                <div class="property-label">Half-Life</div>
+                                <div class="property-value">15 minutes</div>
+                            </div>
+                            <div class="property-item">
+                                <div class="property-label">Duration</div>
+                                <div class="property-value">5-30 minutes</div>
+                            </div>
+                            <div class="property-item">
+                                <div class="property-label">Typical Dose</div>
+                                <div class="property-value">30-50 mg</div>
+                            </div>
+                            <div class="property-item">
+                                <div class="property-label">ROA</div>
+                                <div class="property-value">Vaporized, Smoked</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chemical-section">
+                        <h4>Mechanism of Action</h4>
+                        <p>Potent 5-HT2A receptor agonist with rapid onset. Produces intense serotonergic cascade. Structurally similar to serotonin, enabling high receptor affinity.</p>
+                    </div>
+                    <div class="chemical-section">
+                        <h4>Research Applications</h4>
+                        <ul>
+                            <li>Consciousness exploration and entity encounters</li>
+                            <li>Rapid-onset altered states</li>
+                            <li>Phenomenological research</li>
+                            <li>Spiritual and transcendent experiences</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Psilocybin -->
+            <div class="chemical-card card-3d-depth">
+                <div class="chemical-header">
+                    <h3 class="chemical-name">Psilocybin</h3>
+                    <p class="chemical-formula">C₁₂H₁₇N₂O₄P</p>
+                    <span class="chemical-class">Psychedelic</span>
+                </div>
+                <img src="assets/neurotransmitter-serotonin.png" alt="Psilocybin Structure" class="chemical-molecule image-3d-glasses">
+                <div class="chemical-body">
+                    <div class="chemical-section">
+                        <h4>Overview</h4>
+                        <p>Psilocybin is a naturally occurring psychedelic prodrug found in certain mushrooms. Metabolizes to psilocin, producing profound alterations in perception and cognition.</p>
+                    </div>
+                    <div class="chemical-section">
+                        <h4>Key Properties</h4>
+                        <div class="property-grid">
+                            <div class="property-item">
+                                <div class="property-label">Half-Life</div>
+                                <div class="property-value">2.5 hours</div>
+                            </div>
+                            <div class="property-item">
+                                <div class="property-label">Duration</div>
+                                <div class="property-value">4-6 hours</div>
+                            </div>
+                            <div class="property-item">
+                                <div class="property-label">Typical Dose</div>
+                                <div class="property-value">15-30 mg</div>
+                            </div>
+                            <div class="property-item">
+                                <div class="property-label">ROA</div>
+                                <div class="property-value">Oral</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chemical-section">
+                        <h4>Mechanism of Action</h4>
+                        <p>Converted to psilocin in the body. Acts as 5-HT2A receptor agonist. Increases BDNF and promotes neuroplasticity. Reduces default mode network connectivity.</p>
+                    </div>
+                    <div class="chemical-section">
+                        <h4>Research Applications</h4>
+                        <ul>
+                            <li>Depression and PTSD treatment</li>
+                            <li>Neuroplasticity enhancement</li>
+                            <li>End-of-life anxiety reduction</li>
+                            <li>Addiction treatment</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MDMA -->
+            <div class="chemical-card card-3d-depth">
+                <div class="chemical-header">
+                    <h3 class="chemical-name">MDMA</h3>
+                    <p class="chemical-formula">C₁₁H₁₅NO₂</p>
+                    <span class="chemical-class">Empathogen</span>
+                </div>
+                <img src="assets/neurotransmitter-serotonin.png" alt="MDMA Structure" class="chemical-molecule image-3d-glasses">
+                <div class="chemical-body">
+                    <div class="chemical-section">
+                        <h4>Overview</h4>
+                        <p>3,4-Methylenedioxymethamphetamine (MDMA) is an empathogenic substance that increases serotonin, dopamine, and norepinephrine release, producing feelings of emotional openness and connection.</p>
+                    </div>
+                    <div class="chemical-section">
+                        <h4>Key Properties</h4>
+                        <div class="property-grid">
+                            <div class="property-item">
+                                <div class="property-label">Half-Life</div>
+                                <div class="property-value">8 hours</div>
+                            </div>
+                            <div class="property-item">
+                                <div class="property-label">Duration</div>
+                                <div class="property-value">3-6 hours</div>
+                            </div>
+                            <div class="property-item">
+                                <div class="property-label">Typical Dose</div>
+                                <div class="property-value">100-125 mg</div>
+                            </div>
+                            <div class="property-item">
+                                <div class="property-label">ROA</div>
+                                <div class="property-value">Oral</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chemical-section">
+                        <h4>Mechanism of Action</h4>
+                        <p>Releases serotonin, dopamine, and norepinephrine. Increases oxytocin levels. Reduces amygdala activity, decreasing fear response and enhancing emotional processing.</p>
+                    </div>
+                    <div class="chemical-section">
+                        <h4>Research Applications</h4>
+                        <ul>
+                            <li>PTSD therapy (FDA-approved pathway)</li>
+                            <li>Autism social anxiety treatment</li>
+                            <li>Couples therapy and relationship healing</li>
+                            <li>Trauma processing</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- THC -->
+            <div class="chemical-card card-3d-depth">
+                <div class="chemical-header">
+                    <h3 class="chemical-name">THC (Cannabis)</h3>
+                    <p class="chemical-formula">C₂₁H₃₀O₂</p>
+                    <span class="chemical-class">Cannabinoid</span>
+                </div>
+                <img src="assets/molecular-structure.png" alt="THC Structure" class="chemical-molecule image-3d-glasses">
+                <div class="chemical-body">
+                    <div class="chemical-section">
+                        <h4>Overview</h4>
+                        <p>Tetrahydrocannabinol (THC) is the primary psychoactive compound in cannabis. Produces mild euphoria, relaxation, altered perception, and appetite stimulation.</p>
+                    </div>
+                    <div class="chemical-section">
+                        <h4>Key Properties</h4>
+                        <div class="property-grid">
+                            <div class="property-item">
+                                <div class="property-label">Half-Life</div>
+                                <div class="property-value">25 hours</div>
+                            </div>
+                            <div class="property-item">
+                                <div class="property-label">Duration</div>
+                                <div class="property-value">2-4 hours</div>
+                            </div>
+                            <div class="property-item">
+                                <div class="property-label">Typical Dose</div>
+                                <div class="property-value">5-20 mg</div>
+                            </div>
+                            <div class="property-item">
+                                <div class="property-label">ROA</div>
+                                <div class="property-value">Smoked, Oral, Vaporized</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chemical-section">
+                        <h4>Mechanism of Action</h4>
+                        <p>CB1 and CB2 cannabinoid receptor agonist. Modulates neurotransmitter release. Affects dopamine, GABA, and glutamate systems. Lipophilic, stored in fat tissue.</p>
+                    </div>
+                    <div class="chemical-section">
+                        <h4>Research Applications</h4>
+                        <ul>
+                            <li>Pain management and inflammation</li>
+                            <li>Appetite stimulation</li>
+                            <li>Anxiety and stress reduction</li>
+                            <li>Sleep aid</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ketamine -->
+            <div class="chemical-card card-3d-depth">
+                <div class="chemical-header">
+                    <h3 class="chemical-name">Ketamine</h3>
+                    <p class="chemical-formula">C₁₃H₁₆ClNO</p>
+                    <span class="chemical-class">Dissociative</span>
+                </div>
+                <img src="assets/neurotransmitter-dopamine.png" alt="Ketamine Structure" class="chemical-molecule image-3d-glasses">
+                <div class="chemical-body">
+                    <div class="chemical-section">
+                        <h4>Overview</h4>
+                        <p>Ketamine is a dissociative anesthetic and NMDA receptor antagonist with rapid-acting antidepressant properties. Produces dissociation, analgesia, and altered perception.</p>
+                    </div>
+                    <div class="chemical-section">
+                        <h4>Key Properties</h4>
+                        <div class="property-grid">
+                            <div class="property-item">
+                                <div class="property-label">Half-Life</div>
+                                <div class="property-value">2.5 hours</div>
+                            </div>
+                            <div class="property-item">
+                                <div class="property-label">Duration</div>
+                                <div class="property-value">1-2 hours</div>
+                            </div>
+                            <div class="property-item">
+                                <div class="property-label">Typical Dose</div>
+                                <div class="property-value">50-100 mg</div>
+                            </div>
+                            <div class="property-item">
+                                <div class="property-label">ROA</div>
+                                <div class="property-value">IV, IM, Nasal, Oral</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chemical-section">
+                        <h4>Mechanism of Action</h4>
+                        <p>NMDA receptor antagonist. Increases glutamate release, activating AMPA receptors. Promotes BDNF release and synaptogenesis. Rapid antidepressant effects through mTOR pathway activation.</p>
+                    </div>
+                    <div class="chemical-section">
+                        <h4>Research Applications</h4>
+                        <ul>
+                            <li>Treatment-resistant depression</li>
+                            <li>Suicidal ideation reduction</li>
+                            <li>Pain management</li>
+                            <li>PTSD and trauma therapy</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Methamphetamine -->
+            <div class="chemical-card card-3d-depth">
+                <div class="chemical-header">
+                    <h3 class="chemical-name">Methamphetamine</h3>
+                    <p class="chemical-formula">C₁₀H₁₅N</p>
+                    <span class="chemical-class">Stimulant</span>
+                </div>
+                <img src="assets/neurotransmitter-dopamine.png" alt="Methamphetamine Structure" class="chemical-molecule image-3d-glasses">
+                <div class="chemical-body">
+                    <div class="chemical-section">
+                        <h4>Overview</h4>
+                        <p>Methamphetamine is a potent central nervous system stimulant that increases dopamine and norepinephrine release. Highly effective for cognitive enhancement but carries significant addiction risk.</p>
+                    </div>
+                    <div class="chemical-section">
+                        <h4>Key Properties</h4>
+                        <div class="property-grid">
+                            <div class="property-item">
+                                <div class="property-label">Half-Life</div>
+                                <div class="property-value">10 hours</div>
+                            </div>
+                            <div class="property-item">
+                                <div class="property-label">Duration</div>
+                                <div class="property-value">8-12 hours</div>
+                            </div>
+                            <div class="property-item">
+                                <div class="property-label">Typical Dose</div>
+                                <div class="property-value">5-20 mg</div>
+                            </div>
+                            <div class="property-item">
+                                <div class="property-label">ROA</div>
+                                <div class="property-value">Oral, Smoked</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chemical-section">
+                        <h4>Mechanism of Action</h4>
+                        <p>Releases dopamine and norepinephrine. Inhibits monoamine reuptake. Increases synaptic catecholamine concentrations. Potent euphorigenic and cognitive-enhancing effects.</p>
+                    </div>
+                    <div class="chemical-section">
+                        <h4>Research Applications</h4>
+                        <ul>
+                            <li>Extreme cognitive enhancement (controversial)</li>
+                            <li>ADHD treatment (Desoxyn)</li>
+                            <li>Obesity treatment (historical)</li>
+                            <li>Theoretical epigenetic research</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mescaline -->
+            <div class="chemical-card card-3d-depth">
+                <div class="chemical-header">
+                    <h3 class="chemical-name">Mescaline</h3>
+                    <p class="chemical-formula">C₁₁H₁₇NO₃</p>
+                    <span class="chemical-class">Psychedelic</span>
+                </div>
+                <img src="assets/neurotransmitter-serotonin.png" alt="Mescaline Structure" class="chemical-molecule image-3d-glasses">
+                <div class="chemical-body">
+                    <div class="chemical-section">
+                        <h4>Overview</h4>
+                        <p>Mescaline is a naturally occurring psychedelic alkaloid found in peyote and San Pedro cacti. Produces long-lasting visual and cognitive alterations with a gentle, introspective quality.</p>
+                    </div>
+                    <div class="chemical-section">
+                        <h4>Key Properties</h4>
+                        <div class="property-grid">
+                            <div class="property-item">
+                                <div class="property-label">Half-Life</div>
+                                <div class="property-value">6 hours</div>
+                            </div>
+                            <div class="property-item">
+                                <div class="property-label">Duration</div>
+                                <div class="property-value">10-12 hours</div>
+                            </div>
+                            <div class="property-item">
+                                <div class="property-label">Typical Dose</div>
+                                <div class="property-value">200-400 mg</div>
+                            </div>
+                            <div class="property-item">
+                                <div class="property-label">ROA</div>
+                                <div class="property-value">Oral</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chemical-section">
+                        <h4>Mechanism of Action</h4>
+                        <p>5-HT2A and 5-HT2C receptor agonist. Phenethylamine structure (unlike tryptamine psychedelics). Produces visual enhancements, emotional introspection, and spiritual experiences.</p>
+                    </div>
+                    <div class="chemical-section">
+                        <h4>Research Applications</h4>
+                        <ul>
+                            <li>Spiritual and ceremonial use</li>
+                            <li>Introspective therapy</li>
+                            <li>Addiction treatment</li>
+                            <li>Consciousness exploration</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cocaine -->
+            <div class="chemical-card card-3d-depth">
+                <div class="chemical-header">
+                    <h3 class="chemical-name">Cocaine</h3>
+                    <p class="chemical-formula">C₁₇H₂₁NO₄</p>
+                    <span class="chemical-class">Stimulant</span>
+                </div>
+                <img src="assets/neurotransmitter-dopamine.png" alt="Cocaine Structure" class="chemical-molecule image-3d-glasses">
+                <div class="chemical-body">
+                    <div class="chemical-section">
+                        <h4>Overview</h4>
+                        <p>Cocaine is a tropane alkaloid that acts as a powerful stimulant and local anesthetic. Produces intense euphoria, increased energy, and heightened alertness.</p>
+                    </div>
+                    <div class="chemical-section">
+                        <h4>Key Properties</h4>
+                        <div class="property-grid">
+                            <div class="property-item">
+                                <div class="property-label">Half-Life</div>
+                                <div class="property-value">1 hour</div>
+                            </div>
+                            <div class="property-item">
+                                <div class="property-label">Duration</div>
+                                <div class="property-value">30-90 minutes</div>
+                            </div>
+                            <div class="property-item">
+                                <div class="property-label">Typical Dose</div>
+                                <div class="property-value">20-50 mg</div>
+                            </div>
+                            <div class="property-item">
+                                <div class="property-label">ROA</div>
+                                <div class="property-value">Nasal, Smoked</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chemical-section">
+                        <h4>Mechanism of Action</h4>
+                        <p>Blocks dopamine, serotonin, and norepinephrine reuptake. Sodium channel blocker (local anesthetic). Rapid onset, short duration. High addiction potential due to intense reward activation.</p>
+                    </div>
+                    <div class="chemical-section">
+                        <h4>Research Applications</h4>
+                        <ul>
+                            <li>Local anesthesia (medical use)</li>
+                            <li>Addiction neuroscience research</li>
+                            <li>Dopamine system studies</li>
+                            <li>Reward pathway investigation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fentanyl -->
+            <div class="chemical-card card-3d-depth">
+                <div class="chemical-header">
+                    <h3 class="chemical-name">Fentanyl</h3>
+                    <p class="chemical-formula">C₂₂H₂₈N₂O</p>
+                    <span class="chemical-class">Opioid</span>
+                </div>
+                <img src="assets/neurotransmitter-dopamine.png" alt="Fentanyl Structure" class="chemical-molecule image-3d-glasses">
+                <div class="chemical-body">
+                    <div class="chemical-section">
+                        <h4>Overview</h4>
+                        <p>Fentanyl is a synthetic opioid 50-100 times more potent than morphine. Used medically for severe pain but carries extreme overdose risk. Studied at 1142 in context of opioid crisis and loss.</p>
+                    </div>
+                    <div class="chemical-section">
+                        <h4>Key Properties</h4>
+                        <div class="property-grid">
+                            <div class="property-item">
+                                <div class="property-label">Half-Life</div>
+                                <div class="property-value">3.7 hours</div>
+                            </div>
+                            <div class="property-item">
+                                <div class="property-label">Duration</div>
+                                <div class="property-value">1-2 hours</div>
+                            </div>
+                            <div class="property-item">
+                                <div class="property-label">Typical Dose</div>
+                                <div class="property-value">25-100 µg</div>
+                            </div>
+                            <div class="property-item">
+                                <div class="property-label">ROA</div>
+                                <div class="property-value">IV, Transdermal, Nasal</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chemical-section">
+                        <h4>Mechanism of Action</h4>
+                        <p>Potent µ-opioid receptor agonist. Rapid onset, high lipophilicity. Produces analgesia, euphoria, respiratory depression. Extremely narrow therapeutic window. High overdose fatality risk.</p>
+                    </div>
+                    <div class="chemical-section">
+                        <h4>Research Context</h4>
+                        <ul>
+                            <li>Opioid crisis awareness</li>
+                            <li>Harm reduction education</li>
+                            <li>Memorial to Katrina (fentanyl overdose victim)</li>
+                            <li>Addiction and loss research</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section style="padding: 120px 20px; background: linear-gradient(180deg, #0F172A, #1E293B); text-align: center;">
+        <h2 class="text-3d-glasses" style="font-family: 'Orbitron', sans-serif; font-size: 3.5rem; margin-bottom: 40px;">
+            Explore the Research
+        </h2>
+        <p style="font-size: 1.4rem; max-width: 800px; margin: 0 auto 50px auto; color: #CBD5E1; line-height: 1.8;">
+            These substances are the foundation of 1142's research into consciousness, cognition, and healing. Dive deeper into the breakthroughs and findings.
+        </p>
+        <div style="display: flex; gap: 30px; justify-content: center; flex-wrap: wrap;">
+            <a href="breakthroughs.html" class="btn-3d-glasses" style="text-decoration: none; display: inline-block; padding: 18px 45px; font-size: 1.1rem;">
+                VIEW BREAKTHROUGHS
+            </a>
+            <a href="history.html" class="btn-3d-glasses" style="text-decoration: none; display: inline-block; padding: 18px 45px; font-size: 1.1rem;">
+                1142 HISTORY
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: #0A0F1E; padding: 50px 20px; text-align: center; border-top: 2px solid rgba(0, 255, 255, 0.3);">
+        <p style="margin: 0; color: #64748B; font-size: 1.05rem;">
+            1142 · Founded Dec 22, 2019 · 11:42 PM · 11-42.ca · an Everdark production · Tomorrow's Answers Today
+        </p>
+        <p style="margin: 15px 0 0 0; color: #64748B;">
+            © 1142 · All Rights Reserved
+        </p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/3d-glitch-effects.js"></script>
+</body>
+</html>
