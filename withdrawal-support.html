@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Withdrawal Support | 1142 LABS</title>
+    <meta name="description" content="Evidence-based withdrawal protocols and harm reduction guidance for methamphetamine, crack, heroin, and fentanyl.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/3d-effects.css">
+    <link rel="stylesheet" href="assets/css/3d-glasses-glitch.css">
+    
+    <style>
+        body {
+            background: #0F172A url('assets/spikey-background-pattern.png');
+            background-size: 300px;
+            color: #E2E8F0;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .hero-withdrawal {
+            position: relative;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.9)), url('assets/spikey-burst-2.png') center/cover;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 60px 20px;
+            max-width: 1200px;
+        }
+        
+        .hero-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 900;
+            margin: 0 0 30px 0;
+            line-height: 1.1;
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            font-weight: 300;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+        
+        .content-section {
+            padding: 100px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .intro-box {
+            background: rgba(30, 41, 59, 0.6);
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            border-radius: 16px;
+            padding: 50px;
+            margin-bottom: 80px;
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+        
+        .intro-box h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            color: #00FFFF;
+            margin-bottom: 25px;
+        }
+        
+        .intro-box p {
+            font-size: 1.2rem;
+            line-height: 1.9;
+            color: #CBD5E1;
+            margin: 0;
+        }
+        
+        .protocol-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+        
+        .protocol-card {
+            background: rgba(30, 41, 59, 0.8);
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .protocol-card:hover {
+            border-color: #00FFFF;
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 255, 255, 0.4);
+        }
+        
+        .protocol-header {
+            padding: 35px;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.15), rgba(255, 0, 255, 0.15));
+            border-bottom: 2px solid rgba(0, 255, 255, 0.3);
+        }
+        
+        .protocol-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            color: #00FFFF;
+            margin: 0 0 15px 0;
+        }
+        
+        .protocol-warning {
+            background: rgba(255, 100, 0, 0.1);
+            border: 1px solid rgba(255, 100, 0, 0.3);
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            color: #FFA500;
+            font-weight: 600;
+        }
+        
+        .protocol-body {
+            padding: 35px;
+        }
+        
+        .protocol-intro {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #CBD5E1;
+            margin-bottom: 30px;
+        }
+        
+        .protocol-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .protocol-table th {
+            background: rgba(0, 255, 255, 0.2);
+            color: #00FFFF;
+            padding: 12px;
+            text-align: left;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+        }
+        
+        .protocol-table td {
+            padding: 12px;
+            color: #E2E8F0;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            font-size: 0.95rem;
+        }
+        
+        .protocol-table tr:hover {
+            background: rgba(0, 255, 255, 0.05);
+        }
+        
+        .disclaimer-section {
+            background: rgba(255, 100, 0, 0.1);
+            border: 2px solid rgba(255, 100, 0, 0.4);
+            border-radius: 16px;
+            padding: 50px;
+            margin: 80px 0;
+        }
+        
+        .disclaimer-section h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            color: #FFA500;
+            margin-bottom: 25px;
+        }
+        
+        .disclaimer-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #E2E8F0;
+            margin-bottom: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .protocol-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .protocol-table {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav style="position: fixed; top: 0; width: 100%; background: rgba(15, 23, 42, 0.98); backdrop-filter: blur(15px); z-index: 1000; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid rgba(0, 255, 255, 0.3); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);">
+        <a href="index.html" style="text-decoration: none;">
+            <img src="assets/logo-spikey-original.png" alt="1142 LABS" style="height: 55px;" class="logo-3d-glasses">
+        </a>
+        <div style="display: flex; gap: 35px; flex-wrap: wrap;">
+            <a href="index.html" class="chromatic-hover" style="color: #E2E8F0; text-decoration: none; font-weight: 600; font-size: 1.05rem;">HOME</a>
+            <a href="history.html" class="chromatic-hover" style="color: #E2E8F0; text-decoration: none; font-weight: 600; font-size: 1.05rem;">HISTORY</a>
+            <a href="breakthroughs.html" class="chromatic-hover" style="color: #E2E8F0; text-decoration: none; font-weight: 600; font-size: 1.05rem;">BREAKTHROUGHS</a>
+            <a href="chemicals.html" class="chromatic-hover" style="color: #E2E8F0; text-decoration: none; font-weight: 600; font-size: 1.05rem;">CHEMICALS</a>
+            <a href="memorial.html" class="chromatic-hover" style="color: #E2E8F0; text-decoration: none; font-weight: 600; font-size: 1.05rem;">MEMORIAL</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-withdrawal glitch-scanlines" style="margin-top: 95px;">
+        <div class="hero-content">
+            <h1 class="hero-title text-3d-hero">WITHDRAWAL SUPPORT</h1>
+            <p class="hero-subtitle text-3d-glasses">
+                Evidence-based protocols for safely tapering off methamphetamine, crack, heroin, and fentanyl. This is harm reduction, not judgment.
+            </p>
+        </div>
+    </section>
+
+    <!-- Content Section -->
+    <section class="content-section">
+        <div class="intro-box card-3d-depth">
+            <h2 class="text-3d-glasses">Why These Protocols Exist</h2>
+            <p>
+                Withdrawal is brutal. It's physical, psychological, and often isolating. These protocols are designed to provide a structured, evidence-based approach to tapering off substances while minimizing harm and maximizing the chance of success. They are not medical advice—they are tools for those who have no other options.
+            </p>
+        </div>
+
+        <div class="protocol-grid">
+            
+            <!-- Methamphetamine Protocol -->
+            <div class="protocol-card card-3d-depth">
+                <div class="protocol-header">
+                    <h3 class="protocol-name">Methamphetamine</h3>
+                    <div class="protocol-warning">⚠️ HIGH RISK - Medical supervision recommended</div>
+                </div>
+                <div class="protocol-body">
+                    <p class="protocol-intro">
+                        Methamphetamine withdrawal involves severe dopamine depletion, intense cravings, depression, and fatigue. This protocol uses methylphenidate, cannabis, amphetamines (Vyvanse/Adderall), and LSD to stabilize neurotransmitter systems while gradually reducing meth use.
+                    </p>
+                    
+                    <table class="protocol-table">
+                        <thead>
+                            <tr>
+                                <th>Meth (g)</th>
+                                <th>Weeks</th>
+                                <th>Methylphenidate</th>
+                                <th>Cannabis</th>
+                                <th>Vyvanse/Adderall</th>
+                                <th>LSD</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>0.1</td><td>2</td><td>20 mg</td><td>1 g</td><td>5 mg</td><td>125 µg × 14 days</td></tr>
+                            <tr><td>0.2</td><td>4</td><td>30 mg</td><td>1.5 g</td><td>10 mg</td><td>125 µg × 14 days</td></tr>
+                            <tr><td>0.3</td><td>8</td><td>40 mg</td><td>2 g</td><td>15 mg</td><td>125 µg × 7 days</td></tr>
+                            <tr><td>0.4</td><td>16</td><td>50 mg</td><td>2.5 g</td><td>20 mg</td><td>200 µg × 14 days</td></tr>
+                            <tr><td>0.5</td><td>32</td><td>60 mg</td><td>3 g</td><td>25 mg</td><td>225 µg × 14 days</td></tr>
+                            <tr><td>0.6</td><td>64</td><td>70 mg</td><td>3.5 g</td><td>30 mg</td><td>225 µg × 14 days</td></tr>
+                            <tr><td>0.7</td><td>128</td><td>80 mg</td><td>4 g</td><td>35 mg</td><td>300 µg × 7 days</td></tr>
+                            <tr><td>0.8</td><td>256</td><td>90 mg</td><td>4.5 g</td><td>40 mg</td><td>400 µg × 7 days</td></tr>
+                            <tr><td>0.9</td><td>512</td><td>100 mg</td><td>5 g</td><td>45 mg</td><td>1000 µg × 14 days</td></tr>
+                            <tr><td>0.0</td><td>1028</td><td>110 mg</td><td>—</td><td>55 mg</td><td>—</td></tr>
+                        </tbody>
+                    </table>
+                    
+                    <p class="protocol-intro">
+                        <strong>Key Points:</strong> Methylphenidate stabilizes dopamine. Cannabis reduces anxiety and insomnia. Vyvanse/Adderall provides sustained stimulation. LSD promotes neuroplasticity and emotional processing. Taper slowly—rushing increases relapse risk.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Crack Cocaine Protocol -->
+            <div class="protocol-card card-3d-depth">
+                <div class="protocol-header">
+                    <h3 class="protocol-name">Crack Cocaine</h3>
+                    <div class="protocol-warning">⚠️ HIGH RISK - Intense cravings expected</div>
+                </div>
+                <div class="protocol-body">
+                    <p class="protocol-intro">
+                        Crack cocaine withdrawal is characterized by severe cravings, depression, and dopamine depletion. This protocol uses methylphenidate and cannabis to stabilize mood and reduce cravings while gradually reducing crack use.
+                    </p>
+                    
+                    <table class="protocol-table">
+                        <thead>
+                            <tr>
+                                <th>Crack (g)</th>
+                                <th>Weeks</th>
+                                <th>Methylphenidate</th>
+                                <th>Cannabis</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>0.5</td><td>2</td><td>20 mg</td><td>1 g</td></tr>
+                            <tr><td>0.4</td><td>4</td><td>30 mg</td><td>1.5 g</td></tr>
+                            <tr><td>0.3</td><td>8</td><td>40 mg</td><td>2 g</td></tr>
+                            <tr><td>0.2</td><td>16</td><td>50 mg</td><td>2.5 g</td></tr>
+                            <tr><td>0.1</td><td>32</td><td>60 mg</td><td>3 g</td></tr>
+                            <tr><td>0.05</td><td>64</td><td>70 mg</td><td>3.5 g</td></tr>
+                            <tr><td>0.0</td><td>128</td><td>80 mg</td><td>4 g</td></tr>
+                        </tbody>
+                    </table>
+                    
+                    <p class="protocol-intro">
+                        <strong>Key Points:</strong> Crack has a short half-life, making cravings intense and frequent. Methylphenidate provides sustained dopamine support. Cannabis reduces anxiety and helps with sleep. Consider therapy or support groups during taper.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Fentanyl Protocol -->
+            <div class="protocol-card card-3d-depth">
+                <div class="protocol-header">
+                    <h3 class="protocol-name">Fentanyl</h3>
+                    <div class="protocol-warning">⚠️ EXTREME RISK - Medical supervision REQUIRED</div>
+                </div>
+                <div class="protocol-body">
+                    <p class="protocol-intro">
+                        Fentanyl withdrawal is life-threatening and should NEVER be attempted alone. This protocol uses buprenorphine (Suboxone) as a safer opioid substitute, along with cannabis for symptom management. Seek medical help immediately.
+                    </p>
+                    
+                    <table class="protocol-table">
+                        <thead>
+                            <tr>
+                                <th>Fentanyl (µg)</th>
+                                <th>Weeks</th>
+                                <th>Buprenorphine</th>
+                                <th>Cannabis</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>200</td><td>1</td><td>8 mg</td><td>2 g</td></tr>
+                            <tr><td>150</td><td>2</td><td>8 mg</td><td>2.5 g</td></tr>
+                            <tr><td>100</td><td>4</td><td>6 mg</td><td>3 g</td></tr>
+                            <tr><td>50</td><td>8</td><td>4 mg</td><td>3 g</td></tr>
+                            <tr><td>25</td><td>16</td><td>2 mg</td><td>3 g</td></tr>
+                            <tr><td>0</td><td>32</td><td>1 mg</td><td>3 g</td></tr>
+                            <tr><td>0</td><td>64</td><td>0.5 mg</td><td>2 g</td></tr>
+                            <tr><td>0</td><td>128</td><td>0 mg</td><td>1 g</td></tr>
+                        </tbody>
+                    </table>
+                    
+                    <p class="protocol-intro">
+                        <strong>Key Points:</strong> Fentanyl withdrawal can cause seizures, cardiac arrest, and death. Buprenorphine is a partial opioid agonist that reduces cravings without the high. Cannabis helps with nausea, pain, and anxiety. **DO NOT ATTEMPT WITHOUT MEDICAL SUPERVISION.**
+                    </p>
+                </div>
+            </div>
+
+            <!-- Heroin Protocol -->
+            <div class="protocol-card card-3d-depth">
+                <div class="protocol-header">
+                    <h3 class="protocol-name">Heroin</h3>
+                    <div class="protocol-warning">⚠️ HIGH RISK - Medical supervision strongly recommended</div>
+                </div>
+                <div class="protocol-body">
+                    <p class="protocol-intro">
+                        Heroin withdrawal is physically and psychologically brutal. This protocol uses buprenorphine (Suboxone) and cannabis to manage symptoms while tapering. Seek professional help whenever possible.
+                    </p>
+                    
+                    <table class="protocol-table">
+                        <thead>
+                            <tr>
+                                <th>Heroin (g)</th>
+                                <th>Weeks</th>
+                                <th>Buprenorphine</th>
+                                <th>Cannabis</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1.0</td><td>2</td><td>8 mg</td><td>2 g</td></tr>
+                            <tr><td>0.8</td><td>4</td><td>8 mg</td><td>2.5 g</td></tr>
+                            <tr><td>0.6</td><td>8</td><td>6 mg</td><td>3 g</td></tr>
+                            <tr><td>0.4</td><td>16</td><td>4 mg</td><td>3 g</td></tr>
+                            <tr><td>0.2</td><td>32</td><td>2 mg</td><td>3 g</td></tr>
+                            <tr><td>0.1</td><td>64</td><td>1 mg</td><td>2 g</td></tr>
+                            <tr><td>0.0</td><td>128</td><td>0.5 mg</td><td>1 g</td></tr>
+                        </tbody>
+                    </table>
+                    
+                    <p class="protocol-intro">
+                        <strong>Key Points:</strong> Heroin withdrawal causes severe flu-like symptoms, pain, and cravings. Buprenorphine reduces withdrawal severity. Cannabis helps with nausea, pain, and insomnia. Taper slowly to avoid relapse.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Disclaimer Section -->
+        <div class="disclaimer-section">
+            <h3>⚠️ CRITICAL DISCLAIMER</h3>
+            <p>
+                These protocols are NOT medical advice. They are harm reduction tools based on research and personal experience. Withdrawal from any substance can be dangerous or fatal without proper medical supervision.
+            </p>
+            <p>
+                <strong>If you are considering withdrawal, please:</strong>
+            </p>
+            <ul style="font-size: 1.1rem; line-height: 1.8; color: #E2E8F0;">
+                <li>Consult a medical professional or addiction specialist</li>
+                <li>Consider inpatient detox or rehab programs</li>
+                <li>Have naloxone (Narcan) available for opioid withdrawal</li>
+                <li>Tell someone you trust about your plan</li>
+                <li>Call SAMHSA National Helpline: 1-800-662-4357 (24/7 free support)</li>
+            </ul>
+            <p>
+                <strong>You are not alone. Recovery is possible. Every life is worth saving.</strong>
+            </p>
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: #0A0F1E; padding: 50px 20px; text-align: center; border-top: 2px solid rgba(0, 255, 255, 0.3);">
+        <p style="margin: 0; color: #64748B; font-size: 1.05rem;">
+            1142 · Founded Dec 22, 2019 · 11:42 PM · 11-42.ca · an Everdark production · Tomorrow's Answers Today
+        </p>
+        <p style="margin: 15px 0 0 0; color: #64748B;">
+            © 1142 · All Rights Reserved
+        </p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/3d-glitch-effects.js"></script>
+</body>
+</html>
