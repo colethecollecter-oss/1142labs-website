@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Dose Calculator | 1142 LABS</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/3d-glasses-glitch.css">
+    <link rel="stylesheet" href="assets/css/ai-styles.css">
+    <link rel="stylesheet" href="assets/css/advanced-features.css">
+    <style>
+        .calculator-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            border: 2px solid rgba(0, 255, 255, 0.5);
+            border-radius: 12px;
+        }
+
+        .calc-section {
+            margin: 2rem 0;
+        }
+
+        .calc-section h3 {
+            color: #00FFFF;
+            margin-bottom: 1rem;
+        }
+
+        .input-group {
+            margin: 1rem 0;
+        }
+
+        .input-group label {
+            display: block;
+            color: #94A3B8;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 0.75rem;
+            background: rgba(30, 58, 138, 0.3);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: #00FFFF;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+        }
+
+        .calc-button {
+            background: linear-gradient(135deg, #00FFFF, #FF00FF);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .calc-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.4);
+        }
+
+        .result-box {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(0, 255, 255, 0.1);
+            border: 2px solid #00FFFF;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .result-box.active {
+            display: block;
+            animation: resultSlideIn 0.3s ease;
+        }
+
+        @keyframes resultSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result-value {
+            font-size: 2rem;
+            color: #00FFFF;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .warning-box {
+            background: rgba(255, 0, 255, 0.1);
+            border: 2px solid #FF00FF;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .warning-box h4 {
+            color: #FF00FF;
+            margin-top: 0;
+        }
+
+        .slider-container {
+            margin: 1rem 0;
+        }
+
+        .slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: rgba(0, 255, 255, 0.2);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #00FFFF;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+        }
+
+        .slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #00FFFF;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+        }
+
+        .slider-value {
+            display: inline-block;
+            margin-left: 1rem;
+            color: #00FFFF;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body data-page="dose-calculator">
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <div class="nav-content">
+            <div class="nav-logo">
+                <img src="assets/logo-spikey-original.png" alt="1142 LABS" style="height: 50px;">
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="breakthroughs.html">Research</a>
+                <a href="chemicals.html">Database</a>
+                <a href="dose-calculator.html" class="active">Calculator</a>
+                <a href="gallery.html">Gallery</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section style="min-height: 40vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%);">
+        <div style="text-align: center;">
+            <h1 class="anaglyph-text" style="font-size: 3.5rem; margin-bottom: 1rem;">DOSE CALCULATOR</h1>
+            <p style="font-size: 1.2rem; color: #00FFFF;">Interactive Dosage Computation Tool</p>
+        </div>
+    </section>
+
+    <!-- Calculator Content -->
+    <div class="calculator-container">
+        <div class="warning-box">
+            <h4>⚠️ DISCLAIMER</h4>
+            <p style="color: #94A3B8; margin: 0;">
+                This calculator is for educational and harm reduction purposes only. 
+                Always consult with a medical professional before making any decisions about medication or substances.
+                Individual responses vary significantly.
+            </p>
+        </div>
+
+        <!-- Substance Selection -->
+        <div class="calc-section">
+            <h3>1. Select Substance</h3>
+            <div class="input-group">
+                <label>Substance:</label>
+                <select id="substance">
+                    <option value="">-- Select Substance --</option>
+                    <option value="methylphenidate">Methylphenidate (Ritalin)</option>
+                    <option value="lsd">LSD (Lysergic Acid Diethylamide)</option>
+                    <option value="psilocybin">Psilocybin (Magic Mushrooms)</option>
+                    <option value="mdma">MDMA (Ecstasy)</option>
+                    <option value="dmt">DMT (Dimethyltryptamine)</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Body Weight -->
+        <div class="calc-section">
+            <h3>2. Enter Body Weight</h3>
+            <div class="input-group">
+                <label>Weight:</label>
+                <input type="number" id="weight" placeholder="Enter weight" min="30" max="200">
+            </div>
+            <div class="input-group">
+                <label>Unit:</label>
+                <select id="weight-unit">
+                    <option value="kg">Kilograms (kg)</option>
+                    <option value="lbs">Pounds (lbs)</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Dosage Level -->
+        <div class="calc-section">
+            <h3>3. Select Dosage Level</h3>
+            <div class="slider-container">
+                <label>Intensity Level: <span class="slider-value" id="intensity-value">Threshold</span></label>
+                <input type="range" id="intensity" class="slider" min="1" max="5" value="1">
+            </div>
+            <div style="display: flex; justify-content: space-between; color: #94A3B8; font-size: 0.8rem; margin-top: 0.5rem;">
+                <span>Threshold</span>
+                <span>Light</span>
+                <span>Common</span>
+                <span>Strong</span>
+                <span>Heavy</span>
+            </div>
+        </div>
+
+        <!-- Calculate Button -->
+        <button class="calc-button" onclick="calculateDose()">CALCULATE DOSE</button>
+
+        <!-- Results -->
+        <div id="result-box" class="result-box">
+            <h3 style="color: #00FFFF; margin-top: 0;">Recommended Dose</h3>
+            <div class="result-value" id="result-value">--</div>
+            <div id="result-details" style="color: #94A3B8;"></div>
+            
+            <div class="warning-box" style="margin-top: 2rem;">
+                <h4>Important Safety Information</h4>
+                <ul style="color: #94A3B8; margin: 0.5rem 0;">
+                    <li>Start with lower doses if you're inexperienced</li>
+                    <li>Never combine substances without research</li>
+                    <li>Have a trusted person present</li>
+                    <li>Test your substances when possible</li>
+                    <li>Know your source and purity</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/ai-integration.js"></script>
+    <script src="assets/js/advanced-features.js"></script>
+    <script>
+        // Intensity slider
+        const intensitySlider = document.getElementById('intensity');
+        const intensityValue = document.getElementById('intensity-value');
+        const intensityLabels = ['Threshold', 'Light', 'Common', 'Strong', 'Heavy'];
+
+        intensitySlider.addEventListener('input', (e) => {
+            intensityValue.textContent = intensityLabels[e.target.value - 1];
+        });
+
+        // Dosage data (mg per kg for different intensity levels)
+        const dosageData = {
+            methylphenidate: {
+                name: 'Methylphenidate',
+                unit: 'mg',
+                doses: [0.1, 0.3, 0.5, 0.7, 1.0],
+                duration: '3-6 hours',
+                onset: '20-40 minutes'
+            },
+            lsd: {
+                name: 'LSD',
+                unit: 'µg',
+                doses: [20, 50, 100, 200, 300],
+                duration: '8-12 hours',
+                onset: '30-90 minutes'
+            },
+            psilocybin: {
+                name: 'Psilocybin',
+                unit: 'mg',
+                doses: [0.1, 0.5, 1.5, 3.0, 5.0],
+                duration: '4-6 hours',
+                onset: '20-40 minutes'
+            },
+            mdma: {
+                name: 'MDMA',
+                unit: 'mg',
+                doses: [1.0, 1.3, 1.5, 1.8, 2.0],
+                duration: '3-5 hours',
+                onset: '30-60 minutes'
+            },
+            dmt: {
+                name: 'DMT',
+                unit: 'mg',
+                doses: [10, 20, 30, 40, 50],
+                duration: '5-15 minutes (smoked)',
+                onset: 'Immediate (smoked)'
+            }
+        };
+
+        function calculateDose() {
+            const substance = document.getElementById('substance').value;
+            const weight = parseFloat(document.getElementById('weight').value);
+            const weightUnit = document.getElementById('weight-unit').value;
+            const intensity = parseInt(document.getElementById('intensity').value);
+
+            // Validation
+            if (!substance) {
+                alert('Please select a substance');
+                return;
+            }
+            if (!weight || weight < 30 || weight > 200) {
+                alert('Please enter a valid weight (30-200)');
+                return;
+            }
+
+            // Convert weight to kg if needed
+            const weightKg = weightUnit === 'lbs' ? weight * 0.453592 : weight;
+
+            // Get dosage data
+            const data = dosageData[substance];
+            const dosePerKg = data.doses[intensity - 1];
+            
+            // Calculate dose
+            let calculatedDose;
+            if (substance === 'lsd' || substance === 'dmt') {
+                // Fixed doses for LSD and DMT
+                calculatedDose = dosePerKg;
+            } else {
+                // Weight-based for others
+                calculatedDose = Math.round(dosePerKg * weightKg);
+            }
+
+            // Display results
+            const resultBox = document.getElementById('result-box');
+            const resultValue = document.getElementById('result-value');
+            const resultDetails = document.getElementById('result-details');
+
+            resultValue.textContent = `${calculatedDose} ${data.unit}`;
+            resultDetails.innerHTML = `
+                <p><strong>Substance:</strong> ${data.name}</p>
+                <p><strong>Intensity:</strong> ${intensityLabels[intensity - 1]}</p>
+                <p><strong>Duration:</strong> ${data.duration}</p>
+                <p><strong>Onset:</strong> ${data.onset}</p>
+                <p><strong>Your Weight:</strong> ${weight} ${weightUnit} (${weightKg.toFixed(1)} kg)</p>
+            `;
+
+            resultBox.classList.add('active');
+            resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,441 @@
+/**
+ * 1142 LABS - Advanced Features Styles
+ * Cyberpunk-themed styling for new interactive features
+ */
+
+/* ============================================
+   SEARCH OVERLAY
+   ============================================ */
+
+.search-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 10000;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 10vh;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.search-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.search-container {
+    width: 90%;
+    max-width: 600px;
+    background: linear-gradient(135deg, rgba(30, 58, 138, 0.3), rgba(109, 40, 217, 0.3));
+    border: 2px solid rgba(0, 255, 255, 0.5);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 255, 255, 0.3);
+    animation: searchSlideDown 0.3s ease;
+}
+
+@keyframes searchSlideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.search-header {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background: rgba(15, 23, 42, 0.8);
+    border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+}
+
+#search-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 1.25rem;
+    outline: none;
+    font-family: 'Inter', sans-serif;
+}
+
+#search-input::placeholder {
+    color: rgba(148, 163, 184, 0.6);
+}
+
+.search-close {
+    background: transparent;
+    border: none;
+    color: #00FFFF;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: transform 0.2s ease;
+}
+
+.search-close:hover {
+    transform: rotate(90deg);
+}
+
+.search-results {
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 0.5rem;
+}
+
+.search-result-item {
+    display: block;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.search-result-item:hover {
+    background: rgba(0, 255, 255, 0.1);
+    border-color: rgba(0, 255, 255, 0.6);
+    transform: translateX(5px);
+}
+
+.search-result-category {
+    font-size: 0.75rem;
+    color: #FF00FF;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.25rem;
+}
+
+.search-result-title {
+    font-size: 1rem;
+    color: #00FFFF;
+    font-weight: 500;
+}
+
+.search-empty {
+    text-align: center;
+    padding: 2rem;
+    color: #94A3B8;
+}
+
+.search-footer {
+    padding: 0.75rem 1rem;
+    background: rgba(15, 23, 42, 0.8);
+    border-top: 1px solid rgba(0, 255, 255, 0.3);
+    font-size: 0.875rem;
+    color: #94A3B8;
+    text-align: center;
+}
+
+.search-footer kbd {
+    background: rgba(0, 255, 255, 0.2);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-family: monospace;
+    color: #00FFFF;
+    margin: 0 0.25rem;
+}
+
+.search-trigger {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    background: linear-gradient(135deg, #00FFFF, #FF00FF);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(0, 255, 255, 0.4);
+    transition: all 0.3s ease;
+}
+
+.search-trigger:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 30px rgba(0, 255, 255, 0.6);
+}
+
+/* ============================================
+   READING PROGRESS BAR
+   ============================================ */
+
+.reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #00FFFF, #FF00FF);
+    z-index: 9998;
+    transition: width 0.1s ease;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+}
+
+/* ============================================
+   SCROLL TO TOP BUTTON
+   ============================================ */
+
+.scroll-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 9997;
+    background: linear-gradient(135deg, #00FFFF, #FF00FF);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 255, 255, 0.4);
+}
+
+.scroll-to-top.visible {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.scroll-to-top:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 30px rgba(0, 255, 255, 0.6);
+}
+
+/* ============================================
+   CODE COPY BUTTON
+   ============================================ */
+
+.copy-code-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 255, 255, 0.2);
+    border: 1px solid rgba(0, 255, 255, 0.5);
+    color: #00FFFF;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+}
+
+.copy-code-btn:hover {
+    background: rgba(0, 255, 255, 0.3);
+    border-color: #00FFFF;
+}
+
+/* ============================================
+   TABLE OF CONTENTS
+   ============================================ */
+
+.table-of-contents {
+    background: rgba(15, 23, 42, 0.8);
+    border: 2px solid rgba(0, 255, 255, 0.3);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    max-width: 300px;
+    float: right;
+    margin-left: 2rem;
+}
+
+.table-of-contents h4 {
+    color: #00FFFF;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.table-of-contents ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.table-of-contents li {
+    margin: 0.5rem 0;
+}
+
+.table-of-contents li.h3 {
+    padding-left: 1rem;
+}
+
+.table-of-contents a {
+    color: #94A3B8;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    font-size: 0.9rem;
+}
+
+.table-of-contents a:hover {
+    color: #00FFFF;
+}
+
+/* ============================================
+   SHARE BUTTONS
+   ============================================ */
+
+.share-buttons {
+    display: flex;
+    gap: 0.5rem;
+    margin: 2rem 0;
+    padding: 1rem;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: 8px;
+    width: fit-content;
+}
+
+.share-btn {
+    background: rgba(0, 255, 255, 0.2);
+    border: 1px solid rgba(0, 255, 255, 0.5);
+    color: #00FFFF;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.share-btn:hover {
+    background: rgba(0, 255, 255, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0, 255, 255, 0.4);
+}
+
+/* ============================================
+   KONAMI CODE EASTER EGG
+   ============================================ */
+
+.konami-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10001;
+    background: linear-gradient(135deg, #00FFFF, #FF00FF);
+    color: #fff;
+    padding: 2rem 3rem;
+    border-radius: 12px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 255, 255, 0.6);
+    animation: konamiPulse 0.5s ease infinite alternate;
+}
+
+@keyframes konamiPulse {
+    from {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    to {
+        transform: translate(-50%, -50%) scale(1.05);
+    }
+}
+
+body.konami-active {
+    animation: extremeGlitch 0.1s infinite;
+}
+
+@keyframes extremeGlitch {
+    0% {
+        transform: translate(0, 0);
+        filter: hue-rotate(0deg);
+    }
+    25% {
+        transform: translate(-5px, 5px);
+        filter: hue-rotate(90deg);
+    }
+    50% {
+        transform: translate(5px, -5px);
+        filter: hue-rotate(180deg);
+    }
+    75% {
+        transform: translate(-5px, -5px);
+        filter: hue-rotate(270deg);
+    }
+    100% {
+        transform: translate(5px, 5px);
+        filter: hue-rotate(360deg);
+    }
+}
+
+/* ============================================
+   PERFORMANCE MONITOR
+   ============================================ */
+
+.perf-monitor {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    z-index: 9996;
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid rgba(0, 255, 255, 0.5);
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-family: monospace;
+    font-size: 0.75rem;
+    color: #00FFFF;
+}
+
+.perf-monitor div {
+    margin: 0.25rem 0;
+}
+
+/* ============================================
+   MOBILE RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+    .search-container {
+        width: 95%;
+        margin: 0 auto;
+    }
+
+    .table-of-contents {
+        float: none;
+        max-width: 100%;
+        margin-left: 0;
+    }
+
+    .search-trigger {
+        top: 10px;
+        right: 10px;
+        width: 45px;
+        height: 45px;
+    }
+
+    .scroll-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+    }
+
+    .share-buttons {
+        width: 100%;
+        justify-content: center;
+    }
+}
