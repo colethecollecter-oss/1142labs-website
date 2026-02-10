@@ -153,8 +153,22 @@
             text-align: center;
             padding: 4rem 2rem;
             position: relative;
-            background: radial-gradient(circle at center, var(--secondary-blue), var(--bg-black));
+            background: var(--bg-black);
             overflow: hidden;
+        }
+
+        .hero-video-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            opacity: 0.6;
+            object-fit: cover;
         }
 
         .hero::before {
@@ -178,11 +192,18 @@
         }
 
         .logo-burst {
-            width: 300px;
-            height: 300px;
+            width: 400px;
+            height: 400px;
             margin: 0 auto 2rem;
-            animation: burstIn 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            animation: burstIn 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55), burstFloat 6s ease-in-out infinite;
             filter: drop-shadow(0 0 40px rgba(0, 255, 255, 0.8));
+        }
+
+        @keyframes burstFloat {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.05) rotate(2deg); }
+            50% { transform: scale(1) rotate(0deg); }
+            75% { transform: scale(1.05) rotate(-2deg); }
         }
 
         @keyframes burstIn {
@@ -604,12 +625,12 @@
     <section class="hero epic-hero">
         <canvas id="neural-shader-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.3;"></canvas>
         <!-- Video Background -->
-        <video autoplay loop muted playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; opacity: 0.2;">
-            <source src="assets/videos/neural-bg-loop.mp4" type="video/mp4">
+        <video class="hero-video-bg" autoplay loop muted playsinline>
+            <source src="assets/videos/crystal-burst-loop.mp4" type="video/mp4">
         </video>
         <div class="hero-content" style="position: relative; z-index: 10;">
             <div class="logo-3d-container" data-parallax="10">
-                <img src="/assets/1142labs-new-logo.png" alt="1142 Labs Burst Logo" class="logo-burst">
+                <img src="/assets/hero-burst-1142.png" alt="1142 Labs Burst Logo" class="logo-burst">
                 <div class="epic-glow"></div>
             </div>
             <h2 class="holographic-text glitch-text text-3d-hero" data-text="Tomorrow's Solutions Today">Tomorrow's Solutions Today</h2>

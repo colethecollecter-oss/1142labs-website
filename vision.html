@@ -21,7 +21,22 @@
             justify-content: center;
             position: relative;
             padding: 100px 20px;
-            background: radial-gradient(ellipse at center, rgba(138, 43, 226, 0.15) 0%, transparent 70%);
+            background: #0F172A;
+            overflow: hidden;
+        }
+        
+        .vision-hero video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            opacity: 0.5;
+            object-fit: cover;
         }
 
         .vision-hero::before {
@@ -209,6 +224,9 @@
 
     <!-- Hero Section -->
     <section class="vision-hero">
+        <video autoplay loop muted playsinline>
+            <source src="assets/videos/neural-cityscape-animated.mp4" type="video/mp4">
+        </video>
         <div class="vision-content">
             <h1 class="vision-title anaglyph-text glitch-text">THE VISION</h1>
             <p class="vision-subtitle">1142 LABS Overtaking Earth</p>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graphics Gallery | 1142 LABS</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/3d-glasses-glitch.css">
+    <link rel="stylesheet" href="assets/css/advanced-features.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: #0F172A;
+            color: #E2E8F0;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .graphics-hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: #0F172A;
+            overflow: hidden;
+        }
+
+        .graphics-hero video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            opacity: 0.3;
+            object-fit: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 60px 20px;
+            max-width: 1200px;
+        }
+
+        .hero-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 900;
+            margin: 0 0 30px 0;
+            background: linear-gradient(135deg, #00FFFF, #EC4899, #6D28D9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px rgba(0, 255, 255, 0.5);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: #00FFFF;
+            margin-bottom: 40px;
+        }
+
+        .gallery-section {
+            max-width: 1600px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            text-align: center;
+            margin: 80px 0 40px 0;
+            color: #00FFFF;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .graphic-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            background: rgba(30, 41, 59, 0.6);
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .graphic-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 255, 255, 0.8);
+            box-shadow: 0 20px 60px rgba(0, 255, 255, 0.4);
+        }
+
+        .graphic-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .graphic-card video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .graphic-info {
+            padding: 30px;
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        .graphic-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #00FFFF;
+            margin-bottom: 10px;
+        }
+
+        .graphic-description {
+            font-size: 1rem;
+            color: #CBD5E1;
+            line-height: 1.6;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav style="position: sticky; top: 0; z-index: 1000; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); border-bottom: 2px solid #00FFFF; padding: 20px 40px;">
+        <div style="max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+            <a href="index.html" style="font-family: 'Orbitron', sans-serif; font-size: 1.8rem; font-weight: 900; color: #00FFFF; text-decoration: none;">1142 LABS</a>
+            <div style="display: flex; gap: 30px;">
+                <a href="index.html" style="color: #CBD5E1; text-decoration: none; font-weight: 600;">HOME</a>
+                <a href="breakthroughs.html" style="color: #CBD5E1; text-decoration: none; font-weight: 600;">BREAKTHROUGHS</a>
+                <a href="vision.html" style="color: #CBD5E1; text-decoration: none; font-weight: 600;">VISION</a>
+                <a href="graphics.html" style="color: #00FFFF; text-decoration: none; font-weight: 600;">GRAPHICS</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="graphics-hero">
+        <video autoplay loop muted playsinline>
+            <source src="assets/videos/hero-burst-1142-animated.mp4" type="video/mp4">
+        </video>
+        <div class="hero-content">
+            <h1 class="hero-title text-3d-hero">GRAPHICS GALLERY</h1>
+            <p class="hero-subtitle">Explosive Crystal Burst Aesthetic</p>
+            <p style="font-size: 1.2rem; color: #CBD5E1; max-width: 800px; margin: 0 auto;">
+                The visual language of 1142—cyberpunk, retrowave, and tech-noir synthesized into explosive crystalline energy.
+            </p>
+        </div>
+    </section>
+
+    <!-- Hero Burst Graphics -->
+    <section class="gallery-section">
+        <h2 class="section-title">Hero Burst Graphics</h2>
+        <div class="gallery-grid">
+            <div class="graphic-card">
+                <img src="assets/hero-burst-1142.png" alt="1142 Burst" loading="lazy">
+                <div class="graphic-info">
+                    <h3 class="graphic-title">1142 Burst</h3>
+                    <p class="graphic-description">Explosive crystalline burst with RGB chromatic aberration glitch effect. The signature visual identity.</p>
+                </div>
+            </div>
+            <div class="graphic-card">
+                <img src="assets/hero-burst-11-42.png" alt="11:42 Burst" loading="lazy">
+                <div class="graphic-info">
+                    <h3 class="graphic-title">11:42 Time Burst</h3>
+                    <p class="graphic-description">Time-based variant with colon separator, emphasizing the temporal significance.</p>
+                </div>
+            </div>
+            <div class="graphic-card">
+                <img src="assets/hero-burst-labs.png" alt="1142 LABS Burst" loading="lazy">
+                <div class="graphic-info">
+                    <h3 class="graphic-title">1142 LABS Burst</h3>
+                    <p class="graphic-description">Full branding with LABS designation, perfect for official materials.</p>
+                </div>
+            </div>
+            <div class="graphic-card">
+                <img src="assets/crystal-burst-icon.png" alt="Crystal Burst Icon" loading="lazy">
+                <div class="graphic-info">
+                    <h3 class="graphic-title">Crystal Burst Icon</h3>
+                    <p class="graphic-description">Pure geometric explosion without text—the raw energy of the brand.</p>
+                </div>
+            </div>
+            <div class="graphic-card">
+                <img src="assets/mobile-hero-1142.png" alt="Mobile Hero" loading="lazy">
+                <div class="graphic-info">
+                    <h3 class="graphic-title">Mobile Hero (Portrait)</h3>
+                    <p class="graphic-description">Vertical composition optimized for mobile devices and social media.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research & Brain Graphics -->
+    <section class="gallery-section">
+        <h2 class="section-title">Research & Neuroscience</h2>
+        <div class="gallery-grid">
+            <div class="graphic-card">
+                <img src="assets/research-breakthrough-burst.png" alt="Breakthrough Burst" loading="lazy">
+                <div class="graphic-info">
+                    <h3 class="graphic-title">Breakthrough Burst</h3>
+                    <p class="graphic-description">Cyan brain surrounded by explosive crystal burst—the moment of discovery.</p>
+                </div>
+            </div>
+            <div class="graphic-card">
+                <img src="assets/circuit-brain-core.png" alt="Circuit Brain Core" loading="lazy">
+                <div class="graphic-info">
+                    <h3 class="graphic-title">Circuit Brain Core</h3>
+                    <p class="graphic-description">Digital consciousness—brain as circuit board with data pathways.</p>
+                </div>
+            </div>
+            <div class="graphic-card">
+                <img src="assets/cognitive-dial-warning.png" alt="Cognitive Overload Warning" loading="lazy">
+                <div class="graphic-info">
+                    <h3 class="graphic-title">Cognitive Overload Warning</h3>
+                    <p class="graphic-description">HUD-style warning graphic with speedometer dial and explosive crystal shards.</p>
+                </div>
+            </div>
+            <div class="graphic-card">
+                <img src="assets/neural-cityscape.png" alt="Neural Cityscape" loading="lazy">
+                <div class="graphic-info">
+                    <h3 class="graphic-title">Neural Cityscape</h3>
+                    <p class="graphic-description">Cyberpunk cityscape with massive glowing brain portal—Blade Runner meets neuroscience.</p>
+                </div>
+            </div>
+            <div class="graphic-card">
+                <img src="assets/breakthrough-lightbulb.png" alt="Breakthrough Lightbulb" loading="lazy">
+                <div class="graphic-info">
+                    <h3 class="graphic-title">Breakthrough Lightbulb</h3>
+                    <p class="graphic-description">Eureka moment—glowing lightbulb with explosive energy burst and lightning.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Animated Videos -->
+    <section class="gallery-section">
+        <h2 class="section-title">Animated Videos</h2>
+        <div class="video-grid">
+            <div class="graphic-card">
+                <video autoplay loop muted playsinline controls>
+                    <source src="assets/videos/hero-burst-1142-animated.mp4" type="video/mp4">
+                </video>
+                <div class="graphic-info">
+                    <h3 class="graphic-title">Hero Burst Animation</h3>
+                    <p class="graphic-description">Rotating explosive crystal burst with glitching 1142 text. 8 seconds, landscape.</p>
+                </div>
+            </div>
+            <div class="graphic-card">
+                <video autoplay loop muted playsinline controls>
+                    <source src="assets/videos/crystal-burst-loop.mp4" type="video/mp4">
+                </video>
+                <div class="graphic-info">
+                    <h3 class="graphic-title">Crystal Burst Loop</h3>
+                    <p class="graphic-description">Seamless rotating crystal burst—perfect for backgrounds. 6 seconds, landscape.</p>
+                </div>
+            </div>
+            <div class="graphic-card">
+                <video autoplay loop muted playsinline controls>
+                    <source src="assets/videos/neural-cityscape-animated.mp4" type="video/mp4">
+                </video>
+                <div class="graphic-info">
+                    <h3 class="graphic-title">Neural Cityscape Animation</h3>
+                    <p class="graphic-description">Cinematic push through cyberpunk city toward glowing brain portal. 8 seconds, landscape.</p>
+                </div>
+            </div>
+            <div class="graphic-card">
+                <video autoplay loop muted playsinline controls>
+                    <source src="assets/videos/circuit-brain-animated.mp4" type="video/mp4">
+                </video>
+                <div class="graphic-info">
+                    <h3 class="graphic-title">Circuit Brain Animation</h3>
+                    <p class="graphic-description">Rotating circuit brain with pulsing data streams. 8 seconds, square.</p>
+                </div>
+            </div>
+            <div class="graphic-card">
+                <video autoplay loop muted playsinline controls>
+                    <source src="assets/videos/cognitive-warning-animated.mp4" type="video/mp4">
+                </video>
+                <div class="graphic-info">
+                    <h3 class="graphic-title">Cognitive Warning Animation</h3>
+                    <p class="graphic-description">Pulsing brain with danger dial and glitching warning text. 8 seconds, square.</p>
+                </div>
+            </div>
+            <div class="graphic-card">
+                <video autoplay loop muted playsinline controls>
+                    <source src="assets/videos/research-breakthrough-burst.mp4" type="video/mp4">
+                </video>
+                <div class="graphic-info">
+                    <h3 class="graphic-title">Research Breakthrough Animation</h3>
+                    <p class="graphic-description">Brain with crystal burst and glitching BREAKTHROUGH text. 8 seconds, landscape.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: rgba(15, 23, 42, 0.95); border-top: 2px solid #00FFFF; padding: 60px 40px; text-align: center; margin-top: 100px;">
+        <p style="font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: #00FFFF; margin-bottom: 20px;">1142 LABS</p>
+        <p style="color: #CBD5E1; margin-bottom: 10px;">Tomorrow's Solutions Today</p>
+        <p style="color: #64748B; font-size: 0.9rem;">© 2019-2026 1142 LABS. All rights reserved.</p>
+    </footer>
+
+    <!-- Advanced Features -->
+    <script src="assets/js/advanced-features.js"></script>
+</body>
+</html>

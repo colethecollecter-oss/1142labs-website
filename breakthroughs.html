@@ -29,8 +29,22 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: url('assets/research-lab-scene.png') center/cover;
+            background: #0F172A;
             overflow: hidden;
+        }
+        
+        .hero-breakthroughs video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            opacity: 0.4;
+            object-fit: cover;
         }
         
         .hero-breakthroughs::before {
@@ -343,6 +357,9 @@
 
     <!-- Hero Section -->
     <section class="hero-breakthroughs glitch-scanlines" style="margin-top: 95px;">
+        <video autoplay loop muted playsinline>
+            <source src="assets/videos/research-breakthrough-burst.mp4" type="video/mp4">
+        </video>
         <div class="hero-content">
             <h1 class="hero-title text-3d-hero">BREAKTHROUGHS</h1>
             <p class="hero-subtitle text-3d-glasses">
