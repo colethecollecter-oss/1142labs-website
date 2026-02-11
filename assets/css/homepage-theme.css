@@ -1,0 +1,135 @@
+:root {
+  --home-primary-cyan: #00ffff;
+  --home-secondary-blue: #1e3a8a;
+  --home-secondary-purple: #6d28d9;
+  --home-secondary-pink: #ec4899;
+  --home-bg-black: #0f172a;
+  --home-text-gray: #94a3b8;
+  --home-text-white: #ffffff;
+  --home-panel-bg: linear-gradient(135deg, rgba(30, 41, 59, 0.72), rgba(15, 23, 42, 0.82));
+  --home-panel-border: 1px solid rgba(0, 255, 255, 0.24);
+}
+
+body {
+  background:
+    radial-gradient(circle at 15% 15%, rgba(0, 255, 255, 0.12), transparent 35%),
+    radial-gradient(circle at 85% 10%, rgba(109, 40, 217, 0.14), transparent 35%),
+    radial-gradient(circle at 50% 95%, rgba(236, 72, 153, 0.08), transparent 40%),
+    var(--home-bg-black);
+  color: var(--home-text-gray);
+  font-family: 'Inter', sans-serif;
+}
+
+/* Match homepage top-nav treatment without affecting non-header nav widgets */
+header.header-nav,
+nav:not(.pagination):not(.toc):not(.breadcrumbs) {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(15, 23, 42, 0.92) !important;
+  backdrop-filter: blur(10px);
+  border-bottom: 2px solid rgba(0, 255, 255, 0.45);
+  box-shadow: 0 6px 24px rgba(0, 255, 255, 0.18);
+}
+
+.logo-container,
+.nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+}
+
+.header-text h1,
+.nav-logo h1,
+.page-title,
+.section-title,
+.hero-title,
+.hero h2 {
+  font-family: 'Orbitron', sans-serif;
+  background: linear-gradient(90deg, var(--home-primary-cyan), var(--home-secondary-purple), var(--home-secondary-pink));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 24px rgba(0, 255, 255, 0.25);
+}
+
+.skeleton-menu,
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.skeleton-menu a,
+.nav-links a,
+.nav-link {
+  color: var(--home-text-gray) !important;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.25s ease, text-shadow 0.25s ease;
+}
+
+.skeleton-menu a:hover,
+.nav-links a:hover,
+.nav-link:hover,
+.skeleton-menu a.active,
+.nav-link.active {
+  color: var(--home-primary-cyan) !important;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+}
+
+main,
+.content-container,
+.database-section,
+.calculator-section,
+.resources-section,
+.research-container,
+.gallery-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: clamp(1rem, 2vw, 2.5rem);
+}
+
+.about-card,
+.chemical-card,
+.resource-card,
+.research-paper,
+.project-card,
+.timeline-content,
+.calculator-box,
+.epic-card,
+.card,
+.tile,
+.panel,
+.content-container > section {
+  background: var(--home-panel-bg);
+  border: var(--home-panel-border);
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+.content-container > section {
+  padding: clamp(1.2rem, 2.4vw, 2.4rem);
+  margin-bottom: 1.3rem;
+}
+
+a {
+  color: #67e8f9;
+}
+
+button,
+.btn,
+.cta-button,
+input[type='submit'] {
+  border: 1px solid rgba(0, 255, 255, 0.5);
+  background: linear-gradient(90deg, rgba(0, 255, 255, 0.18), rgba(109, 40, 217, 0.2));
+  color: var(--home-text-white);
+  border-radius: 10px;
+}
+
+.footer-section,
+footer {
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0), rgba(15, 23, 42, 0.95));
+  border-top: 1px solid rgba(0, 255, 255, 0.25);
+}
