@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/gif" href="/favicon.gif">
+    <link rel="shortcut icon" type="image/gif" href="/favicon.gif">
+    <meta name="description" content="1142 LABS Poster Gallery - Explosive crystal burst aesthetic, cyberpunk propaganda, and neuroscience research visuals.">
+    <meta name="keywords" content="1142 labs posters, cyberpunk art, neuroscience posters, retrowave art, crystal burst">
+    <link rel="canonical" href="https://www.1142labs.com/posters.html">
+    <title>Poster Gallery | 1142 LABS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/3d-glasses-glitch.css">
+    <link rel="stylesheet" href="assets/css/advanced-features.css">
+    <style>
+        body {
+            background: #0F172A;
+            color: #E2E8F0;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .posters-hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(180deg, #0F172A 0%, #1E293B 100%);
+            overflow: hidden;
+        }
+
+        .posters-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 255, 255, 0.1), transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 60px 20px;
+            max-width: 1200px;
+        }
+
+        .hero-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 900;
+            margin: 0 0 30px 0;
+            background: linear-gradient(135deg, #00FFFF, #EC4899, #6D28D9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px rgba(0, 255, 255, 0.5);
+            letter-spacing: 4px;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: #00FFFF;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: #CBD5E1;
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            line-height: 1.8;
+        }
+
+        /* Filter Bar */
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+            padding: 0 20px;
+        }
+
+        .filter-btn {
+            padding: 12px 30px;
+            background: rgba(0, 255, 255, 0.1);
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            color: #00FFFF;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: rgba(0, 255, 255, 0.3);
+            border-color: #00FFFF;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Poster Gallery */
+        .poster-gallery {
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 0 20px 100px 20px;
+        }
+
+        .poster-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .poster-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            background: rgba(30, 41, 59, 0.6);
+            border: 2px solid rgba(0, 255, 255, 0.2);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .poster-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            border-color: rgba(0, 255, 255, 0.8);
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.6),
+                0 0 40px rgba(0, 255, 255, 0.4),
+                inset 0 0 30px rgba(0, 255, 255, 0.1);
+        }
+
+        .poster-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .poster-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .poster-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+            background: linear-gradient(transparent, rgba(15, 23, 42, 0.98));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .poster-card:hover .poster-overlay {
+            opacity: 1;
+        }
+
+        .poster-title {
+            color: #00FFFF;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+
+        .poster-category {
+            color: #EC4899;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 8px;
+        }
+
+        /* Featured Poster Section */
+        .featured-section {
+            max-width: 1400px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #00FFFF;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 5, 16, 0.98);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .lightbox.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .lightbox-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            position: relative;
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 0 80px rgba(0, 255, 255, 0.4);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: rgba(0, 255, 255, 0.2);
+            border: 2px solid #00FFFF;
+            color: #00FFFF;
+            font-size: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(236, 72, 153, 0.3);
+            border-color: #EC4899;
+            color: #EC4899;
+            transform: rotate(90deg);
+            box-shadow: 0 0 20px rgba(236, 72, 153, 0.5);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 255, 255, 0.2);
+            border: 2px solid rgba(0, 255, 255, 0.4);
+            color: #00FFFF;
+            font-size: 2rem;
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(0, 255, 255, 0.4);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.6);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .lightbox-prev {
+            left: -80px;
+        }
+
+        .lightbox-next {
+            right: -80px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .poster-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 25px;
+            }
+
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .lightbox-nav {
+                display: none;
+            }
+
+            .filter-bar {
+                gap: 10px;
+            }
+
+            .filter-btn {
+                padding: 10px 20px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+    <script src="assets/js/age-gate.js"></script>
+    <script src="assets/js/performance-optimizer.js" defer></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav style="position: sticky; top: 0; z-index: 1000; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); border-bottom: 2px solid #00FFFF; padding: 20px 40px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);">
+        <div style="max-width: 1600px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+            <a href="index.html" style="font-family: 'Orbitron', sans-serif; font-size: 1.8rem; font-weight: 900; color: #00FFFF; text-decoration: none; text-shadow: 0 0 10px rgba(0, 255, 255, 0.5); transition: all 0.3s ease;">
+                1142 LABS
+            </a>
+            <div style="display: flex; gap: 30px; flex-wrap: wrap; align-items: center;">
+                <a href="index.html" class="nav-link" style="color: #CBD5E1; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; position: relative;">HOME</a>
+                <a href="breakthroughs.html" class="nav-link" style="color: #CBD5E1; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; position: relative;">BREAKTHROUGHS</a>
+                <a href="vision.html" class="nav-link" style="color: #CBD5E1; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; position: relative;">VISION</a>
+                <a href="graphics.html" class="nav-link" style="color: #CBD5E1; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; position: relative;">GRAPHICS</a>
+                <a href="posters.html" class="nav-link" style="color: #00FFFF; text-decoration: none; font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; position: relative; text-shadow: 0 0 15px rgba(0, 255, 255, 1);">POSTERS</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="posters-hero">
+        <div class="hero-content">
+            <h1 class="hero-title">POSTER GALLERY</h1>
+            <p class="hero-subtitle">∞ Visual Transmissions from the 1142 Universe ∞</p>
+            <p class="hero-description">
+                Explosive crystal burst aesthetics, cyberpunk propaganda, neuroscience research visuals, 
+                and retrowave art. The visual language of tomorrow's consciousness revolution.
+            </p>
+        </div>
+    </section>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">ALL</button>
+        <button class="filter-btn" data-filter="featured">FEATURED</button>
+        <button class="filter-btn" data-filter="research">RESEARCH</button>
+        <button class="filter-btn" data-filter="propaganda">PROPAGANDA</button>
+        <button class="filter-btn" data-filter="retrowave">RETROWAVE</button>
+    </div>
+
+    <!-- Featured Posters Section -->
+    <section class="featured-section">
+        <h2 class="section-title">Featured Posters</h2>
+        <div class="featured-grid">
+            <div class="poster-card" data-category="featured propaganda" onclick="openLightbox(0)">
+                <img src="posters/poster_hero_crystal_burst.png" alt="1142 LABS Hero" loading="lazy">
+                <div class="poster-overlay">
+                    <span class="poster-title">Tomorrow's Solutions Today</span>
+                    <div class="poster-category">Propaganda</div>
+                </div>
+            </div>
+            <div class="poster-card" data-category="featured research" onclick="openLightbox(1)">
+                <img src="posters/poster_neural_research.png" alt="Neural Breakthrough" loading="lazy">
+                <div class="poster-overlay">
+                    <span class="poster-title">Neural Breakthrough</span>
+                    <div class="poster-category">Research</div>
+                </div>
+            </div>
+            <div class="poster-card" data-category="featured propaganda" onclick="openLightbox(2)">
+                <img src="posters/poster_vision_cityscape.png" alt="The Future Is Now" loading="lazy">
+                <div class="poster-overlay">
+                    <span class="poster-title">The Future Is Now</span>
+                    <div class="poster-category">Propaganda</div>
+                </div>
+            </div>
+            <div class="poster-card" data-category="featured research" onclick="openLightbox(3)">
+                <img src="posters/poster_cognitive_warning.png" alt="Cognitive Overload" loading="lazy">
+                <div class="poster-overlay">
+                    <span class="poster-title">Cognitive Overload</span>
+                    <div class="poster-category">Research</div>
+                </div>
+            </div>
+            <div class="poster-card" data-category="featured retrowave" onclick="openLightbox(4)">
+                <img src="posters/poster_synthwave_grid.png" alt="Synthwave Grid" loading="lazy">
+                <div class="poster-overlay">
+                    <span class="poster-title">Synthwave Grid</span>
+                    <div class="poster-category">Retrowave</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- All Posters Gallery -->
+    <section class="poster-gallery">
+        <h2 class="section-title">Complete Collection</h2>
+        <div class="poster-grid" id="posterGrid">
+            <!-- Featured posters already shown above -->
+            <!-- Original posters from collection -->
+            <div class="poster-card" data-category="retrowave" onclick="openLightbox(5)">
+                <img src="posters/poster_01_vortex.webp" alt="Vortex" loading="lazy">
+                <div class="poster-overlay">
+                    <span class="poster-title">Vortex</span>
+                    <div class="poster-category">Retrowave</div>
+                </div>
+            </div>
+            <div class="poster-card" data-category="research" onclick="openLightbox(6)">
+                <img src="posters/poster_02_blue_burst.webp" alt="Blue Burst" loading="lazy">
+                <div class="poster-overlay">
+                    <span class="poster-title">Blue Burst</span>
+                    <div class="poster-category">Research</div>
+                </div>
+            </div>
+            <div class="poster-card" data-category="retrowave" onclick="openLightbox(7)">
+                <img src="posters/poster_03_traveler_vortex.webp" alt="Traveler Vortex" loading="lazy">
+                <div class="poster-overlay">
+                    <span class="poster-title">Traveler Vortex</span>
+                    <div class="poster-category">Retrowave</div>
+                </div>
+            </div>
+            <div class="poster-card" data-category="propaganda" onclick="openLightbox(8)">
+                <img src="posters/poster_04_1142_logo.webp" alt="1142 Logo" loading="lazy">
+                <div class="poster-overlay">
+                    <span class="poster-title">1142 Logo</span>
+                    <div class="poster-category">Propaganda</div>
+                </div>
+            </div>
+            <div class="poster-card" data-category="propaganda" onclick="openLightbox(9)">
+                <img src="posters/poster_05_city_skyline.webp" alt="City Skyline" loading="lazy">
+                <div class="poster-overlay">
+                    <span class="poster-title">City Skyline</span>
+                    <div class="poster-category">Propaganda</div>
+                </div>
+            </div>
+            <div class="poster-card" data-category="propaganda" onclick="openLightbox(10)">
+                <img src="posters/poster_06_city_portrait.webp" alt="City Portrait" loading="lazy">
+                <div class="poster-overlay">
+                    <span class="poster-title">City Portrait</span>
+                    <div class="poster-category">Propaganda</div>
+                </div>
+            </div>
+            <div class="poster-card" data-category="propaganda" onclick="openLightbox(11)">
+                <img src="posters/poster_07_city_landscape.webp" alt="City Landscape" loading="lazy">
+                <div class="poster-overlay">
+                    <span class="poster-title">City Landscape</span>
+                    <div class="poster-category">Propaganda</div>
+                </div>
+            </div>
+            <div class="poster-card" data-category="retrowave" onclick="openLightbox(12)">
+                <img src="posters/poster_08_synthwave_grid.webp" alt="Synthwave Grid" loading="lazy">
+                <div class="poster-overlay">
+                    <span class="poster-title">Synthwave Grid</span>
+                    <div class="poster-category">Retrowave</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+            <button class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1)">‹</button>
+            <img id="lightboxImg" src="" alt="Poster">
+            <button class="lightbox-nav lightbox-next" onclick="navigateLightbox(1)">›</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer style="background: rgba(15, 23, 42, 0.95); border-top: 2px solid #00FFFF; padding: 60px 40px; text-align: center; margin-top: 100px;">
+        <p style="font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: #00FFFF; margin-bottom: 20px;">1142 LABS</p>
+        <p style="color: #CBD5E1; margin-bottom: 10px;">Tomorrow's Solutions Today</p>
+        <p style="color: #64748B; font-size: 0.9rem;">© 2019-2026 1142 LABS. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Poster data
+        const posters = [
+            'posters/poster_hero_crystal_burst.png',
+            'posters/poster_neural_research.png',
+            'posters/poster_vision_cityscape.png',
+            'posters/poster_cognitive_warning.png',
+            'posters/poster_synthwave_grid.png',
+            'posters/poster_01_vortex.webp',
+            'posters/poster_02_blue_burst.webp',
+            'posters/poster_03_traveler_vortex.webp',
+            'posters/poster_04_1142_logo.webp',
+            'posters/poster_05_city_skyline.webp',
+            'posters/poster_06_city_portrait.webp',
+            'posters/poster_07_city_landscape.webp',
+            'posters/poster_08_synthwave_grid.webp'
+        ];
+
+        let currentIndex = 0;
+
+        // Lightbox functions
+        function openLightbox(index) {
+            currentIndex = index;
+            document.getElementById('lightboxImg').src = posters[index];
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox(event) {
+            if (!event || event.target.id === 'lightbox') {
+                document.getElementById('lightbox').classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        function navigateLightbox(direction) {
+            currentIndex += direction;
+            if (currentIndex < 0) currentIndex = posters.length - 1;
+            if (currentIndex >= posters.length) currentIndex = 0;
+            document.getElementById('lightboxImg').src = posters[currentIndex];
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (document.getElementById('lightbox').classList.contains('active')) {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') navigateLightbox(-1);
+                if (e.key === 'ArrowRight') navigateLightbox(1);
+            }
+        });
+
+        // Filter functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const posterCards = document.querySelectorAll('.poster-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Update active button
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                const filter = this.getAttribute('data-filter');
+
+                // Filter posters
+                posterCards.forEach(card => {
+                    const category = card.getAttribute('data-category');
+                    if (filter === 'all' || category.includes(filter)) {
+                        card.style.display = 'block';
+                        card.style.animation = 'fadeIn 0.5s ease';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script src="assets/js/unified-nav.js"></script>
+    <script src="assets/js/advanced-features.js"></script>
+</body>
+</html>

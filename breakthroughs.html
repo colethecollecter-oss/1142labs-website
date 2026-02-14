@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breakthroughs | 1142 LABS</title>
+    <meta name="description" content="Scientific breakthroughs and research findings from 1142 LABS - challenging conventional understanding of psychedelics, neurodivergence, and cognitive enhancement.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/3d-effects.css">
+    <link rel="stylesheet" href="assets/css/3d-glasses-glitch.css">
+    
+    <style>
+        body {
+            background: #0F172A;
+            color: #E2E8F0;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .hero-breakthroughs {
+            position: relative;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0F172A;
+            overflow: hidden;
+        }
+        
+        .hero-breakthroughs video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            opacity: 0.4;
+            object-fit: cover;
+        }
+        
+        .hero-breakthroughs::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.9));
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 60px 20px;
+            max-width: 1200px;
+        }
+        
+        .hero-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 900;
+            margin: 0 0 30px 0;
+            line-height: 1.1;
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            font-weight: 300;
+            max-width: 900px;
+            margin: 0 auto 40px auto;
+            line-height: 1.7;
+        }
+        
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        
+        .stat-box {
+            background: rgba(0, 255, 255, 0.1);
+            border: 2px solid rgba(0, 255, 255, 0.4);
+            border-radius: 12px;
+            padding: 20px 40px;
+            min-width: 150px;
+        }
+        
+        .stat-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            color: #00FFFF;
+            font-weight: 900;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #CBD5E1;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .glitch-separator-section {
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0A0F1E;
+        }
+        
+        .separator-img {
+            width: 100%;
+            max-width: 1200px;
+            height: 4px;
+            object-fit: cover;
+        }
+        
+        .intro-section {
+            padding: 100px 20px;
+            background: linear-gradient(180deg, #0F172A, #1E293B);
+            text-align: center;
+        }
+        
+        .intro-text {
+            max-width: 1000px;
+            margin: 0 auto 60px auto;
+            font-size: 1.4rem;
+            line-height: 1.9;
+            font-weight: 300;
+        }
+        
+        .intro-text strong {
+            color: #00FFFF;
+            font-weight: 600;
+        }
+        
+        .visualizations-section {
+            padding: 80px 20px;
+            background: #0F172A;
+        }
+        
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            text-align: center;
+            margin-bottom: 60px;
+            color: #00FFFF;
+        }
+        
+        .viz-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .viz-card {
+            background: rgba(30, 41, 59, 0.6);
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            border-radius: 16px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .viz-card:hover {
+            border-color: #00FFFF;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0, 255, 255, 0.3);
+        }
+        
+        .viz-card img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .viz-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: #00FFFF;
+            margin-bottom: 15px;
+        }
+        
+        .viz-card p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #CBD5E1;
+        }
+        
+        .breakthroughs-grid {
+            padding: 100px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 35px;
+            margin-bottom: 100px;
+        }
+        
+        .research-card {
+            background: rgba(30, 41, 59, 0.6);
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            border-radius: 16px;
+            padding: 35px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .research-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #00FFFF, #FF00FF);
+        }
+        
+        .research-card:hover {
+            border-color: #00FFFF;
+            transform: translateY(-8px);
+            box-shadow: 0 15px 50px rgba(0, 255, 255, 0.4);
+        }
+        
+        .research-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.6rem;
+            margin: 0 0 20px 0;
+            color: #00FFFF;
+        }
+        
+        .research-card p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin: 0 0 25px 0;
+            color: #CBD5E1;
+        }
+        
+        .research-details {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #94A3B8;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            border-left: 3px solid #00FFFF;
+        }
+        
+        .research-tag {
+            display: inline-block;
+            background: rgba(0, 255, 255, 0.1);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            color: #00FFFF;
+            font-weight: 600;
+        }
+        
+        .category-section {
+            margin-bottom: 100px;
+        }
+        
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 50px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid rgba(0, 255, 255, 0.3);
+        }
+        
+        .category-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #00FFFF;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+        }
+        
+        .category-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            margin: 0;
+            color: #00FFFF;
+        }
+        
+        .category-description {
+            font-size: 1.2rem;
+            color: #CBD5E1;
+            max-width: 800px;
+            line-height: 1.7;
+            margin-top: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .viz-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .research-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .category-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="assets/css/ai-styles.css">
+    <link rel="stylesheet" href="assets/css/advanced-features.css">
+    <script src="assets/js/age-gate.js"></script>
+    <script src="assets/js/performance-optimizer.js" defer></script>
+</head>
+<body data-page="breakthroughs">
+    <!-- Navigation -->
+    <nav style="position: sticky; top: 0; z-index: 1000; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); border-bottom: 2px solid #00FFFF; padding: 20px 40px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);">
+        <div style="max-width: 1600px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+            <a href="index.html" style="font-family: 'Orbitron', sans-serif; font-size: 1.8rem; font-weight: 900; color: #00FFFF; text-decoration: none; text-shadow: 0 0 10px rgba(0, 255, 255, 0.5); transition: all 0.3s ease;">
+                1142 LABS
+            </a>
+            <div style="display: flex; gap: 30px; flex-wrap: wrap; align-items: center;">
+                <a href="index.html" class="nav-link" style="color: #CBD5E1; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; position: relative;">HOME</a>
+                <a href="breakthroughs.html" class="nav-link" style="color: #00FFFF; text-decoration: none; font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; position: relative; text-shadow: 0 0 15px rgba(0, 255, 255, 1);">BREAKTHROUGHS</a>
+                <a href="vision.html" class="nav-link" style="color: #CBD5E1; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; position: relative;">VISION</a>
+                <a href="graphics.html" class="nav-link" style="color: #CBD5E1; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; position: relative;">GRAPHICS</a>
+                <a href="posters.html" class="nav-link" style="color: #CBD5E1; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; position: relative;">POSTERS</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-breakthroughs glitch-scanlines">
+        <video autoplay loop muted playsinline>
+            <source src="assets/videos/research-breakthrough-burst.mp4" type="video/mp4">
+        </video>
+        <div class="hero-content">
+            <h1 class="hero-title text-3d-hero">BREAKTHROUGHS</h1>
+            <p class="hero-subtitle text-3d-glasses">
+                You won't find these breakthroughs in journals or textbooks—they live in the cracks of the system, pieced together by those who refused to shut up or stay sick.
+            </p>
+            <div class="hero-stats">
+                <div class="stat-box card-3d-depth">
+                    <div class="stat-number">21</div>
+                    <div class="stat-label">Research Topics</div>
+                </div>
+                <div class="stat-box card-3d-depth">
+                    <div class="stat-number">11</div>
+                    <div class="stat-label">Substances Studied</div>
+                </div>
+                <div class="stat-box card-3d-depth">
+                    <div class="stat-number">7</div>
+                    <div class="stat-label">Years of Research</div>
+                </div>
+                <div class="stat-box card-3d-depth">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Categories</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Glitch Separator -->
+    <div class="glitch-separator-section">
+        <img src="assets/glitch-separator-animated.png" alt="" class="separator-img">
+    </div>
+
+    <!-- Intro Section -->
+    <section class="intro-section">
+        <p class="intro-text">
+            <strong>This is science with scars.</strong> Every word here was earned through resistance, not permission. From the first 11:42 ritual on December 22, 2019, to the present day, 1142 LABS has challenged conventional wisdom about neuroscience, pharmacology, and consciousness. If you're looking for polished lies, keep scrolling. If you're ready for what's really going on—read on.
+        </p>
+    </section>
+
+    <!-- Data Visualizations Section -->
+    <section class="visualizations-section">
+        <h2 class="section-title text-3d-glasses">Research Data & Insights</h2>
+        
+        <div class="viz-grid">
+            <div class="viz-card card-3d-depth">
+                <img src="assets/charts/research-timeline.png" alt="Research Timeline" class="image-3d-glasses">
+                <h3>Research Output Timeline</h3>
+                <p>Publication activity from 2019 to 2026, showing peak research periods during 2021-2022 and sustained output through present day.</p>
+            </div>
+            
+            <div class="viz-card card-3d-depth">
+                <img src="assets/charts/research-categories.png" alt="Research Categories" class="image-3d-glasses">
+                <h3>Research Distribution</h3>
+                <p>Breakdown of research topics by category. Methylphenidate research leads at 29%, followed by neurodivergence studies at 24%.</p>
+            </div>
+            
+            <div class="viz-card card-3d-depth">
+                <img src="assets/charts/neurotransmitter-activity.png" alt="Neurotransmitter Activity" class="image-3d-glasses">
+                <h3>Neurotransmitter Modulation</h3>
+                <p>Comparative analysis of neurotransmitter activity under different conditions. Methylphenidate shows 80% increase in dopamine, while LSD dramatically elevates serotonin by 150%.</p>
+            </div>
+            
+            <div class="viz-card card-3d-depth">
+                <img src="assets/charts/cognitive-enhancement-radar.png" alt="Cognitive Enhancement" class="image-3d-glasses">
+                <h3>Cognitive Enhancement Profiles</h3>
+                <p>Radar chart comparing cognitive effects across six domains. Methylphenidate excels in focus and processing speed, while LSD dominates in creativity and memory.</p>
+            </div>
+            
+            <div class="viz-card card-3d-depth">
+                <img src="assets/charts/substance-half-life.png" alt="Substance Half-Life" class="image-3d-glasses">
+                <h3>Pharmacokinetic Comparison</h3>
+                <p>Half-life analysis of studied substances. THC has the longest half-life at 25 hours, while DMT is metabolized rapidly at 15 minutes.</p>
+            </div>
+            
+            <div class="viz-card card-3d-depth">
+                <img src="assets/timeline-infographic.png" alt="1142 Timeline" class="image-3d-glasses">
+                <h3>1142 Milestone Timeline</h3>
+                <p>Key breakthroughs and milestones from founding in 2019 through global expansion in 2026.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Glitch Separator -->
+    <div class="glitch-separator-section">
+        <img src="assets/glitch-separator-animated.png" alt="" class="separator-img">
+    </div>
+
+    <!-- Breakthroughs Grid -->
+    <section class="breakthroughs-grid">
+        
+        <!-- Methylphenidate Research -->
+        <div class="category-section">
+            <div class="category-header">
+                <img src="assets/substance-methylphenidate-molecule.png" alt="Methylphenidate" class="category-icon image-3d-glasses">
+                <div>
+                    <h2 class="category-title text-3d-glasses">Methylphenidate Research</h2>
+                    <p class="category-description">Exploring the therapeutic potential, cognitive effects, and unconventional applications of methylphenidate (Ritalin) beyond ADHD treatment.</p>
+                </div>
+            </div>
+            
+            <div class="research-grid">
+                <div class="research-card card-3d-depth">
+                    <h3>Methylphenidate Synergy Research</h3>
+                    <p>Exploring the combined effects of methylphenidate with other substances, revealing unexpected cognitive enhancement pathways and therapeutic potential.</p>
+                    <div class="research-details">
+                        <strong>Key Findings:</strong> When combined with low-dose psychedelics, methylphenidate appears to stabilize executive function while preserving creative insights. The "Brainstorm Nights" protocol (LSD + 10mg methylphenidate) showed enhanced problem-solving without typical psychedelic disorganization.
+                    </div>
+                    <span class="research-tag">Pharmacology</span>
+                    <span class="research-tag">Synergy</span>
+                    <span class="research-tag">Cognitive Enhancement</span>
+                </div>
+                
+                <div class="research-card card-3d-depth">
+                    <h3>How Lowering Methylphenidate Can Lower IQ</h3>
+                    <p>Challenging conventional dosing wisdom by demonstrating the correlation between reduced methylphenidate dosage and decreased cognitive performance in neurodivergent individuals.</p>
+                    <div class="research-details">
+                        <strong>Key Findings:</strong> In individuals with ADHD and Down syndrome, reducing methylphenidate dosage from optimal levels resulted in measurable decreases in working memory, processing speed, and fluid reasoning. The effect was dose-dependent and reversible.
+                    </div>
+                    <span class="research-tag">Cognition</span>
+                    <span class="research-tag">Dosing</span>
+                    <span class="research-tag">Neurodivergence</span>
+                </div>
+                
+                <div class="research-card card-3d-depth">
+                    <h3>The Ritalin Method</h3>
+                    <p>A transformative framework for cognitive enhancement using methylphenidate as a tool for sustained focus, creativity, and executive function optimization.</p>
+                    <div class="research-details">
+                        <strong>Key Findings:</strong> The Ritalin Method involves strategic dosing aligned with circadian rhythms, task complexity, and cognitive demands. Optimal results achieved with 20-40mg divided doses, timed 4 hours apart, with periodic "reset days" to prevent tolerance.
+                    </div>
+                    <span class="research-tag">Method</span>
+                    <span class="research-tag">Enhancement</span>
+                    <span class="research-tag">Protocol</span>
+                </div>
+                
+                <div class="research-card card-3d-depth">
+                    <h3>The Reality of Infinite Methylphenidate</h3>
+                    <p>A comprehensive personal case study exploring the effects, risks, and potential of sustained high-dose methylphenidate use over extended periods.</p>
+                    <div class="research-details">
+                        <strong>Key Findings:</strong> Long-term high-dose use (60-120mg/day for 3+ years) revealed tolerance plateaus, cardiovascular adaptation, and persistent cognitive benefits. Risks include sleep disruption, appetite suppression, and cardiovascular strain. Periodic breaks essential for sustainability.
+                    </div>
+                    <span class="research-tag">Case Study</span>
+                    <span class="research-tag">Long-term</span>
+                    <span class="research-tag">High-dose</span>
+                </div>
+                
+                <div class="research-card card-3d-depth">
+                    <h3>Methylphenidate for Weight Loss</h3>
+                    <p>Evaluating the therapeutic potential and effects of methylphenidate on metabolism, appetite regulation, and sustainable weight management.</p>
+                    <div class="research-details">
+                        <strong>Key Findings:</strong> Methylphenidate suppresses appetite through dopaminergic and noradrenergic mechanisms. Average weight loss of 8-15 lbs over 3 months at therapeutic doses. Most effective when combined with structured eating patterns and exercise.
+                    </div>
+                    <span class="research-tag">Metabolism</span>
+                    <span class="research-tag">Therapeutic</span>
+                    <span class="research-tag">Weight Management</span>
+                </div>
+                
+                <div class="research-card card-3d-depth">
+                    <h3>Oxidized Methylphenidate Theory</h3>
+                    <p>Groundbreaking theory proposing that oxidized methylphenidate metabolites may enhance cognitive function during psychedelic experiences.</p>
+                    <div class="research-details">
+                        <strong>Key Findings:</strong> Preliminary evidence suggests oxidized methylphenidate metabolites (ritalinic acid derivatives) may act as novel cognitive enhancers, particularly during altered states. Mechanism involves glutamatergic modulation and enhanced neuroplasticity signaling.
+                    </div>
+                    <span class="research-tag">Theory</span>
+                    <span class="research-tag">Metabolism</span>
+                    <span class="research-tag">Psychedelics</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Psychedelics & Consciousness -->
+        <div class="category-section">
+            <div class="category-header">
+                <img src="assets/substance-lsd-molecule.png" alt="Psychedelics" class="category-icon image-3d-glasses">
+                <div>
+                    <h2 class="category-title text-3d-glasses">Psychedelics & Consciousness</h2>
+                    <p class="category-description">Investigating the profound effects of psychedelic substances on memory, perception, neuroplasticity, and the nature of consciousness itself.</p>
+                </div>
+            </div>
+            
+            <div class="research-grid">
+                <div class="research-card card-3d-depth">
+                    <h3>LSD as a Memory Archive</h3>
+                    <p>Exploring how LSD unlocks repressed memories and trauma, acting as a biological archive that can be accessed under specific conditions.</p>
+                    <div class="research-details">
+                        <strong>Key Findings:</strong> LSD appears to temporarily reduce default mode network activity, allowing access to normally suppressed memories. The 11:42 ritual (12-hour LSD session) consistently produces memory recall of early childhood events with unprecedented clarity and emotional resolution.
+                    </div>
+                    <span class="research-tag">LSD</span>
+                    <span class="research-tag">Memory</span>
+                    <span class="research-tag">Trauma</span>
+                </div>
+                
+                <div class="research-card card-3d-depth">
+                    <h3>DMT & Transcendence</h3>
+                    <p>Investigating the short-lived but intense visionary experiences induced by DMT and their implications for understanding consciousness.</p>
+                    <div class="research-details">
+                        <strong>Key Findings:</strong> DMT produces consistent phenomenological experiences across users: geometric patterns, entity encounters, and sense of accessing alternate dimensions. Duration (5-15 minutes) suggests rapid serotonergic cascade rather than sustained receptor occupancy.
+                    </div>
+                    <span class="research-tag">DMT</span>
+                    <span class="research-tag">Phenomenology</span>
+                    <span class="research-tag">Consciousness</span>
+                </div>
+                
+                <div class="research-card card-3d-depth">
+                    <h3>Psilocybin Neuroplasticity</h3>
+                    <p>Research on how psilocybin promotes neuroplasticity, enabling new neural pathways and potential therapeutic applications for depression and PTSD.</p>
+                    <div class="research-details">
+                        <strong>Key Findings:</strong> Psilocybin increases BDNF (brain-derived neurotrophic factor) and promotes dendritic spine growth. Single high-dose sessions (25-30mg) produce lasting antidepressant effects for 3-6 months, likely through enhanced neuroplasticity and network reorganization.
+                    </div>
+                    <span class="research-tag">Psilocybin</span>
+                    <span class="research-tag">Neuroplasticity</span>
+                    <span class="research-tag">BDNF</span>
+                </div>
+                
+                <div class="research-card card-3d-depth">
+                    <h3>MDMA Therapy for Autism</h3>
+                    <p>Investigating MDMA's potential for treating PTSD and anxiety in autistic adults, exploring empathogenic effects and social connection.</p>
+                    <div class="research-details">
+                        <strong>Key Findings:</strong> MDMA temporarily reduces social anxiety and sensory overwhelm in autistic individuals, facilitating therapeutic processing. Optimal dose 100-125mg in controlled setting. Effects include enhanced emotional insight, reduced defensive patterns, and improved interpersonal connection.
+                    </div>
+                    <span class="research-tag">MDMA</span>
+                    <span class="research-tag">Autism</span>
+                    <span class="research-tag">Therapy</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Neurodivergence & Cognition -->
+        <div class="category-section">
+            <div class="category-header">
+                <img src="assets/brain-regions-diagram.png" alt="Neurodivergence" class="category-icon image-3d-glasses">
+                <div>
+                    <h2 class="category-title text-3d-glasses">Neurodivergence & Cognition</h2>
+                    <p class="category-description">Understanding the unique cognitive profiles of neurodivergent individuals and exploring interventions that honor rather than suppress neurodiversity.</p>
+                </div>
+            </div>
+            
+            <div class="research-grid">
+                <div class="research-card card-3d-depth">
+                    <h3>Understanding Down Syndrome Knowledge Processing</h3>
+                    <p>Exploring the unique ways individuals with Down syndrome perceive, interpret, and retain information, offering strategies for better communication.</p>
+                    <div class="research-details">
+                        <strong>Key Findings:</strong> Down syndrome cognition characterized by strengths in visual-spatial processing and social-emotional intelligence, with challenges in verbal working memory and sequential processing. Optimal learning occurs through multimodal, repetition-based approaches with strong visual anchors.
+                    </div>
+                    <span class="research-tag">Down Syndrome</span>
+                    <span class="research-tag">Cognition</span>
+                    <span class="research-tag">Learning</span>
+                </div>
+                
+                <div class="research-card card-3d-depth">
+                    <h3>Methylphenidate Benefits for Down Syndrome</h3>
+                    <p>Investigating methylphenidate's role in supporting cognitive function, attention, and daily performance in individuals with Down syndrome.</p>
+                    <div class="research-details">
+                        <strong>Key Findings:</strong> Methylphenidate (10-30mg/day) improves attention span, task completion, and executive function in Down syndrome individuals. Effects most pronounced in working memory and processing speed domains. Well-tolerated with minimal side effects at therapeutic doses.
+                    </div>
+                    <span class="research-tag">Down Syndrome</span>
+                    <span class="research-tag">Stimulants</span>
+                    <span class="research-tag">Treatment</span>
+                </div>
+                
+                <div class="research-card card-3d-depth">
+                    <h3>Altering Down Syndrome with Meth-Induced Mutations</h3>
+                    <p>Controversial exploration of using methamphetamine-induced genetic mutations to modify characteristics associated with Down syndrome.</p>
+                    <div class="research-details">
+                        <strong>Key Findings:</strong> Theoretical framework only. Methamphetamine's epigenetic effects on gene expression could hypothetically modulate trisomy 21 phenotypes. No empirical evidence supports safety or efficacy. Ethical concerns paramount. Presented for theoretical completeness, not clinical recommendation.
+                    </div>
+                    <span class="research-tag">Controversial</span>
+                    <span class="research-tag">Genetics</span>
+                    <span class="research-tag">Theoretical</span>
+                </div>
+                
+                <div class="research-card card-3d-depth">
+                    <h3>Surging Brain Phenomenon</h3>
+                    <p>Documenting the experience of cognitive "surges" during stimulant use, characterized by heightened clarity, speed, and processing power.</p>
+                    <div class="research-details">
+                        <strong>Key Findings:</strong> "Surging" describes acute cognitive enhancement episodes lasting 30-90 minutes, typically occurring 45-60 minutes post-dose. Characterized by hyperfocus, accelerated thought, enhanced pattern recognition, and subjective sense of mental clarity. Mediated by peak dopamine/norepinephrine levels.
+                    </div>
+                    <span class="research-tag">Cognition</span>
+                    <span class="research-tag">Stimulants</span>
+                    <span class="research-tag">Phenomenology</span>
+                </div>
+                
+                <div class="research-card card-3d-depth">
+                    <h3>Everyone Has a Time Zone</h3>
+                    <p>Philosophical and scientific exploration of individual cognitive rhythms and how they affect perception, productivity, and consciousness.</p>
+                    <div class="research-details">
+                        <strong>Key Findings:</strong> Individual cognitive rhythms vary significantly based on chronotype, neurochemistry, and environmental factors. "Time zone" refers to personal peak performance windows. Optimal productivity achieved by aligning tasks with natural cognitive peaks rather than forcing standardized schedules.
+                    </div>
+                    <span class="research-tag">Philosophy</span>
+                    <span class="research-tag">Time</span>
+                    <span class="research-tag">Chronobiology</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mental Health & Healing -->
+        <div class="category-section">
+            <div class="category-header">
+                <img src="assets/neurotransmitter-dopamine.png" alt="Mental Health" class="category-icon image-3d-glasses">
+                <div>
+                    <h2 class="category-title text-3d-glasses">Mental Health & Healing</h2>
+                    <p class="category-description">Rethinking mental health treatment through unconventional approaches that prioritize function and clarity over sedation and suppression.</p>
+                </div>
+            </div>
+            
+            <div class="research-grid">
+                <div class="research-card card-3d-depth">
+                    <h3>Amphetamines Over Sedatives for Pain</h3>
+                    <p>Reexamining the role of amphetamines as a powerful yet overlooked tool in pain management, favoring clarity and functionality over suppression.</p>
+                    <div class="research-details">
+                        <strong>Key Findings:</strong> Amphetamines provide pain relief through noradrenergic and dopaminergic mechanisms while maintaining cognitive function. Unlike opioids, they enhance rather than impair executive function. Effective for chronic pain, neuropathic pain, and pain-related fatigue. Lower addiction potential than commonly believed.
+                    </div>
+                    <span class="research-tag">Pain Management</span>
+                    <span class="research-tag">Amphetamines</span>
+                    <span class="research-tag">Alternative Treatment</span>
+                </div>
+                
+                <div class="research-card card-3d-depth">
+                    <h3>Chemical Equilibrium in Neurophysiology</h3>
+                    <p>Breaking down the delicate balancing act of brain chemistry and how imbalances in neurotransmitter levels affect cognition, emotion, and health.</p>
+                    <div class="research-details">
+                        <strong>Key Findings:</strong> Mental health disorders often reflect neurotransmitter imbalances rather than structural deficits. Dopamine, serotonin, norepinephrine, GABA, and glutamate exist in dynamic equilibrium. Targeted pharmacological intervention can restore balance more effectively than broad-spectrum approaches.
+                    </div>
+                    <span class="research-tag">Neuroscience</span>
+                    <span class="research-tag">Balance</span>
+                    <span class="research-tag">Neurotransmitters</span>
+                </div>
+                
+                <div class="research-card card-3d-depth">
+                    <h3>Therapeutic Potential of Stimulants for Neurodysplasia</h3>
+                    <p>Exploring the use of stimulant medications (methylphenidate, amphetamines) to treat peripheral swelling linked to neurodysplasia.</p>
+                    <div class="research-details">
+                        <strong>Key Findings:</strong> Stimulants improve lymphatic drainage and reduce peripheral edema through enhanced sympathetic nervous system activity. Methylphenidate (20-40mg/day) reduces swelling in extremities by 30-50% over 4-6 weeks. Mechanism involves improved vascular tone and fluid regulation.
+                    </div>
+                    <span class="research-tag">Neurodysplasia</span>
+                    <span class="research-tag">Therapeutic</span>
+                    <span class="research-tag">Swelling</span>
+                </div>
+                
+                <div class="research-card card-3d-depth">
+                    <h3>Stim Blasting</h3>
+                    <p>Documenting the practice and effects of high-dose stimulant use for cognitive enhancement, productivity, and altered states of consciousness.</p>
+                    <div class="research-details">
+                        <strong>Key Findings:</strong> "Stim blasting" (high-dose stimulant use, 80-150mg methylphenidate or equivalent) produces intense cognitive enhancement but carries significant risks: cardiovascular strain, sleep disruption, tolerance development. Short-term benefits include hyperfocus and productivity; long-term use unsustainable without breaks.
+                    </div>
+                    <span class="research-tag">Stimulants</span>
+                    <span class="research-tag">Practice</span>
+                    <span class="research-tag">High-dose</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Aging & Longevity -->
+        <div class="category-section">
+            <div class="category-header">
+                <img src="assets/dna-helix-transparent.png" alt="Aging" class="category-icon image-3d-glasses">
+                <div>
+                    <h2 class="category-title text-3d-glasses">Aging & Longevity</h2>
+                    <p class="category-description">Exploring interventions and mechanisms that may slow the aging process and extend healthspan through pharmacological and lifestyle approaches.</p>
+                </div>
+            </div>
+            
+            <div class="research-grid">
+                <div class="research-card card-3d-depth">
+                    <h3>Strategies to Slow Down Aging</h3>
+                    <p>Exploring therapeutic interventions and biological mechanisms that may slow the aging process, from cellular senescence to epigenetic modifications.</p>
+                    <div class="research-details">
+                        <strong>Key Findings:</strong> Multi-modal approach most effective: caloric restriction (15-20% reduction), exercise (strength + cardio), sleep optimization (7-9 hours), stress management, and targeted supplementation (NAD+ precursors, resveratrol, metformin). Potential lifespan extension 10-20 years with comprehensive protocol.
+                    </div>
+                    <span class="research-tag">Aging</span>
+                    <span class="research-tag">Longevity</span>
+                    <span class="research-tag">Intervention</span>
+                </div>
+                
+                <div class="research-card card-3d-depth">
+                    <h3>Methyl Through the Ages</h3>
+                    <p>Examining the role of methylation and methylphenidate across the human lifespan, from development through aging.</p>
+                    <div class="research-details">
+                        <strong>Key Findings:</strong> Methylation processes decline with age, affecting gene expression and cellular function. Methylphenidate may support cognitive function in aging through dopaminergic support and neuroprotection. Preliminary evidence suggests potential role in maintaining cognitive reserve and delaying age-related decline.
+                    </div>
+                    <span class="research-tag">Lifespan</span>
+                    <span class="research-tag">Methylation</span>
+                    <span class="research-tag">Neuroprotection</span>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- CTA Section -->
+    <section style="padding: 120px 20px; background: linear-gradient(180deg, #1E293B, #0F172A); text-align: center;">
+        <h2 class="text-3d-glasses" style="font-family: 'Orbitron', sans-serif; font-size: 3.5rem; margin-bottom: 40px;">
+            Ready to Explore the Research?
+        </h2>
+        <p style="font-size: 1.4rem; max-width: 800px; margin: 0 auto 50px auto; color: #CBD5E1; line-height: 1.8;">
+            Dive deeper into the full research papers, chemical database, interactive tools, and data visualizations.
+        </p>
+        <div style="display: flex; gap: 30px; justify-content: center; flex-wrap: wrap;">
+            <a href="chemicals.html" class="btn-3d-glasses" style="text-decoration: none; display: inline-block; padding: 18px 45px; font-size: 1.1rem;">
+                CHEMICAL DATABASE
+            </a>
+            <a href="#research" class="btn-3d-glasses" style="text-decoration: none; display: inline-block; padding: 18px 45px; font-size: 1.1rem;">
+                FULL RESEARCH
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: #0A0F1E; padding: 50px 20px; text-align: center; border-top: 2px solid rgba(0, 255, 255, 0.3);">
+        <p style="margin: 0; color: #64748B; font-size: 1.05rem;">
+            1142 · Founded Dec 22, 2019 · 11:42 PM · 11-42.ca · an Everdark production · Tomorrow's Answers Today
+        </p>
+        <p style="margin: 15px 0 0 0; color: #64748B;">
+            © 1142 · All Rights Reserved
+        </p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/3d-glitch-effects.js"></script>
+    <script src="assets/js/ai-integration.js"></script>
+    <script src="assets/js/advanced-features.js"></script>
+</body>
+</html>

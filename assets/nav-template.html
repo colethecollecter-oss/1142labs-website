@@ -1,0 +1,61 @@
+<!-- 1142 LABS Unified Navigation -->
+<nav style="position: sticky; top: 0; z-index: 1000; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); border-bottom: 2px solid #00FFFF; padding: 20px 40px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);">
+    <div style="max-width: 1600px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+        <a href="index.html" style="font-family: 'Orbitron', sans-serif; font-size: 1.8rem; font-weight: 900; color: #00FFFF; text-decoration: none; text-shadow: 0 0 10px rgba(0, 255, 255, 0.5); transition: all 0.3s ease;">
+            1142 LABS
+        </a>
+        <div style="display: flex; gap: 30px; flex-wrap: wrap; align-items: center;">
+            <a href="index.html" class="nav-link" style="color: #CBD5E1; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; position: relative;">HOME</a>
+            <a href="breakthroughs.html" class="nav-link" style="color: #CBD5E1; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; position: relative;">BREAKTHROUGHS</a>
+            <a href="vision.html" class="nav-link" style="color: #CBD5E1; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; position: relative;">VISION</a>
+            <a href="graphics.html" class="nav-link" style="color: #CBD5E1; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; position: relative;">GRAPHICS</a>
+            <a href="posters.html" class="nav-link" style="color: #CBD5E1; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; position: relative;">POSTERS</a>
+        </div>
+    </div>
+</nav>
+
+<style>
+/* Navigation hover effects */
+.nav-link:hover {
+    color: #00FFFF !important;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+}
+
+.nav-link.active {
+    color: #00FFFF !important;
+    font-weight: 700 !important;
+    text-shadow: 0 0 15px rgba(0, 255, 255, 1);
+}
+
+/* Responsive navigation */
+@media (max-width: 768px) {
+    nav > div {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    nav > div > div {
+        justify-content: center;
+        gap: 15px;
+    }
+    
+    .nav-link {
+        font-size: 0.9rem !important;
+    }
+}
+</style>
+
+<script>
+// Auto-highlight active page
+document.addEventListener('DOMContentLoaded', function() {
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    navLinks.forEach(link => {
+        const linkPage = link.getAttribute('href');
+        if (linkPage === currentPage) {
+            link.classList.add('active');
+        }
+    });
+});
+</script>

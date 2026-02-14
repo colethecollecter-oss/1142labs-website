@@ -1,0 +1,801 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+    <link rel="shortcut icon" type="image/png" href="/assets/favicon.png">
+    <meta name="description" content="1142 Labs - Tomorrow's Solutions Today - Breakthrough discoveries in neuroscience, pharmacology, and consciousness studies. Established Dec 22nd 2019.">
+    <meta name="keywords" content="1142 labs, neuroscience research, pharmacology, consciousness studies, Cole EverDark, withdrawal support, methylphenidate research">
+    <meta name="author" content="1142 Labs">
+    <meta property="og:title" content="1142 - Tomorrow's Solutions Today">
+    <meta property="og:description" content="Breakthrough discoveries in neuroscience, pharmacology, consciousness studies, and withdrawal support. 20 research papers by Cole EverDark. Established Dec 22nd 2019.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.1142labs.com/">
+    <meta property="og:image" content="https://www.1142labs.com/assets/og-image.png">
+    <meta property="og:site_name" content="1142 Labs">
+    <link rel="canonical" href="https://www.1142labs.com/">
+    <title>1142 - Tomorrow's Solutions Today</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/1142-ritual-system.css">
+    <link rel="stylesheet" href="assets/css/epic-artistic.css">
+    <link rel="stylesheet" href="assets/css/3d-effects.css">
+    <link rel="stylesheet" href="assets/css/3d-glasses-glitch.css">
+    <style>
+        :root {
+            --primary-cyan: #00FFFF;
+            --secondary-blue: #1E3A8A;
+            --secondary-purple: #6D28D9;
+            --secondary-pink: #EC4899;
+            --bg-black: #0F172A;
+            --text-gray: #94A3B8;
+            --text-white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-black);
+            color: var(--text-gray);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Particle Background */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--primary-cyan);
+            box-shadow: 0 4px 20px rgba(0, 255, 255, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-logo img {
+            width: 60px;
+            height: 60px;
+            filter: drop-shadow(0 0 15px rgba(0, 255, 255, 0.6));
+            animation: logoFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(5deg); }
+        }
+
+        .nav-logo h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(90deg, var(--primary-cyan), var(--secondary-purple), var(--secondary-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            position: relative;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-cyan), var(--secondary-purple));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-cyan);
+            text-shadow: 0 0 10px var(--primary-cyan);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section with Burst Animation */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 4rem 2rem;
+            position: relative;
+            background: var(--bg-black);
+            overflow: hidden;
+        }
+
+        .hero-video-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            opacity: 0.6;
+            object-fit: cover;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 255, 255, 0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.2); opacity: 0.6; }
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .logo-burst {
+            width: 400px;
+            height: 400px;
+            margin: 0 auto 2rem;
+            animation: burstIn 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55), burstFloat 6s ease-in-out infinite;
+            filter: drop-shadow(0 0 40px rgba(0, 255, 255, 0.8));
+        }
+
+        @keyframes burstFloat {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.05) rotate(2deg); }
+            50% { transform: scale(1) rotate(0deg); }
+            75% { transform: scale(1.05) rotate(-2deg); }
+        }
+
+        @keyframes burstIn {
+            0% { 
+                transform: scale(0) rotate(-180deg);
+                opacity: 0;
+            }
+            100% { 
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        .hero h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary-cyan), var(--secondary-purple), var(--secondary-pink), var(--primary-cyan));
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 4s ease infinite, textGlow 2s ease-in-out infinite alternate;
+            line-height: 1.2;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes textGlow {
+            from { filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.5)); }
+            to { filter: drop-shadow(0 0 25px rgba(109, 40, 217, 0.8)); }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-white);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            animation: fadeInUp 1s ease 0.5s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .status-badges {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+            animation: fadeInUp 1s ease 0.7s both;
+        }
+
+        .badge {
+            padding: 0.8rem 1.8rem;
+            background: rgba(0, 255, 255, 0.1);
+            border: 2px solid var(--primary-cyan);
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .badge:hover::before {
+            left: 100%;
+        }
+
+        .badge:hover {
+            background: rgba(0, 255, 255, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0, 255, 255, 0.5);
+        }
+
+        .badge.warning {
+            border-color: var(--secondary-pink);
+            background: rgba(236, 72, 153, 0.1);
+            box-shadow: 0 0 20px rgba(236, 72, 153, 0.3);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3.5rem;
+            margin-top: 2rem;
+            background: linear-gradient(135deg, var(--primary-cyan), var(--secondary-purple));
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            box-shadow: 0 10px 40px rgba(0, 255, 255, 0.4);
+            transition: all 0.3s ease;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1s ease 0.9s both;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .cta-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 50px rgba(109, 40, 217, 0.6);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(90deg, var(--primary-cyan), var(--secondary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+        }
+
+        /* Card Grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .card {
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.05), rgba(109, 40, 217, 0.05));
+            padding: 3rem;
+            border-radius: 20px;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            color: inherit;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 20px;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--primary-cyan), var(--secondary-purple), var(--secondary-pink));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 255, 255, 0.3);
+        }
+
+        .card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary-cyan);
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        .read-more {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--primary-cyan);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: var(--secondary-purple);
+            text-shadow: 0 0 10px var(--secondary-purple);
+        }
+
+        /* Mission Section */
+        .mission-content {
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.08), rgba(109, 40, 217, 0.08));
+            padding: 4rem;
+            border-radius: 20px;
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            text-align: center;
+        }
+
+        .mission-text {
+            font-size: 1.3rem;
+            margin: 1.5rem 0;
+            color: var(--primary-cyan);
+            letter-spacing: 1px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .mission-text:last-child {
+            color: var(--text-white);
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            margin-top: 2rem;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(15, 23, 42, 0.95);
+            border-top: 2px solid var(--primary-cyan);
+            padding: 3rem 2rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h4 {
+            color: var(--primary-cyan);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin: 0.5rem 0;
+        }
+
+        .footer-column a {
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: var(--primary-cyan);
+            text-shadow: 0 0 10px var(--primary-cyan);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0, 255, 255, 0.3);
+        }
+
+        .footer-bottom p {
+            margin: 0.5rem 0;
+            color: var(--text-white);
+        }
+
+        .everdark {
+            color: var(--primary-cyan);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .logo-burst {
+                width: 200px;
+                height: 200px;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                justify-content: center;
+                width: 100%;
+                margin-top: 1rem;
+            }
+
+            .nav-links a {
+                font-size: 0.85rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .card {
+                padding: 2rem;
+            }
+        }
+
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+    <link rel="stylesheet" href="assets/css/ai-styles.css">
+    <link rel="stylesheet" href="assets/css/advanced-features.css">
+    <script src="assets/js/age-gate.js"></script>
+    <script src="assets/js/performance-optimizer.js" defer></script>
+</head>
+<body data-page="index">
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
+
+    <!-- Navigation -->
+    <nav style="position: sticky; top: 0; z-index: 1000; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); border-bottom: 2px solid #00FFFF; padding: 20px 40px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);">
+        <div style="max-width: 1600px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+            <a href="index.html" style="font-family: 'Orbitron', sans-serif; font-size: 1.8rem; font-weight: 900; color: #00FFFF; text-decoration: none; text-shadow: 0 0 10px rgba(0, 255, 255, 0.5); transition: all 0.3s ease;">
+                1142 LABS
+            </a>
+            <div style="display: flex; gap: 30px; flex-wrap: wrap; align-items: center;">
+                <a href="index.html" class="nav-link" style="color: #00FFFF; text-decoration: none; font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; position: relative; text-shadow: 0 0 15px rgba(0, 255, 255, 1);">HOME</a>
+                <a href="breakthroughs.html" class="nav-link" style="color: #CBD5E1; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; position: relative;">BREAKTHROUGHS</a>
+                <a href="vision.html" class="nav-link" style="color: #CBD5E1; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; position: relative;">VISION</a>
+                <a href="graphics.html" class="nav-link" style="color: #CBD5E1; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; position: relative;">GRAPHICS</a>
+                <a href="posters.html" class="nav-link" style="color: #CBD5E1; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; position: relative;">POSTERS</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Epic Background Layers -->
+    <div class="epic-background">
+        <div class="gradient-mesh"></div>
+        <div class="floating-orbs">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+        </div>
+    </div>
+
+    <!-- Scanlines Effect -->
+    <div class="scanlines"></div>
+
+    <!-- Hero Section -->
+    <section class="hero epic-hero">
+        <canvas id="neural-shader-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.3;"></canvas>
+        <!-- Video Background -->
+        <video class="hero-video-bg" autoplay loop muted playsinline>
+            <source src="assets/videos/crystal-burst-loop.mp4" type="video/mp4">
+        </video>
+        <div class="hero-content" style="position: relative; z-index: 10;">
+            <div class="logo-3d-container" data-parallax="10">
+                <img src="/assets/hero-burst-1142.png" alt="1142 Labs Burst Logo" class="logo-burst">
+                <div class="epic-glow"></div>
+            </div>
+            <h2 class="holographic-text glitch-text text-3d-hero" data-text="Tomorrow's Solutions Today">Tomorrow's Solutions Today</h2>
+            <p>Advancing neuroscience, pharmacology, and consciousness research through rigorous scientific inquiry.</p>
+            <div class="status-badges">
+                <span class="badge">LAB STATUS: ACTIVE ✓</span>
+                <span class="badge warning">RESEARCH LEVEL: BREAKTHROUGH</span>
+                <span class="badge">STUDIES: ONGOING</span>
+            </div>
+            <a href="research.html" class="cta-button epic-button">EXPLORE OUR RESEARCH</a>
+        </div>
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <div class="scroll-indicator-text">Scroll</div>
+            <div class="scroll-indicator-arrow"></div>
+        </div>
+    </section>
+
+    <!-- Quick Links -->
+    <section class="fade-in">
+        <div class="card-grid">
+            <a href="research.html" class="card epic-card animated-border card-3d-depth">
+                <div class="card-shine"></div>
+                <h3>Research</h3>
+                <p>20 Breakthroughs by Cole EverDark</p>
+                <span class="read-more">Explore →</span>
+            </a>
+            <a href="creators.html" class="card epic-card animated-border card-3d-depth">
+                <div class="card-shine"></div>
+                <h3>Creators</h3>
+                <p>The Persona Matrix</p>
+                <span class="read-more">Discover →</span>
+            </a>
+            <a href="resources.html" class="card epic-card animated-border card-3d-depth">
+                <div class="card-shine"></div>
+                <h3>Resources</h3>
+                <p>Tools & Support</p>
+                <span class="read-more">Access →</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Featured Content -->
+    <section class="fade-in">
+        <h2 class="section-title">Featured Content</h2>
+        <div class="card-grid">
+            <div class="card epic-card animated-border">
+                <div class="card-shine"></div>
+                <h3>Latest Research</h3>
+                <p>Explore our comprehensive collection of breakthrough studies in neurodevelopment, pharmacology, and consciousness research.</p>
+                <a href="research.html" class="read-more">Explore Research →</a>
+            </div>
+            <div class="card epic-card animated-border">
+                <div class="card-shine"></div>
+                <h3>Creator Profiles</h3>
+                <p>Meet Cole Everdark and the Persona Matrix - the minds behind 1142 Labs' revolutionary work.</p>
+                <a href="creators.html" class="read-more">Meet Creators →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="fade-in">
+        <h2 class="section-title">Our Research Mission</h2>
+        <div class="mission-content">
+            <p class="mission-text">▲▲▲▲ Advancing knowledge through empirical research ▲▲▲▲</p>
+            <p class="mission-text">═══◆═══ Rigorous scientific methodology ═══◆═══</p>
+            <p class="mission-text">∞∞∞∞ Continuous pursuit of discovery ∞∞∞∞</p>
+            <p class="mission-text">1142 Labs is a research collective dedicated to breakthrough discoveries in neurodevelopment, pharmacology, and consciousness studies. Our work pushes the boundaries of scientific understanding.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="creators.html">Creators</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="calculator.html">Calculator</a></li>
+                    <li><a href="posters.html">Posters</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 1142 Established Dec 22nd 2019</p>
+            <p class="everdark">An EverDark Production</p>
+        </div>
+    </footer>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ResearchOrganization",
+      "name": "1142 Labs",
+      "url": "https://www.1142labs.com",
+      "logo": "https://www.1142labs.com/assets/1142labs-new-logo.png",
+      "description": "Tomorrow's Solutions Today - Breakthrough discoveries in neuroscience, pharmacology, consciousness studies, and withdrawal support.",
+      "foundingDate": "2019-12-22",
+      "founder": {
+        "@type": "Person",
+        "name": "Cole EverDark"
+      }
+    }
+    </script>
+
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Particle configuration
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: '#00FFFF' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#00FFFF',
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: 'none',
+                    random: true,
+                    out_mode: 'out'
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: { enable: true, mode: 'repulse' },
+                    onclick: { enable: true, mode: 'push' }
+                }
+            }
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+    <script src="assets/js/1142-ritual-effects.js"></script>
+    <script src="assets/js/epic-artistic.js"></script>
+    <script src="assets/js/webgl-shaders.js"></script>
+    <script src="assets/js/advanced-particles.js"></script>
+    <script src="assets/js/3d-glitch-effects.js"></script>
+    <script src="assets/js/ai-integration.js"></script>
+    <script src="assets/js/advanced-features.js"></script>
+</body>
+</html>

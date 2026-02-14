@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Vision | 1142 LABS</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/3d-glasses-glitch.css">
+    <link rel="stylesheet" href="assets/css/ai-styles.css">
+    <link rel="stylesheet" href="assets/css/advanced-features.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #0a0015 0%, #1a0b2e 50%, #2d1b69 100%);
+            overflow-x: hidden;
+        }
+
+        .vision-hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 100px 20px;
+            background: #0F172A;
+            overflow: hidden;
+        }
+        
+        .vision-hero video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            opacity: 0.5;
+            object-fit: cover;
+        }
+
+        .vision-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('assets/spikey-background-pattern.png');
+            opacity: 0.1;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .vision-content {
+            max-width: 1400px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .vision-title {
+            font-size: 5rem;
+            font-weight: 900;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+        }
+
+        .vision-subtitle {
+            font-size: 1.8rem;
+            color: #00ffff;
+            margin-bottom: 50px;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+
+        .earth-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 40px;
+            margin: 80px auto;
+            max-width: 1600px;
+            padding: 0 20px;
+        }
+
+        .earth-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            background: rgba(26, 11, 46, 0.6);
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .earth-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: rgba(255, 0, 255, 0.6);
+            box-shadow: 0 20px 60px rgba(255, 0, 255, 0.4), 0 0 40px rgba(0, 255, 255, 0.3);
+        }
+
+        .earth-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .earth-card:hover .earth-image {
+            transform: scale(1.05);
+        }
+
+        .earth-caption {
+            padding: 30px;
+            background: linear-gradient(180deg, transparent 0%, rgba(26, 11, 46, 0.95) 30%);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+        .earth-caption h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #00ffff;
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+        }
+
+        .earth-caption p {
+            font-size: 1rem;
+            color: #b19cd9;
+            line-height: 1.6;
+        }
+
+        .manifesto {
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 60px 40px;
+            background: rgba(26, 11, 46, 0.8);
+            border: 2px solid rgba(255, 0, 255, 0.3);
+            border-radius: 20px;
+            box-shadow: 0 0 60px rgba(138, 43, 226, 0.3);
+            position: relative;
+        }
+
+        .manifesto::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #00ffff, #ff00ff, #00ffff);
+            border-radius: 20px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .manifesto:hover::before {
+            opacity: 0.3;
+            animation: borderGlow 2s linear infinite;
+        }
+
+        .manifesto h2 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #ff00ff;
+            text-shadow: 0 0 20px rgba(255, 0, 255, 0.6);
+        }
+
+        .manifesto p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #b19cd9;
+            margin-bottom: 25px;
+            text-align: justify;
+        }
+
+        .manifesto strong {
+            color: #00ffff;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { filter: hue-rotate(0deg); }
+            50% { filter: hue-rotate(180deg); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        @media (max-width: 768px) {
+            .vision-title { font-size: 3rem; letter-spacing: 4px; }
+            .vision-subtitle { font-size: 1.2rem; }
+            .earth-gallery { grid-template-columns: 1fr; gap: 30px; }
+            .manifesto { padding: 40px 20px; }
+            .manifesto h2 { font-size: 2rem; }
+            .manifesto p { font-size: 1rem; }
+        }
+    </style>
+    <script src="assets/js/age-gate.js"></script>
+    <script src="assets/js/performance-optimizer.js" defer></script>
+</head>
+<body data-page="vision">
+    <!-- Navigation -->
+    <nav style="position: sticky; top: 0; z-index: 1000; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); border-bottom: 2px solid #00FFFF; padding: 20px 40px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);">
+        <div style="max-width: 1600px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+            <a href="index.html" style="font-family: 'Orbitron', sans-serif; font-size: 1.8rem; font-weight: 900; color: #00FFFF; text-decoration: none; text-shadow: 0 0 10px rgba(0, 255, 255, 0.5); transition: all 0.3s ease;">
+                1142 LABS
+            </a>
+            <div style="display: flex; gap: 30px; flex-wrap: wrap; align-items: center;">
+                <a href="index.html" class="nav-link" style="color: #CBD5E1; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; position: relative;">HOME</a>
+                <a href="breakthroughs.html" class="nav-link" style="color: #CBD5E1; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; position: relative;">BREAKTHROUGHS</a>
+                <a href="vision.html" class="nav-link" style="color: #00FFFF; text-decoration: none; font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; position: relative; text-shadow: 0 0 15px rgba(0, 255, 255, 1);">VISION</a>
+                <a href="graphics.html" class="nav-link" style="color: #CBD5E1; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; position: relative;">GRAPHICS</a>
+                <a href="posters.html" class="nav-link" style="color: #CBD5E1; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; position: relative;">POSTERS</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="vision-hero">
+        <video autoplay loop muted playsinline>
+            <source src="assets/videos/neural-cityscape-animated.mp4" type="video/mp4">
+        </video>
+        <div class="vision-content">
+            <h1 class="vision-title anaglyph-text glitch-text">THE VISION</h1>
+            <p class="vision-subtitle">1142 LABS Overtaking Earth</p>
+            <p style="font-size: 1.2rem; color: #b19cd9; max-width: 800px; margin: 0 auto;">
+                A future where consciousness research, neuroscience, and cognitive enhancement 
+                transform the planet. Where the boundaries between mind and machine dissolve. 
+                Where humanity evolves beyond its current limitations.
+            </p>
+        </div>
+    </section>
+
+    <!-- Earth Gallery -->
+    <div class="earth-gallery">
+        <div class="earth-card anaglyph-card">
+            <img src="assets/earth-overtaken-1.png" alt="Earth Overtaken by Neon Circuitry" class="earth-image">
+            <div class="earth-caption">
+                <h3>Neural Networks Spreading</h3>
+                <p>Continents transformed into glowing circuit boards. Cities become neon megastructures. 
+                   DNA helixes orbit the planet. The 1142 aesthetic consumes everything.</p>
+            </div>
+        </div>
+
+        <div class="earth-card anaglyph-card">
+            <img src="assets/earth-overtaken-2.png" alt="Circuit Board Continents" class="earth-image">
+            <div class="earth-caption">
+                <h3>Digital Transformation</h3>
+                <p>Landmasses replaced by microchips. Oceans glow with bioluminescence. 
+                   Laboratory instruments float in orbit. Science becomes the new reality.</p>
+            </div>
+        </div>
+
+        <div class="earth-card anaglyph-card">
+            <img src="assets/earth-consciousness-awakening.png" alt="Global Consciousness Awakening" class="earth-image">
+            <div class="earth-caption">
+                <h3>Consciousness Awakening</h3>
+                <p>A massive cyan brain emerges from North America. Synaptic connections link every continent. 
+                   Holographic data streams flow between hemispheres. The planet becomes aware.</p>
+            </div>
+        </div>
+
+        <div class="earth-card anaglyph-card">
+            <img src="assets/global-neural-network.png" alt="Global Neural Network" class="earth-image">
+            <div class="earth-caption">
+                <h3>Planetary Neural Network</h3>
+                <p>Every city connected by glowing synapses. Microprocessors replace urban centers. 
+                   Holographic brains hover above populations. The world thinks as one.</p>
+            </div>
+        </div>
+
+        <div class="earth-card anaglyph-card" style="grid-column: span 2;">
+            <img src="assets/earth-transformation-vertical.png" alt="Earth's Transformation" class="earth-image" style="max-height: 600px; object-fit: cover;">
+            <div class="earth-caption">
+                <h3>The Great Transformation</h3>
+                <p>From natural planet to cyberpunk paradise. The transition captured in a single image. 
+                   Purple circuitry overtakes blue oceans. Cyan neural networks replace green forests. 
+                   This is the future. This is 1142.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Manifesto -->
+    <section class="manifesto">
+        <h2 class="anaglyph-text">THE 1142 MANIFESTO</h2>
+        <p>
+            <strong>We believe</strong> that consciousness is not a mystery to be feared, but a frontier to be explored. 
+            That the human mind is not fixed, but infinitely malleable. That cognitive enhancement is not cheating, 
+            but evolution.
+        </p>
+        <p>
+            <strong>We envision</strong> a world where neuroscience is as accessible as the internet. Where understanding 
+            your brain chemistry is as normal as checking your heart rate. Where mental health is treated with the same 
+            urgency as physical health.
+        </p>
+        <p>
+            <strong>We see</strong> cities transformed into living laboratories. Neon-lit research centers on every corner. 
+            Holographic displays showing real-time brain activity. DNA sequencing as common as blood tests. A planet where 
+            science is not separate from daily life, but woven into its fabric.
+        </p>
+        <p>
+            <strong>We imagine</strong> neural networks not just in computers, but connecting human minds across continents. 
+            Consciousness research breaking down barriers between individuals. Empathy enhanced through understanding. 
+            Creativity amplified through chemistry.
+        </p>
+        <p>
+            <strong>We know</strong> this future is not distant. It's already beginning. Every breakthrough at 1142 LABS 
+            is a step toward this vision. Every person who learns about their neurotransmitters is part of the transformation. 
+            Every mind that opens to possibility makes the network stronger.
+        </p>
+        <p>
+            <strong>This is not science fiction.</strong> This is the inevitable evolution of human consciousness. 
+            The aesthetic you see—the neon, the circuitry, the bioluminescence—is not decoration. It's a preview. 
+            A glimpse of what happens when science and art merge. When research becomes culture. When the laboratory 
+            becomes the world.
+        </p>
+        <p style="text-align: center; font-size: 1.5rem; margin-top: 40px; color: #00ffff; text-shadow: 0 0 20px rgba(0, 255, 255, 0.6);">
+            <strong>1142 LABS is not just studying the future. We're building it.</strong>
+        </p>
+    </section>
+
+    <!-- Footer -->
+    <footer style="text-align: center; padding: 60px 20px; background: rgba(26, 11, 46, 0.8); margin-top: 100px;">
+        <p style="color: #b19cd9; font-size: 1rem;">
+            © 2026 1142 LABS | Founded December 22, 2019 | The Future is Now
+        </p>
+        <p style="color: #00ffff; margin-top: 20px;">
+            <a href="index.html" style="color: #00ffff; text-decoration: none; margin: 0 15px;">Home</a>
+            <a href="breakthroughs.html" style="color: #00ffff; text-decoration: none; margin: 0 15px;">Research</a>
+            <a href="chemicals.html" style="color: #00ffff; text-decoration: none; margin: 0 15px;">Database</a>
+            <a href="memorial.html" style="color: #00ffff; text-decoration: none; margin: 0 15px;">Memorial</a>
+        </p>
+    </footer>
+
+    <script src="assets/js/ai-integration.js"></script>
+    <script src="assets/js/3d-glitch-effects.js"></script>
+    <script src="assets/js/advanced-features.js"></script>
+</body>
+</html>
