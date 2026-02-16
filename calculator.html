@@ -1,0 +1,686 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+    <link rel="shortcut icon" type="image/png" href="/assets/favicon.png">
+    <meta name="description" content="Drug Withdrawal Calculator - 1142 Labs Research Tool - Calculate withdrawal timelines and recommended healthy substitutes">
+    <meta name="keywords" content="withdrawal calculator, drug withdrawal, 1142 labs, neuroscience, harm reduction">
+    <title>Drug Withdrawal Calculator | 1142 LABS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/1142-ritual-system.css">
+    <link rel="stylesheet" href="assets/css/epic-artistic.css">
+    <link rel="stylesheet" href="assets/css/3d-effects.css">
+    <link rel="stylesheet" href="assets/css/3d-glasses-glitch.css">
+    <style>
+        :root {
+            --primary-cyan: #00FFFF;
+            --secondary-blue: #1E3A8A;
+            --secondary-purple: #6D28D9;
+            --secondary-pink: #EC4899;
+            --bg-black: #0F172A;
+            --text-gray: #94A3B8;
+            --text-white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-black);
+            color: var(--text-gray);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Particle Background */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--primary-cyan);
+            box-shadow: 0 4px 20px rgba(0, 255, 255, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 4rem 2rem 2rem;
+            position: relative;
+            background: var(--bg-black);
+            overflow: hidden;
+        }
+
+        .hero-video-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            opacity: 0.4;
+            object-fit: cover;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 255, 255, 0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.2); opacity: 0.6; }
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-cyan), var(--secondary-purple), var(--secondary-pink), var(--primary-cyan));
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 4s ease infinite;
+            line-height: 1.2;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-white);
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #0f0;
+            border-radius: 50%;
+            margin-left: 0.5rem;
+            animation: statusPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes statusPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Calculator Section */
+        .calculator-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .decorative-line {
+            margin: 2rem 0;
+            text-align: center;
+            color: var(--primary-cyan);
+            font-size: 1rem;
+            letter-spacing: 0.3em;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .form-section {
+            background: rgba(0, 255, 255, 0.05);
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            padding: 3rem;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.75rem;
+            color: var(--primary-cyan);
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-weight: 600;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            background: rgba(15, 23, 42, 0.8);
+            color: var(--text-white);
+            outline: none;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            border-radius: 5px;
+        }
+
+        select:hover, input:hover {
+            border-color: rgba(0, 255, 255, 0.6);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+        }
+
+        select:focus, input:focus {
+            border-color: var(--primary-cyan);
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
+        }
+
+        button {
+            margin-top: 1.5rem;
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-cyan), var(--secondary-purple));
+            color: var(--bg-black);
+            font-weight: 700;
+            padding: 1.2rem;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            transition: all 0.3s ease;
+            font-family: 'Orbitron', sans-serif;
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        button:hover::before {
+            left: 100%;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.5);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .output {
+            display: none;
+            margin-top: 2rem;
+            background: rgba(0, 255, 255, 0.05);
+            padding: 3rem;
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+        }
+
+        .output.show {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .output h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid rgba(0, 255, 255, 0.3);
+            background: linear-gradient(90deg, var(--primary-cyan), var(--secondary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .output h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: var(--primary-cyan);
+            text-transform: uppercase;
+        }
+
+        .output ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .output li {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            background: rgba(0, 255, 255, 0.03);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .output li:hover {
+            background: rgba(0, 255, 255, 0.08);
+            border-color: rgba(0, 255, 255, 0.4);
+        }
+
+        .output li:last-child {
+            border-bottom: none;
+        }
+
+        .output li strong {
+            color: var(--text-gray);
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .output li span {
+            color: var(--text-white);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 4rem;
+            padding: 3rem 2rem;
+            border-top: 2px solid rgba(0, 255, 255, 0.3);
+            text-align: center;
+            background: rgba(0, 255, 255, 0.02);
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
+            margin: 1rem 0;
+        }
+
+        .memorial {
+            color: var(--primary-cyan);
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 2rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .form-section, .output {
+                padding: 2rem;
+            }
+
+            .calculator-section {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="assets/css/ai-styles.css">
+    <link rel="stylesheet" href="assets/css/advanced-features.css">
+</head>
+<body data-page="calculator">
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
+
+    <!-- Navigation -->
+    <nav style="position: sticky; top: 0; z-index: 1000; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); border-bottom: 2px solid #00FFFF; padding: 20px 40px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);">
+        <div style="max-width: 1600px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+            <a href="index.html" style="font-family: 'Orbitron', sans-serif; font-size: 1.8rem; font-weight: 900; color: #00FFFF; text-decoration: none; text-shadow: 0 0 10px rgba(0, 255, 255, 0.5); transition: all 0.3s ease;">
+                1142 LABS
+            </a>
+            <div style="display: flex; gap: 30px; flex-wrap: wrap; align-items: center;">
+                <a href="index.html" class="nav-link" style="color: #CBD5E1; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; position: relative;">HOME</a>
+                <a href="breakthroughs.html" class="nav-link" style="color: #CBD5E1; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; position: relative;">BREAKTHROUGHS</a>
+                <a href="vision.html" class="nav-link" style="color: #CBD5E1; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; position: relative;">VISION</a>
+                <a href="graphics.html" class="nav-link" style="color: #CBD5E1; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; position: relative;">GRAPHICS</a>
+                <a href="posters.html" class="nav-link" style="color: #CBD5E1; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; position: relative;">POSTERS</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Epic Background Layers -->
+    <div class="epic-background">
+        <div class="gradient-mesh"></div>
+        <div class="floating-orbs">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+        </div>
+    </div>
+
+    <!-- Scanlines Effect -->
+    <div class="scanlines"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <canvas id="neural-shader-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.3;"></canvas>
+        <video class="hero-video-bg" autoplay loop muted playsinline>
+            <source src="assets/videos/circuit-brain-animated.mp4" type="video/mp4">
+        </video>
+        <div class="hero-content">
+            <h1 class="holographic-text glitch-text">Drug Withdrawal Calculator</h1>
+            <div class="subtitle">1142 Labs Research Tool<span class="status-indicator"></span></div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section class="calculator-section">
+        <div class="decorative-line">═══◆═══</div>
+
+        <div class="form-section">
+            <div class="form-group">
+                <label for="drug">Select Substance</label>
+                <select id="drug">
+                    <option value="CRACK">Crack Cocaine</option>
+                    <option value="METH">Methamphetamine</option>
+                    <option value="FENTANYL">Fentanyl</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="dailyUse">Daily Use Duration</label>
+                <select id="dailyUse">
+                    <option value="1">1 Year</option>
+                    <option value="2">2 Years</option>
+                    <option value="3">3 Years</option>
+                    <option value="4">4 Years</option>
+                    <option value="5">5 Years</option>
+                    <option value="6">6 Years</option>
+                    <option value="7">7 Years</option>
+                    <option value="8">8 Years</option>
+                    <option value="9">9 Years</option>
+                    <option value="10">10 Years</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="amount">Daily Amount (grams)</label>
+                <select id="amount">
+                    <option value="0.1">0.1 g</option>
+                    <option value="0.2">0.2 g</option>
+                    <option value="0.3">0.3 g</option>
+                    <option value="0.4">0.4 g</option>
+                    <option value="0.5">0.5 g</option>
+                    <option value="0.6">0.6 g</option>
+                    <option value="0.7">0.7 g</option>
+                    <option value="0.8">0.8 g</option>
+                    <option value="0.9">0.9 g</option>
+                </select>
+            </div>
+
+            <button id="calculateBtn">Calculate Timeline</button>
+        </div>
+
+        <div class="output" id="results">
+            <h2>Withdrawal Analysis</h2>
+            <div id="resultsContent"></div>
+        </div>
+
+        <div class="decorative-line">∞∞∞∞ CONTINUOUS RESEARCH ∞∞∞∞</div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 1142 Established Dec 22nd 2019</p>
+            <p class="memorial">Made in loving memory of Katrina Jade Mutch Hasler</p>
+            <p style="margin-top: 2rem; color: var(--primary-cyan);">An EverDark Production</p>
+        </div>
+    </footer>
+
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Particle configuration
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: '#00FFFF' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#00FFFF',
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: 'none',
+                    random: true,
+                    out_mode: 'out'
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: { enable: true, mode: 'repulse' },
+                    onclick: { enable: true, mode: 'push' }
+                }
+            }
+        });
+    </script>
+
+    <!-- Calculator Logic -->
+    <script>
+        const data = {
+            CRACK: {
+                "0.1": { immediate: "42 DAYS", halfLife: "37 DAYS", comeDown: "1 MONTH", physical: "91 DAYS", mental: "1 YR", vyvanse: "5 mg", methyl: "20 mg", weed: "1 g", lsd: "125 uag x 2 weeks" },
+                "0.2": { immediate: "84 DAYS", halfLife: "74 DAYS", comeDown: "2 MONTHS", physical: "182 DAYS", mental: "2 YRS", vyvanse: "10 mg", methyl: "30 mg", weed: "1.5 g", lsd: "125 uag x 2 weeks" },
+                "0.3": { immediate: "126 DAYS", halfLife: "111 DAYS", comeDown: "3 MONTHS", physical: "273 DAYS", mental: "3 YRS", vyvanse: "15 mg", methyl: "40 mg", weed: "2 g", lsd: "225 uag x 2 weeks" },
+                "0.4": { immediate: "168 DAYS", halfLife: "148 DAYS", comeDown: "4 MONTHS", physical: "364 DAYS", mental: "4 YRS", vyvanse: "20 mg", methyl: "50 mg", weed: "2.5 g", lsd: "225 uag x 1 week" },
+                "0.5": { immediate: "210 DAYS", halfLife: "185 DAYS", comeDown: "5 MONTHS", physical: "455 DAYS", mental: "5 YRS", vyvanse: "25 mg", methyl: "60 mg", weed: "3 g", lsd: "500 uag weekly" },
+                "0.6": { immediate: "294 DAYS", halfLife: "222 DAYS", comeDown: "6 MONTHS", physical: "546 DAYS", mental: "6 YRS", vyvanse: "30 mg", methyl: "70 mg", weed: "3.5 g", lsd: "500 uag weekly" },
+                "0.7": { immediate: "336 DAYS", halfLife: "259 DAYS", comeDown: "7 MONTHS", physical: "637 DAYS", mental: "7 YRS", vyvanse: "35 mg", methyl: "80 mg", weed: "4 g", lsd: "500 uag weekly" },
+                "0.8": { immediate: "378 DAYS", halfLife: "296 DAYS", comeDown: "8 MONTHS", physical: "728 DAYS", mental: "8 YRS", vyvanse: "40 mg", methyl: "90 mg", weed: "4.5 g", lsd: "500 uag weekly" },
+                "0.9": { immediate: "420 DAYS", halfLife: "333 DAYS", comeDown: "9 MONTHS", physical: "819 DAYS", mental: "9 YRS", vyvanse: "45 mg", methyl: "100 mg", weed: "5 g", lsd: "500 uag weekly" },
+            },
+            METH: {
+                "0.1": { immediate: "82 DAYS", halfLife: "75 DAYS", comeDown: "2 MONTHS", physical: "182 DAYS", mental: "1 YR", vyvanse: "5 mg", methyl: "20 mg", weed: "1 g", lsd: "125 uag x 14 days" },
+                "0.2": { immediate: "164 DAYS", halfLife: "150 DAYS", comeDown: "4 MONTHS", physical: "364 DAYS", mental: "2 YRS", vyvanse: "10 mg", methyl: "30 mg", weed: "1.5 g", lsd: "125 uag x 14 days" },
+                "0.3": { immediate: "246 DAYS", halfLife: "225 DAYS", comeDown: "6 MONTHS", physical: "546 DAYS", mental: "3 YRS", vyvanse: "15 mg", methyl: "40 mg", weed: "2 g", lsd: "125 uag x 7 days" },
+                "0.4": { immediate: "328 DAYS", halfLife: "300 DAYS", comeDown: "8 MONTHS", physical: "728 DAYS", mental: "4 YRS", vyvanse: "20 mg", methyl: "50 mg", weed: "2.5 g", lsd: "200 uag x 14 days" },
+                "0.5": { immediate: "410 DAYS", halfLife: "375 DAYS", comeDown: "10 MONTHS", physical: "910 DAYS", mental: "5 YRS", vyvanse: "25 mg", methyl: "60 mg", weed: "3 g", lsd: "225 x 2 weeks" },
+                "0.6": { immediate: "492 DAYS", halfLife: "445 DAYS", comeDown: "12 MONTHS", physical: "1092 DAYS", mental: "6 YRS", vyvanse: "30 mg", methyl: "70 mg", weed: "3.5 g", lsd: "225 uag x 2 weeks" },
+                "0.7": { immediate: "574 DAYS", halfLife: "525 DAYS", comeDown: "14 MONTHS", physical: "1274 DAYS", mental: "7 YRS", vyvanse: "35 mg", methyl: "80 mg", weed: "4 g", lsd: "300 uag 7 days" },
+                "0.8": { immediate: "656 DAYS", halfLife: "600 DAYS", comeDown: "16 MONTHS", physical: "1456 DAYS", mental: "8 YRS", vyvanse: "40 mg", methyl: "90 mg", weed: "4.5 g", lsd: "400 uag 7 days" },
+                "0.9": { immediate: "738 DAYS", halfLife: "675 DAYS", comeDown: "18 MONTHS", physical: "1638 DAYS", mental: "9 YRS", vyvanse: "45 mg", methyl: "100 mg", weed: "5 g", lsd: "1000 uag X 2 weeks" },
+            },
+            FENTANYL: {
+                "0.1": { immediate: "165 DAYS", halfLife: "75 DAYS", comeDown: "4 MONTHS", physical: "365 DAYS", mental: "2 YRS", vyvanse: "5 mg", methyl: "20 mg", weed: "1 g", lsd: "125 uag x 2 weeks" },
+                "0.2": { immediate: "330 DAYS", halfLife: "150 DAYS", comeDown: "8 MONTHS", physical: "730 DAYS", mental: "4 YRS", vyvanse: "10 mg", methyl: "30 mg", weed: "1.5 g", lsd: "125 uag x 2 weeks" },
+                "0.3": { immediate: "495 DAYS", halfLife: "225 DAYS", comeDown: "12 MONTHS", physical: "1095 DAYS", mental: "6 YRS", vyvanse: "15 mg", methyl: "40 mg", weed: "2 g", lsd: "225 uag x 2 weeks" },
+                "0.4": { immediate: "660 DAYS", halfLife: "300 DAYS", comeDown: "16 MONTHS", physical: "1460 DAYS", mental: "8 YRS", vyvanse: "20 mg", methyl: "50 mg", weed: "2.5 g", lsd: "225 uag x 1 week" },
+                "0.5": { immediate: "825 DAYS", halfLife: "375 DAYS", comeDown: "20 MONTHS", physical: "1825 DAYS", mental: "10 YRS", vyvanse: "25 mg", methyl: "60 mg", weed: "3 g", lsd: "500 uag weekly" },
+                "0.6": { immediate: "990 DAYS", halfLife: "450 DAYS", comeDown: "24 MONTHS", physical: "2190 DAYS", mental: "12 YRS", vyvanse: "30 mg", methyl: "70 mg", weed: "3.5 g", lsd: "500 uag weekly" },
+                "0.7": { immediate: "1320 DAYS", halfLife: "525 DAYS", comeDown: "28 MONTHS", physical: "2555 DAYS", mental: "14 YRS", vyvanse: "35 mg", methyl: "80 mg", weed: "4 g", lsd: "500 uag weekly" },
+                "0.8": { immediate: "1485 DAYS", halfLife: "600 DAYS", comeDown: "32 MONTHS", physical: "2920 DAYS", mental: "16 YRS", vyvanse: "40 mg", methyl: "90 mg", weed: "4.5 g", lsd: "500 uag weekly" },
+                "0.9": { immediate: "1650 DAYS", halfLife: "675 DAYS", comeDown: "36 MONTHS", physical: "3285 DAYS", mental: "20 YRS", vyvanse: "45 mg", methyl: "100 mg", weed: "5 g", lsd: "500 uag weekly" },
+            }
+        };
+
+        const calculateBtn = document.getElementById('calculateBtn');
+        const resultsDiv = document.getElementById('results');
+        const resultsContent = document.getElementById('resultsContent');
+
+        calculateBtn.addEventListener('click', () => {
+            const drug = document.getElementById('drug').value;
+            const amount = document.getElementById('amount').value;
+            const years = parseInt(document.getElementById('dailyUse').value);
+
+            const info = data[drug]?.[amount];
+
+            if(!info) {
+                resultsContent.innerHTML = `<p style="color:#999; text-align: center;">Data not available for selected options.</p>`;
+                resultsDiv.classList.add('show');
+                return;
+            }
+
+            // Helper function to multiply day values by years
+            const multiplyDays = (value) => {
+                const match = value.match(/^(\d+)\s+DAYS$/);
+                if (match) {
+                    return `${parseInt(match[1]) * years} DAYS`;
+                }
+                return value;
+            };
+
+            // Helper function to multiply month values by years
+            const multiplyMonths = (value) => {
+                const match = value.match(/^(\d+)\s+MONTHS?$/);
+                if (match) {
+                    return `${parseInt(match[1]) * years} MONTHS`;
+                }
+                return value;
+            };
+
+            // Helper function to multiply year values by years
+            const multiplyYears = (value) => {
+                const match = value.match(/^(\d+)\s+YRS?$/);
+                if (match) {
+                    return `${parseInt(match[1]) * years} YRS`;
+                }
+                return value;
+            };
+
+            // Apply multipliers to timeline values
+            const immediate = multiplyDays(info.immediate);
+            const halfLife = multiplyDays(info.halfLife);
+            const comeDown = multiplyMonths(info.comeDown);
+            const physical = multiplyDays(info.physical);
+            const mental = multiplyYears(info.mental);
+
+            resultsContent.innerHTML = `
+                <h3>Withdrawal Timeline</h3>
+                <ul>
+                    <li><strong>Immediate Withdrawal</strong><span>${immediate}</span></li>
+                    <li><strong>Half-Life</strong><span>${halfLife}</span></li>
+                    <li><strong>Come Down</strong><span>${comeDown}</span></li>
+                    <li><strong>Physical Withdrawal</strong><span>${physical}</span></li>
+                    <li><strong>Mental Withdrawal</strong><span>${mental}</span></li>
+                </ul>
+
+                <h3>Recommended Healthy Substitutes</h3>
+                <ul>
+                    <li><strong>Vyvanse</strong><span>${info.vyvanse}</span></li>
+                    <li><strong>Methylphenidate</strong><span>${info.methyl}</span></li>
+                    <li><strong>Cannabis</strong><span>${info.weed}</span></li>
+                    <li><strong>LSD</strong><span>${info.lsd}</span></li>
+                </ul>
+            `;
+
+            resultsDiv.classList.add('show');
+            resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+    </script>
+
+    <script src="assets/js/1142-ritual-effects.js"></script>
+    <script src="assets/js/epic-artistic.js"></script>
+    <script src="assets/js/webgl-shaders.js"></script>
+    <script src="assets/js/advanced-particles.js"></script>
+    <script src="assets/js/3d-glitch-effects.js"></script>
+    <script src="assets/js/ai-integration.js"></script>
+    <script src="assets/js/advanced-features.js"></script>
+</body>
+</html>
