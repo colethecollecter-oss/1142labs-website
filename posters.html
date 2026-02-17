@@ -69,6 +69,16 @@
             background-clip: text;
             text-shadow: 0 0 40px rgba(0, 255, 255, 0.5);
             letter-spacing: 4px;
+            animation: glitch-text 3s infinite;
+        }
+
+        @keyframes glitch-text {
+            0% { text-shadow: 0 0 40px rgba(0, 255, 255, 0.5); }
+            5% { text-shadow: -2px 0 #00FFFF, 2px 0 #EC4899; }
+            10% { text-shadow: 0 0 40px rgba(0, 255, 255, 0.5); }
+            15% { text-shadow: 2px 0 #00FFFF, -2px 0 #EC4899; }
+            20% { text-shadow: 0 0 40px rgba(0, 255, 255, 0.5); }
+            100% { text-shadow: 0 0 40px rgba(0, 255, 255, 0.5); }
         }
 
         .hero-subtitle {
@@ -143,10 +153,17 @@
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .poster-card.reveal {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .poster-card:hover {
-            transform: translateY(-15px) scale(1.03);
+            transform: translateY(-15px) scale(1.03) rotate(1deg);
             border-color: rgba(0, 255, 255, 0.8);
             box-shadow: 
                 0 30px 60px rgba(0, 0, 0, 0.6),
@@ -790,6 +807,25 @@
                 if (e.key === 'ArrowLeft') navigateLightbox(-1);
                 if (e.key === 'ArrowRight') navigateLightbox(1);
             }
+        });
+
+        // Intersection Observer for Reveal Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.poster-card').forEach(card => {
+            observer.observe(card);
         });
 
         // Filter functionality
