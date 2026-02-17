@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources | 1142 LABS</title>
+    <meta name="description" content="Access tools, calculators, and support resources from 1142 Labs for research, withdrawal support, and cognitive enhancement.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/3d-effects.css">
+    <link rel="stylesheet" href="assets/css/3d-glasses-glitch.css">
+    
+    <style>
+        body {
+            background: #0F172A;
+            color: #E2E8F0;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .hero-resources {
+            position: relative;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0F172A;
+            overflow: hidden;
+        }
+        
+        .hero-resources video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            opacity: 0.3;
+            object-fit: cover;
+        }
+        
+        .hero-resources::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.95));
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 60px 20px;
+            max-width: 1200px;
+        }
+        
+        .hero-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 900;
+            margin: 0 0 30px 0;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #00FFFF, #6D28D9, #EC4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px rgba(0, 255, 255, 0.5);
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            font-weight: 300;
+            max-width: 900px;
+            margin: 0 auto 40px auto;
+            line-height: 1.7;
+            color: #94A3B8;
+        }
+        
+        .content-section {
+            max-width: 1400px;
+            margin: 80px auto;
+            padding: 0 40px;
+        }
+        
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            margin-bottom: 40px;
+            color: #00FFFF;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            text-align: center;
+        }
+        
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 40px;
+            margin: 60px 0;
+        }
+        
+        .resource-card {
+            background: rgba(0, 255, 255, 0.05);
+            border: 2px solid rgba(0, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .resource-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .resource-card:hover::before {
+            left: 100%;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-10px);
+            border-color: #00FFFF;
+            box-shadow: 0 10px 40px rgba(0, 255, 255, 0.3);
+        }
+        
+        .resource-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        
+        .resource-category {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            color: #EC4899;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+        
+        .resource-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            color: #00FFFF;
+            margin-bottom: 20px;
+        }
+        
+        .resource-card p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #CBD5E1;
+            margin-bottom: 20px;
+        }
+        
+        .resource-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(0, 255, 255, 0.1);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #00FFFF;
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+        
+        .intro-block {
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(109, 40, 217, 0.1));
+            border: 3px solid rgba(0, 255, 255, 0.4);
+            border-radius: 25px;
+            padding: 60px;
+            text-align: center;
+            margin: 60px 0;
+        }
+        
+        .intro-block p {
+            font-size: 1.3rem;
+            line-height: 1.9;
+            color: #E2E8F0;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        footer {
+            background: rgba(15, 23, 42, 0.95);
+            border-top: 2px solid #00FFFF;
+            padding: 60px 40px 30px 40px;
+            margin-top: 100px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h4 {
+            font-family: 'Orbitron', sans-serif;
+            color: #00FFFF;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #94A3B8;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #00FFFF;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(0, 255, 255, 0.2);
+            color: #64748B;
+        }
+        
+        @media (max-width: 768px) {
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .intro-block {
+                padding: 40px 30px;
+            }
+        }
+        
+        /* Navigation Styles */
+        .nav-link:hover {
+            color: #00FFFF;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+        }
+        
+        .nav-link.active {
+            color: #00FFFF;
+            border-bottom: 3px solid #00FFFF;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+        }
+        
+        .nav-link-secondary:hover {
+            color: #00FFFF;
+            text-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
+        }
+        
+        .nav-link-secondary.active {
+            color: #00FFFF;
+            text-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
+        }
+    </style>
+</head>
+<body data-page="resources">
+
+    <!-- Navigation - Option A Design -->
+<nav style="position: sticky; top: 0; z-index: 1000; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); border-bottom: 2px solid #00FFFF; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);">
+    <div style="max-width: 1600px; margin: 0 auto; padding: 20px 40px;">
+        <!-- Logo and Main Title -->
+        <div style="text-align: center; margin-bottom: 20px;">
+            <h1 style="font-family: 'Orbitron', sans-serif; font-size: 2.5rem; font-weight: 900; margin: 0; background: linear-gradient(90deg, #00FFFF, #6D28D9, #EC4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-shadow: 0 0 30px rgba(0, 255, 255, 0.5);">
+                1142 LABS
+            </h1>
+            <p style="font-family: 'Orbitron', sans-serif; color: #64748B; font-size: 0.9rem; letter-spacing: 3px; margin: 5px 0 0 0;">TOMORROW'S SOLUTIONS TODAY</p>
+        </div>
+        
+        <!-- Main Navigation -->
+        <div style="display: flex; gap: 40px; align-items: center; flex-wrap: wrap; border-bottom: 1px solid rgba(0, 255, 255, 0.2); padding-bottom: 15px; justify-content: center;">
+            <a href="index.html" class="nav-link" data-page="home" style="font-family: 'Orbitron', sans-serif; color: #94A3B8; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease; position: relative; padding-bottom: 5px;">HOME</a>
+            <a href="about.html" class="nav-link" data-page="about" style="font-family: 'Orbitron', sans-serif; color: #94A3B8; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease; position: relative; padding-bottom: 5px;">ABOUT</a>
+            <a href="breakthroughs.html" class="nav-link" data-page="research" style="font-family: 'Orbitron', sans-serif; color: #94A3B8; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease; position: relative; padding-bottom: 5px;">RESEARCH</a>
+            <a href="vision.html" class="nav-link" data-page="creators" style="font-family: 'Orbitron', sans-serif; color: #94A3B8; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease; position: relative; padding-bottom: 5px;">CREATORS</a>
+        </div>
+        
+        <!-- Secondary Navigation -->
+        <div style="display: flex; gap: 30px; align-items: center; flex-wrap: wrap; margin-top: 15px; justify-content: center;">
+            <a href="resources.html" class="nav-link-secondary active" style="font-family: 'Orbitron', sans-serif; color: #00FFFF; text-decoration: none; font-weight: 500; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">RESOURCES</a>
+            <a href="calculator.html" class="nav-link-secondary" style="font-family: 'Orbitron', sans-serif; color: #64748B; text-decoration: none; font-weight: 500; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">CALCULATOR</a>
+            <a href="posters.html" class="nav-link-secondary" style="font-family: 'Orbitron', sans-serif; color: #64748B; text-decoration: none; font-weight: 500; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">POSTERS</a>
+            <a href="links.html" class="nav-link-secondary" style="font-family: 'Orbitron', sans-serif; color: #64748B; text-decoration: none; font-weight: 500; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">LINKS</a>
+            <a href="st-jimmy.html" class="nav-link-secondary" style="font-family: 'Orbitron', sans-serif; color: #64748B; text-decoration: none; font-weight: 500; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">ST. JIMMY</a>
+        </div>
+    </div>
+</nav>
+
+    <!-- Hero Section -->
+    <section class="hero-resources">
+        <video autoplay loop muted playsinline>
+            <source src="assets/videos/circuit-brain-animated.mp4" type="video/mp4">
+        </video>
+        <div class="hero-content">
+            <h1 class="hero-title">RESOURCES</h1>
+            <p class="hero-subtitle">
+                Tools, calculators, and support resources for researchers, practitioners, and seekers of knowledge.
+            </p>
+        </div>
+    </section>
+
+    <!-- Introduction -->
+    <div class="content-section">
+        <div class="intro-block">
+            <p>
+                Access practical tools and resources developed from 1142 Labs research. From dosage calculators to withdrawal protocols, these resources translate scientific findings into actionable guidance.
+            </p>
+        </div>
+    </div>
+
+    <!-- Tools & Calculators -->
+    <div class="content-section">
+        <h2 class="section-title">TOOLS & CALCULATORS</h2>
+        <div class="resource-grid">
+            
+            <a href="calculator.html" class="resource-card">
+                <div class="resource-icon">🧮</div>
+                <div class="resource-category">Interactive Tool</div>
+                <h3>Dosage Calculator</h3>
+                <p>
+                    Precision dosage calculations for pharmaceutical compounds. Based on empirical research and pharmacokinetic principles.
+                </p>
+                <div class="resource-badge">Calculator</div>
+                <div class="resource-badge">Pharmacology</div>
+            </a>
+
+            <a href="chemicals.html" class="resource-card">
+                <div class="resource-icon">⚗️</div>
+                <div class="resource-category">Database</div>
+                <h3>Chemical Database</h3>
+                <p>
+                    Comprehensive database of compounds, mechanisms of action, and pharmacological profiles from 1142 research.
+                </p>
+                <div class="resource-badge">Reference</div>
+                <div class="resource-badge">Research</div>
+            </a>
+
+            <a href="breakthroughs.html" class="resource-card">
+                <div class="resource-icon">📊</div>
+                <div class="resource-category">Research Papers</div>
+                <h3>Withdrawal Protocols</h3>
+                <p>
+                    Evidence-based protocols for pharmaceutical withdrawal, developed from extensive research and real-world application.
+                </p>
+                <div class="resource-badge">Protocol</div>
+                <div class="resource-badge">Support</div>
+            </a>
+
+        </div>
+    </div>
+
+    <!-- Visual Resources -->
+    <div class="content-section">
+        <h2 class="section-title">VISUAL RESOURCES</h2>
+        <div class="resource-grid">
+            
+            <a href="posters.html" class="resource-card">
+                <div class="resource-icon">🎨</div>
+                <div class="resource-category">Visual Assets</div>
+                <h3>Research Posters</h3>
+                <p>
+                    High-resolution research posters visualizing key findings and frameworks from 1142 Labs studies.
+                </p>
+                <div class="resource-badge">Visual</div>
+                <div class="resource-badge">Download</div>
+            </a>
+
+            <a href="graphics.html" class="resource-card">
+                <div class="resource-icon">💎</div>
+                <div class="resource-category">Brand Assets</div>
+                <h3>Graphics Gallery</h3>
+                <p>
+                    Explosive crystal burst graphics, animated videos, and visual identity elements embodying the 1142 aesthetic.
+                </p>
+                <div class="resource-badge">Gallery</div>
+                <div class="resource-badge">Media</div>
+            </a>
+
+        </div>
+    </div>
+
+    <!-- Knowledge Resources -->
+    <div class="content-section">
+        <h2 class="section-title">KNOWLEDGE BASE</h2>
+        <div class="resource-grid">
+            
+            <a href="research.html" class="resource-card">
+                <div class="resource-icon">📚</div>
+                <div class="resource-category">Research Hub</div>
+                <h3>Research Papers</h3>
+                <p>
+                    Access the complete collection of 20+ research papers covering neuroscience, pharmacology, and consciousness studies.
+                </p>
+                <div class="resource-badge">Papers</div>
+                <div class="resource-badge">Full Access</div>
+            </a>
+
+            <a href="breakthroughs.html" class="resource-card">
+                <div class="resource-icon">⚡</div>
+                <div class="resource-category">Discoveries</div>
+                <h3>Breakthroughs</h3>
+                <p>
+                    Explore breakthrough discoveries and paradigm-shifting insights from years of rigorous research.
+                </p>
+                <div class="resource-badge">Insights</div>
+                <div class="resource-badge">Innovation</div>
+            </a>
+
+            <a href="vision.html" class="resource-card">
+                <div class="resource-icon">🔮</div>
+                <div class="resource-category">Philosophy</div>
+                <h3>Vision & Mission</h3>
+                <p>
+                    Understand the philosophical foundations and future vision driving 1142 Labs research and development.
+                </p>
+                <div class="resource-badge">Vision</div>
+                <div class="resource-badge">Philosophy</div>
+            </a>
+
+        </div>
+    </div>
+
+    <!-- External Resources -->
+    <div class="content-section">
+        <h2 class="section-title">EXTERNAL LINKS</h2>
+        <div class="resource-grid">
+            
+            <a href="links.html" class="resource-card">
+                <div class="resource-icon">🔗</div>
+                <div class="resource-category">External Resources</div>
+                <h3>Reference Links</h3>
+                <p>
+                    Curated collection of external resources, research databases, and scientific references supporting 1142 research.
+                </p>
+                <div class="resource-badge">Links</div>
+                <div class="resource-badge">References</div>
+            </a>
+
+        </div>
+    </div>
+
+    <!-- Support Notice -->
+    <div class="content-section">
+        <div class="intro-block">
+            <h2 style="font-family: 'Orbitron', sans-serif; font-size: 2.5rem; color: #00FFFF; margin-bottom: 30px;">Need Support?</h2>
+            <p>
+                All resources are provided for educational and research purposes. For medical advice or clinical support, please consult qualified healthcare professionals.
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="creators.html">Creators</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="calculator.html">Calculator</a></li>
+                    <li><a href="posters.html">Posters</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Research</h4>
+                <ul>
+                    <li><a href="breakthroughs.html">Breakthroughs</a></li>
+                    <li><a href="vision.html">Vision</a></li>
+                    <li><a href="graphics.html">Graphics</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 1142 Labs - Established December 22nd, 2019</p>
+            <p style="margin-top: 10px; color: #00FFFF;">An EverDark Production</p>
+        </div>
+    </footer>
+
+</body>
+</html>

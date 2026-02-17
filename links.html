@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Links | 1142 LABS</title>
+    <meta name="description" content="External resources, research databases, and scientific references supporting 1142 Labs research.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/3d-effects.css">
+    <link rel="stylesheet" href="assets/css/3d-glasses-glitch.css">
+    
+    <style>
+        body {
+            background: #0F172A;
+            color: #E2E8F0;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .hero-links {
+            position: relative;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0F172A;
+            overflow: hidden;
+        }
+        
+        .hero-links::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(0, 255, 255, 0.1), transparent 70%);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 60px 20px;
+            max-width: 1200px;
+        }
+        
+        .hero-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            margin: 0 0 30px 0;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #00FFFF, #6D28D9, #EC4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px rgba(0, 255, 255, 0.5);
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
+            color: #94A3B8;
+        }
+        
+        .content-section {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 40px;
+        }
+        
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 900;
+            margin-bottom: 40px;
+            color: #00FFFF;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            text-align: center;
+        }
+        
+        .links-category {
+            margin-bottom: 80px;
+        }
+        
+        .category-header {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            color: #00FFFF;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(0, 255, 255, 0.3);
+        }
+        
+        .link-list {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .link-item {
+            background: rgba(0, 255, 255, 0.05);
+            border: 2px solid rgba(0, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .link-item:hover {
+            border-color: #00FFFF;
+            box-shadow: 0 5px 30px rgba(0, 255, 255, 0.3);
+            transform: translateX(10px);
+        }
+        
+        .link-item h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: #00FFFF;
+            margin-bottom: 10px;
+        }
+        
+        .link-item p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #CBD5E1;
+            margin-bottom: 15px;
+        }
+        
+        .link-url {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: #64748B;
+            word-break: break-all;
+        }
+        
+        .link-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background: rgba(0, 255, 255, 0.1);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: #00FFFF;
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+        
+        .intro-block {
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(109, 40, 217, 0.1));
+            border: 3px solid rgba(0, 255, 255, 0.4);
+            border-radius: 25px;
+            padding: 50px;
+            text-align: center;
+            margin: 60px 0;
+        }
+        
+        .intro-block p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #E2E8F0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        footer {
+            background: rgba(15, 23, 42, 0.95);
+            border-top: 2px solid #00FFFF;
+            padding: 60px 40px 30px 40px;
+            margin-top: 100px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h4 {
+            font-family: 'Orbitron', sans-serif;
+            color: #00FFFF;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #94A3B8;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #00FFFF;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(0, 255, 255, 0.2);
+            color: #64748B;
+        }
+        
+        /* Navigation Styles */
+        .nav-link:hover {
+            color: #00FFFF;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+        }
+        
+        .nav-link.active {
+            color: #00FFFF;
+            border-bottom: 3px solid #00FFFF;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+        }
+        
+        .nav-link-secondary:hover {
+            color: #00FFFF;
+            text-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
+        }
+        
+        .nav-link-secondary.active {
+            color: #00FFFF;
+            text-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
+        }
+    </style>
+</head>
+<body data-page="links">
+
+    <!-- Navigation - Option A Design -->
+<nav style="position: sticky; top: 0; z-index: 1000; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); border-bottom: 2px solid #00FFFF; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);">
+    <div style="max-width: 1600px; margin: 0 auto; padding: 20px 40px;">
+        <!-- Logo and Main Title -->
+        <div style="text-align: center; margin-bottom: 20px;">
+            <h1 style="font-family: 'Orbitron', sans-serif; font-size: 2.5rem; font-weight: 900; margin: 0; background: linear-gradient(90deg, #00FFFF, #6D28D9, #EC4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-shadow: 0 0 30px rgba(0, 255, 255, 0.5);">
+                1142 LABS
+            </h1>
+            <p style="font-family: 'Orbitron', sans-serif; color: #64748B; font-size: 0.9rem; letter-spacing: 3px; margin: 5px 0 0 0;">TOMORROW'S SOLUTIONS TODAY</p>
+        </div>
+        
+        <!-- Main Navigation -->
+        <div style="display: flex; gap: 40px; align-items: center; flex-wrap: wrap; border-bottom: 1px solid rgba(0, 255, 255, 0.2); padding-bottom: 15px; justify-content: center;">
+            <a href="index.html" class="nav-link" data-page="home" style="font-family: 'Orbitron', sans-serif; color: #94A3B8; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease; position: relative; padding-bottom: 5px;">HOME</a>
+            <a href="about.html" class="nav-link" data-page="about" style="font-family: 'Orbitron', sans-serif; color: #94A3B8; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease; position: relative; padding-bottom: 5px;">ABOUT</a>
+            <a href="breakthroughs.html" class="nav-link" data-page="research" style="font-family: 'Orbitron', sans-serif; color: #94A3B8; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease; position: relative; padding-bottom: 5px;">RESEARCH</a>
+            <a href="vision.html" class="nav-link" data-page="creators" style="font-family: 'Orbitron', sans-serif; color: #94A3B8; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease; position: relative; padding-bottom: 5px;">CREATORS</a>
+        </div>
+        
+        <!-- Secondary Navigation -->
+        <div style="display: flex; gap: 30px; align-items: center; flex-wrap: wrap; margin-top: 15px; justify-content: center;">
+            <a href="resources.html" class="nav-link-secondary" style="font-family: 'Orbitron', sans-serif; color: #64748B; text-decoration: none; font-weight: 500; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">RESOURCES</a>
+            <a href="calculator.html" class="nav-link-secondary" style="font-family: 'Orbitron', sans-serif; color: #64748B; text-decoration: none; font-weight: 500; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">CALCULATOR</a>
+            <a href="posters.html" class="nav-link-secondary" style="font-family: 'Orbitron', sans-serif; color: #64748B; text-decoration: none; font-weight: 500; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">POSTERS</a>
+            <a href="links.html" class="nav-link-secondary active" style="font-family: 'Orbitron', sans-serif; color: #00FFFF; text-decoration: none; font-weight: 500; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">LINKS</a>
+            <a href="st-jimmy.html" class="nav-link-secondary" style="font-family: 'Orbitron', sans-serif; color: #64748B; text-decoration: none; font-weight: 500; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">ST. JIMMY</a>
+        </div>
+    </div>
+</nav>
+
+    <!-- Hero Section -->
+    <section class="hero-links">
+        <div class="hero-content">
+            <h1 class="hero-title">REFERENCE LINKS</h1>
+            <p class="hero-subtitle">
+                Curated external resources supporting 1142 Labs research and exploration.
+            </p>
+        </div>
+    </section>
+
+    <!-- Introduction -->
+    <div class="content-section">
+        <div class="intro-block">
+            <p>
+                A collection of external resources, research databases, and scientific references that inform and support the work of 1142 Labs. These links represent the broader scientific ecosystem we engage with.
+            </p>
+        </div>
+    </div>
+
+    <!-- Research Databases -->
+    <div class="content-section">
+        <div class="links-category">
+            <h3 class="category-header">Research Databases</h3>
+            <div class="link-list">
+                
+                <a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank" rel="noopener" class="link-item">
+                    <h4>PubMed</h4>
+                    <p>National Library of Medicine's database of biomedical literature. Essential resource for peer-reviewed research in neuroscience and pharmacology.</p>
+                    <div class="link-url">pubmed.ncbi.nlm.nih.gov</div>
+                    <div class="link-badge">Database</div>
+                    <div class="link-badge">Peer-Reviewed</div>
+                </a>
+
+                <a href="https://scholar.google.com/" target="_blank" rel="noopener" class="link-item">
+                    <h4>Google Scholar</h4>
+                    <p>Comprehensive search engine for scholarly literature across disciplines. Useful for discovering related research and citation networks.</p>
+                    <div class="link-url">scholar.google.com</div>
+                    <div class="link-badge">Search Engine</div>
+                    <div class="link-badge">Academic</div>
+                </a>
+
+                <a href="https://www.ncbi.nlm.nih.gov/pmc/" target="_blank" rel="noopener" class="link-item">
+                    <h4>PubMed Central</h4>
+                    <p>Free full-text archive of biomedical and life sciences journal literature. Open access to research papers.</p>
+                    <div class="link-url">ncbi.nlm.nih.gov/pmc</div>
+                    <div class="link-badge">Open Access</div>
+                    <div class="link-badge">Full Text</div>
+                </a>
+
+            </div>
+        </div>
+
+        <!-- Pharmacology Resources -->
+        <div class="links-category">
+            <h3 class="category-header">Pharmacology Resources</h3>
+            <div class="link-list">
+                
+                <a href="https://www.drugbank.com/" target="_blank" rel="noopener" class="link-item">
+                    <h4>DrugBank</h4>
+                    <p>Comprehensive database of drug and drug target information. Essential for understanding pharmaceutical mechanisms.</p>
+                    <div class="link-url">drugbank.com</div>
+                    <div class="link-badge">Database</div>
+                    <div class="link-badge">Pharmacology</div>
+                </a>
+
+                <a href="https://psychonautwiki.org/" target="_blank" rel="noopener" class="link-item">
+                    <h4>PsychonautWiki</h4>
+                    <p>Community-driven encyclopedia of psychoactive substances. Valuable for subjective effects documentation and harm reduction.</p>
+                    <div class="link-url">psychonautwiki.org</div>
+                    <div class="link-badge">Community</div>
+                    <div class="link-badge">Harm Reduction</div>
+                </a>
+
+            </div>
+        </div>
+
+        <!-- Neuroscience Resources -->
+        <div class="links-category">
+            <h3 class="category-header">Neuroscience Resources</h3>
+            <div class="link-list">
+                
+                <a href="https://www.nature.com/subjects/neuroscience" target="_blank" rel="noopener" class="link-item">
+                    <h4>Nature Neuroscience</h4>
+                    <p>Leading journal publishing cutting-edge neuroscience research. Essential for staying current with field developments.</p>
+                    <div class="link-url">nature.com/subjects/neuroscience</div>
+                    <div class="link-badge">Journal</div>
+                    <div class="link-badge">Peer-Reviewed</div>
+                </a>
+
+                <a href="https://www.brainfacts.org/" target="_blank" rel="noopener" class="link-item">
+                    <h4>BrainFacts.org</h4>
+                    <p>Public information initiative of The Kavli Foundation and Society for Neuroscience. Accessible neuroscience education.</p>
+                    <div class="link-url">brainfacts.org</div>
+                    <div class="link-badge">Education</div>
+                    <div class="link-badge">Public Resource</div>
+                </a>
+
+            </div>
+        </div>
+
+        <!-- 1142 Internal Links -->
+        <div class="links-category">
+            <h3 class="category-header">1142 Labs Resources</h3>
+            <div class="link-list">
+                
+                <a href="research.html" class="link-item">
+                    <h4>Research Hub</h4>
+                    <p>Central repository of all 1142 Labs research papers and breakthrough discoveries.</p>
+                    <div class="link-url">1142labs.com/research.html</div>
+                    <div class="link-badge">Internal</div>
+                    <div class="link-badge">Research</div>
+                </a>
+
+                <a href="breakthroughs.html" class="link-item">
+                    <h4>Breakthroughs</h4>
+                    <p>Detailed exploration of 20+ research papers by Cole EverDark.</p>
+                    <div class="link-url">1142labs.com/breakthroughs.html</div>
+                    <div class="link-badge">Internal</div>
+                    <div class="link-badge">Papers</div>
+                </a>
+
+                <a href="calculator.html" class="link-item">
+                    <h4>Dosage Calculator</h4>
+                    <p>Interactive tool for pharmaceutical dosage calculations.</p>
+                    <div class="link-url">1142labs.com/calculator.html</div>
+                    <div class="link-badge">Internal</div>
+                    <div class="link-badge">Tool</div>
+                </a>
+
+                <a href="chemicals.html" class="link-item">
+                    <h4>Chemical Database</h4>
+                    <p>Comprehensive database of compounds and pharmacological profiles.</p>
+                    <div class="link-url">1142labs.com/chemicals.html</div>
+                    <div class="link-badge">Internal</div>
+                    <div class="link-badge">Database</div>
+                </a>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Disclaimer -->
+    <div class="content-section">
+        <div class="intro-block">
+            <p style="font-size: 1rem; color: #94A3B8;">
+                <strong>Disclaimer:</strong> External links are provided for reference purposes only. 1142 Labs does not endorse or control the content of external websites. Always verify information from multiple sources and consult qualified professionals for medical or clinical advice.
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="creators.html">Creators</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="calculator.html">Calculator</a></li>
+                    <li><a href="posters.html">Posters</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Research</h4>
+                <ul>
+                    <li><a href="breakthroughs.html">Breakthroughs</a></li>
+                    <li><a href="vision.html">Vision</a></li>
+                    <li><a href="graphics.html">Graphics</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 1142 Labs - Established December 22nd, 2019</p>
+            <p style="margin-top: 10px; color: #00FFFF;">An EverDark Production</p>
+        </div>
+    </footer>
+
+</body>
+</html>

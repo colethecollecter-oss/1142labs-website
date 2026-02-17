@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | 1142 LABS</title>
+    <meta name="description" content="Learn about 1142 Labs, Cole EverDark, and our mission to advance knowledge through breakthrough research in neuroscience, pharmacology, and consciousness studies.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/3d-effects.css">
+    <link rel="stylesheet" href="assets/css/3d-glasses-glitch.css">
+    
+    <style>
+        body {
+            background: #0F172A;
+            color: #E2E8F0;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .hero-about {
+            position: relative;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0F172A;
+            overflow: hidden;
+        }
+        
+        .hero-about video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            opacity: 0.3;
+            object-fit: cover;
+        }
+        
+        .hero-about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.95));
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 60px 20px;
+            max-width: 1200px;
+        }
+        
+        .hero-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 900;
+            margin: 0 0 30px 0;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #00FFFF, #6D28D9, #EC4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px rgba(0, 255, 255, 0.5);
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            font-weight: 300;
+            max-width: 900px;
+            margin: 0 auto 40px auto;
+            line-height: 1.7;
+            color: #94A3B8;
+        }
+        
+        .content-section {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 40px;
+        }
+        
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            margin-bottom: 40px;
+            color: #00FFFF;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            text-align: center;
+        }
+        
+        .content-block {
+            background: rgba(0, 255, 255, 0.05);
+            border: 2px solid rgba(0, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 50px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .content-block h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            color: #00FFFF;
+            margin-bottom: 20px;
+        }
+        
+        .content-block p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #CBD5E1;
+            margin-bottom: 20px;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 60px;
+            border-left: 3px solid rgba(0, 255, 255, 0.3);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -68px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: #00FFFF;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+        }
+        
+        .timeline-date {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: #00FFFF;
+            margin-bottom: 10px;
+        }
+        
+        .timeline-content {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #CBD5E1;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+        
+        .stat-card {
+            background: rgba(0, 255, 255, 0.1);
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-10px);
+            border-color: #00FFFF;
+            box-shadow: 0 10px 40px rgba(0, 255, 255, 0.3);
+        }
+        
+        .stat-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            font-weight: 900;
+            color: #00FFFF;
+            text-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+        }
+        
+        .stat-label {
+            font-size: 1.2rem;
+            color: #94A3B8;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 10px;
+        }
+        
+        .founder-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin: 80px 0;
+        }
+        
+        .founder-image {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 20px;
+            border: 3px solid rgba(0, 255, 255, 0.4);
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.3);
+        }
+        
+        .founder-content h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            color: #00FFFF;
+            margin-bottom: 20px;
+        }
+        
+        .founder-content p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #CBD5E1;
+            margin-bottom: 20px;
+        }
+        
+        .mission-statement {
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(109, 40, 217, 0.1));
+            border: 3px solid rgba(0, 255, 255, 0.4);
+            border-radius: 25px;
+            padding: 60px;
+            text-align: center;
+            margin: 80px 0;
+        }
+        
+        .mission-statement h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            color: #00FFFF;
+            margin-bottom: 30px;
+        }
+        
+        .mission-statement p {
+            font-size: 1.4rem;
+            line-height: 1.9;
+            color: #E2E8F0;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin: 60px 0;
+        }
+        
+        .value-card {
+            background: rgba(0, 255, 255, 0.05);
+            border: 2px solid rgba(0, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.3s ease;
+        }
+        
+        .value-card:hover {
+            border-color: #00FFFF;
+            box-shadow: 0 10px 40px rgba(0, 255, 255, 0.2);
+        }
+        
+        .value-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .value-card h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            color: #00FFFF;
+            margin-bottom: 15px;
+        }
+        
+        .value-card p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #94A3B8;
+        }
+        
+        footer {
+            background: rgba(15, 23, 42, 0.95);
+            border-top: 2px solid #00FFFF;
+            padding: 60px 40px 30px 40px;
+            margin-top: 100px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h4 {
+            font-family: 'Orbitron', sans-serif;
+            color: #00FFFF;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #94A3B8;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #00FFFF;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(0, 255, 255, 0.2);
+            color: #64748B;
+        }
+        
+        @media (max-width: 768px) {
+            .founder-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .content-block {
+                padding: 30px;
+            }
+            
+            .mission-statement {
+                padding: 40px 30px;
+            }
+        }
+        
+        /* Navigation Styles */
+        .nav-link:hover {
+            color: #00FFFF;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+        }
+        
+        .nav-link.active {
+            color: #00FFFF;
+            border-bottom: 3px solid #00FFFF;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+        }
+        
+        .nav-link-secondary:hover {
+            color: #00FFFF;
+            text-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
+        }
+    </style>
+</head>
+<body data-page="about">
+
+    <!-- Navigation - Option A Design -->
+<nav style="position: sticky; top: 0; z-index: 1000; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); border-bottom: 2px solid #00FFFF; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);">
+    <div style="max-width: 1600px; margin: 0 auto; padding: 20px 40px;">
+        <!-- Logo and Main Title -->
+        <div style="text-align: center; margin-bottom: 20px;">
+            <h1 style="font-family: 'Orbitron', sans-serif; font-size: 2.5rem; font-weight: 900; margin: 0; background: linear-gradient(90deg, #00FFFF, #6D28D9, #EC4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-shadow: 0 0 30px rgba(0, 255, 255, 0.5);">
+                1142 LABS
+            </h1>
+            <p style="font-family: 'Orbitron', sans-serif; color: #64748B; font-size: 0.9rem; letter-spacing: 3px; margin: 5px 0 0 0;">TOMORROW'S SOLUTIONS TODAY</p>
+        </div>
+        
+        <!-- Main Navigation -->
+        <div style="display: flex; gap: 40px; align-items: center; flex-wrap: wrap; border-bottom: 1px solid rgba(0, 255, 255, 0.2); padding-bottom: 15px; justify-content: center;">
+            <a href="index.html" class="nav-link" data-page="home" style="font-family: 'Orbitron', sans-serif; color: #94A3B8; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease; position: relative; padding-bottom: 5px;">HOME</a>
+            <a href="about.html" class="nav-link active" data-page="about" style="font-family: 'Orbitron', sans-serif; color: #00FFFF; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease; position: relative; padding-bottom: 5px;">ABOUT</a>
+            <a href="breakthroughs.html" class="nav-link" data-page="research" style="font-family: 'Orbitron', sans-serif; color: #94A3B8; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease; position: relative; padding-bottom: 5px;">RESEARCH</a>
+            <a href="vision.html" class="nav-link" data-page="creators" style="font-family: 'Orbitron', sans-serif; color: #94A3B8; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease; position: relative; padding-bottom: 5px;">CREATORS</a>
+        </div>
+        
+        <!-- Secondary Navigation -->
+        <div style="display: flex; gap: 30px; align-items: center; flex-wrap: wrap; margin-top: 15px; justify-content: center;">
+            <a href="resources.html" class="nav-link-secondary" style="font-family: 'Orbitron', sans-serif; color: #64748B; text-decoration: none; font-weight: 500; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">RESOURCES</a>
+            <a href="calculator.html" class="nav-link-secondary" style="font-family: 'Orbitron', sans-serif; color: #64748B; text-decoration: none; font-weight: 500; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">CALCULATOR</a>
+            <a href="posters.html" class="nav-link-secondary" style="font-family: 'Orbitron', sans-serif; color: #64748B; text-decoration: none; font-weight: 500; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">POSTERS</a>
+            <a href="links.html" class="nav-link-secondary" style="font-family: 'Orbitron', sans-serif; color: #64748B; text-decoration: none; font-weight: 500; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">LINKS</a>
+            <a href="st-jimmy.html" class="nav-link-secondary" style="font-family: 'Orbitron', sans-serif; color: #64748B; text-decoration: none; font-weight: 500; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">ST. JIMMY</a>
+        </div>
+    </div>
+</nav>
+
+    <!-- Hero Section -->
+    <section class="hero-about">
+        <video autoplay loop muted playsinline>
+            <source src="assets/videos/circuit-brain-animated.mp4" type="video/mp4">
+        </video>
+        <div class="hero-content">
+            <h1 class="hero-title">ABOUT 1142</h1>
+            <p class="hero-subtitle">
+                A research collective dedicated to breakthrough discoveries in neuroscience, pharmacology, and consciousness studies. Established December 22nd, 2019.
+            </p>
+        </div>
+    </section>
+
+    <!-- Mission Statement -->
+    <div class="content-section">
+        <div class="mission-statement">
+            <h2>OUR MISSION</h2>
+            <p>
+                To advance human knowledge through rigorous empirical research, challenging conventional understanding of neurodevelopment, pharmacology, and consciousness. We pursue breakthrough discoveries that push the boundaries of scientific understanding and provide practical solutions for real-world challenges.
+            </p>
+        </div>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="content-section">
+        <h2 class="section-title">BY THE NUMBERS</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">20+</div>
+                <div class="stat-label">Research Papers</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">2019</div>
+                <div class="stat-label">Established</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">5+</div>
+                <div class="stat-label">Years Active</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">∞</div>
+                <div class="stat-label">Discoveries Ahead</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Origin Story -->
+    <div class="content-section">
+        <h2 class="section-title">THE ORIGIN</h2>
+        <div class="content-block">
+            <h3>December 22nd, 2019</h3>
+            <p>
+                1142 Labs was founded on the winter solstice of 2019 with a singular vision: to challenge the boundaries of conventional neuroscience and pharmacology research. What began as an independent research initiative has evolved into a comprehensive body of work spanning neurodevelopment, consciousness studies, and breakthrough pharmacological discoveries.
+            </p>
+            <p>
+                The name "1142" represents more than a numerical designation—it embodies a philosophy of precision, clarity, and the pursuit of knowledge at the intersection of science and consciousness. Every research paper, every discovery, every breakthrough carries the weight of this mission.
+            </p>
+        </div>
+    </div>
+
+    <!-- Founder Section -->
+    <div class="content-section">
+        <h2 class="section-title">THE FOUNDER</h2>
+        <div class="founder-section">
+            <div>
+                <img src="assets/hero-burst-1142.png" alt="Cole EverDark" class="founder-image">
+            </div>
+            <div class="founder-content">
+                <h3>Cole EverDark</h3>
+                <p>
+                    Creator, researcher, and visionary behind 1142 Labs. Cole EverDark has authored over 20 research papers exploring the frontiers of neuroscience, pharmacology, and consciousness studies. His work challenges conventional paradigms and offers new frameworks for understanding cognitive enhancement, neurodevelopment, and the intersection of pharmacology and human potential.
+                </p>
+                <p>
+                    With a background spanning empirical research, systems thinking, and creative synthesis, Cole brings a unique perspective to scientific inquiry—one that values both rigorous methodology and bold exploration of uncharted territories.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Core Values -->
+    <div class="content-section">
+        <h2 class="section-title">CORE VALUES</h2>
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon">🔬</div>
+                <h4>Empirical Rigor</h4>
+                <p>Every claim is backed by data. Every hypothesis is tested. We believe in the power of the scientific method to reveal truth.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">💡</div>
+                <h4>Bold Innovation</h4>
+                <p>We challenge conventional wisdom and explore ideas others dismiss. Breakthrough discoveries require breakthrough thinking.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🧠</div>
+                <h4>Consciousness First</h4>
+                <p>Understanding the mind is the key to unlocking human potential. Our research centers on the mechanisms of consciousness and cognition.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">⚡</div>
+                <h4>Practical Impact</h4>
+                <p>Research must serve humanity. We focus on discoveries that offer real-world solutions to pressing challenges.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🌐</div>
+                <h4>Open Knowledge</h4>
+                <p>Science belongs to everyone. We share our findings openly to accelerate collective understanding.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🔮</div>
+                <h4>Future-Focused</h4>
+                <p>We don't just study what is—we explore what could be. Tomorrow's solutions are being built today.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="content-section">
+        <h2 class="section-title">TIMELINE</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">December 22, 2019</div>
+                <div class="timeline-content">
+                    1142 Labs officially established. Initial research focus on neurodevelopment and pharmacology.
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2020-2021</div>
+                <div class="timeline-content">
+                    First wave of breakthrough research papers published. Development of novel frameworks for understanding cognitive enhancement and withdrawal support.
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2022-2023</div>
+                <div class="timeline-content">
+                    Expansion into consciousness studies and advanced pharmacological research. Publication of comprehensive methylphenidate research series.
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2024-2025</div>
+                <div class="timeline-content">
+                    Launch of 1142 Labs digital presence. Development of interactive tools and resources for researchers and practitioners.
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2026 & Beyond</div>
+                <div class="timeline-content">
+                    Continued research expansion. New discoveries in neuroscience, pharmacology, and the frontiers of human consciousness.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Research Philosophy -->
+    <div class="content-section">
+        <div class="content-block">
+            <h3>Research Philosophy</h3>
+            <p>
+                At 1142 Labs, we believe that the most important discoveries lie at the intersection of disciplines. Our research methodology combines rigorous empirical analysis with creative synthesis, allowing us to see patterns and connections that traditional siloed approaches might miss.
+            </p>
+            <p>
+                We approach every question with intellectual humility and scientific courage—humble enough to acknowledge what we don't know, courageous enough to challenge what we think we do. This balance drives us toward genuine breakthroughs rather than incremental refinements of existing paradigms.
+            </p>
+            <p>
+                Our work is guided by a simple principle: <strong>truth over comfort</strong>. We follow the data wherever it leads, even when it contradicts prevailing assumptions or challenges established orthodoxy. This commitment to intellectual honesty is the foundation of everything we do.
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="creators.html">Creators</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="calculator.html">Calculator</a></li>
+                    <li><a href="posters.html">Posters</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Research</h4>
+                <ul>
+                    <li><a href="breakthroughs.html">Breakthroughs</a></li>
+                    <li><a href="vision.html">Vision</a></li>
+                    <li><a href="graphics.html">Graphics</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 1142 Labs - Established December 22nd, 2019</p>
+            <p style="margin-top: 10px; color: #00FFFF;">An EverDark Production</p>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,558 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research | 1142 LABS</title>
+    <meta name="description" content="Explore 20+ breakthrough research papers by Cole EverDark covering neuroscience, pharmacology, consciousness studies, and cognitive enhancement.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/3d-effects.css">
+    <link rel="stylesheet" href="assets/css/3d-glasses-glitch.css">
+    
+    <style>
+        body {
+            background: #0F172A;
+            color: #E2E8F0;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .hero-research {
+            position: relative;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0F172A;
+            overflow: hidden;
+        }
+        
+        .hero-research video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            opacity: 0.4;
+            object-fit: cover;
+        }
+        
+        .hero-research::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.95));
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 60px 20px;
+            max-width: 1200px;
+        }
+        
+        .hero-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 900;
+            margin: 0 0 30px 0;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #00FFFF, #6D28D9, #EC4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px rgba(0, 255, 255, 0.5);
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            font-weight: 300;
+            max-width: 900px;
+            margin: 0 auto 40px auto;
+            line-height: 1.7;
+            color: #94A3B8;
+        }
+        
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        
+        .stat-box {
+            background: rgba(0, 255, 255, 0.1);
+            border: 2px solid rgba(0, 255, 255, 0.4);
+            border-radius: 12px;
+            padding: 20px 40px;
+            min-width: 150px;
+        }
+        
+        .stat-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: #00FFFF;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: #94A3B8;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .content-section {
+            max-width: 1400px;
+            margin: 80px auto;
+            padding: 0 40px;
+        }
+        
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            margin-bottom: 40px;
+            color: #00FFFF;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            text-align: center;
+        }
+        
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 40px;
+            margin: 60px 0;
+        }
+        
+        .research-card {
+            background: rgba(0, 255, 255, 0.05);
+            border: 2px solid rgba(0, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .research-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .research-card:hover::before {
+            left: 100%;
+        }
+        
+        .research-card:hover {
+            transform: translateY(-10px);
+            border-color: #00FFFF;
+            box-shadow: 0 10px 40px rgba(0, 255, 255, 0.3);
+        }
+        
+        .research-category {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            color: #EC4899;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+        
+        .research-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            color: #00FFFF;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+        
+        .research-card p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #CBD5E1;
+            margin-bottom: 20px;
+        }
+        
+        .research-meta {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0, 255, 255, 0.2);
+        }
+        
+        .meta-item {
+            font-size: 0.9rem;
+            color: #64748B;
+        }
+        
+        .meta-item strong {
+            color: #00FFFF;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #00FFFF, #6D28D9);
+            color: #0F172A;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
+            margin-top: 20px;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 50px rgba(0, 255, 255, 0.6);
+        }
+        
+        .categories-filter {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 40px 0;
+        }
+        
+        .category-badge {
+            padding: 12px 30px;
+            background: rgba(0, 255, 255, 0.1);
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            border-radius: 30px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            color: #00FFFF;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .category-badge:hover {
+            background: rgba(0, 255, 255, 0.2);
+            border-color: #00FFFF;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+        }
+        
+        .intro-block {
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(109, 40, 217, 0.1));
+            border: 3px solid rgba(0, 255, 255, 0.4);
+            border-radius: 25px;
+            padding: 60px;
+            text-align: center;
+            margin: 60px 0;
+        }
+        
+        .intro-block p {
+            font-size: 1.3rem;
+            line-height: 1.9;
+            color: #E2E8F0;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        footer {
+            background: rgba(15, 23, 42, 0.95);
+            border-top: 2px solid #00FFFF;
+            padding: 60px 40px 30px 40px;
+            margin-top: 100px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h4 {
+            font-family: 'Orbitron', sans-serif;
+            color: #00FFFF;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #94A3B8;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #00FFFF;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(0, 255, 255, 0.2);
+            color: #64748B;
+        }
+        
+        @media (max-width: 768px) {
+            .research-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .intro-block {
+                padding: 40px 30px;
+            }
+        }
+        
+        /* Navigation Styles */
+        .nav-link:hover {
+            color: #00FFFF;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+        }
+        
+        .nav-link.active {
+            color: #00FFFF;
+            border-bottom: 3px solid #00FFFF;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+        }
+        
+        .nav-link-secondary:hover {
+            color: #00FFFF;
+            text-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
+        }
+    </style>
+</head>
+<body data-page="research">
+
+    <!-- Navigation - Option A Design -->
+<nav style="position: sticky; top: 0; z-index: 1000; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); border-bottom: 2px solid #00FFFF; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);">
+    <div style="max-width: 1600px; margin: 0 auto; padding: 20px 40px;">
+        <!-- Logo and Main Title -->
+        <div style="text-align: center; margin-bottom: 20px;">
+            <h1 style="font-family: 'Orbitron', sans-serif; font-size: 2.5rem; font-weight: 900; margin: 0; background: linear-gradient(90deg, #00FFFF, #6D28D9, #EC4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-shadow: 0 0 30px rgba(0, 255, 255, 0.5);">
+                1142 LABS
+            </h1>
+            <p style="font-family: 'Orbitron', sans-serif; color: #64748B; font-size: 0.9rem; letter-spacing: 3px; margin: 5px 0 0 0;">TOMORROW'S SOLUTIONS TODAY</p>
+        </div>
+        
+        <!-- Main Navigation -->
+        <div style="display: flex; gap: 40px; align-items: center; flex-wrap: wrap; border-bottom: 1px solid rgba(0, 255, 255, 0.2); padding-bottom: 15px; justify-content: center;">
+            <a href="index.html" class="nav-link" data-page="home" style="font-family: 'Orbitron', sans-serif; color: #94A3B8; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease; position: relative; padding-bottom: 5px;">HOME</a>
+            <a href="about.html" class="nav-link" data-page="about" style="font-family: 'Orbitron', sans-serif; color: #94A3B8; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease; position: relative; padding-bottom: 5px;">ABOUT</a>
+            <a href="breakthroughs.html" class="nav-link active" data-page="research" style="font-family: 'Orbitron', sans-serif; color: #00FFFF; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease; position: relative; padding-bottom: 5px;">RESEARCH</a>
+            <a href="vision.html" class="nav-link" data-page="creators" style="font-family: 'Orbitron', sans-serif; color: #94A3B8; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease; position: relative; padding-bottom: 5px;">CREATORS</a>
+        </div>
+        
+        <!-- Secondary Navigation -->
+        <div style="display: flex; gap: 30px; align-items: center; flex-wrap: wrap; margin-top: 15px; justify-content: center;">
+            <a href="resources.html" class="nav-link-secondary" style="font-family: 'Orbitron', sans-serif; color: #64748B; text-decoration: none; font-weight: 500; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">RESOURCES</a>
+            <a href="calculator.html" class="nav-link-secondary" style="font-family: 'Orbitron', sans-serif; color: #64748B; text-decoration: none; font-weight: 500; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">CALCULATOR</a>
+            <a href="posters.html" class="nav-link-secondary" style="font-family: 'Orbitron', sans-serif; color: #64748B; text-decoration: none; font-weight: 500; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">POSTERS</a>
+            <a href="links.html" class="nav-link-secondary" style="font-family: 'Orbitron', sans-serif; color: #64748B; text-decoration: none; font-weight: 500; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">LINKS</a>
+            <a href="st-jimmy.html" class="nav-link-secondary" style="font-family: 'Orbitron', sans-serif; color: #64748B; text-decoration: none; font-weight: 500; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">ST. JIMMY</a>
+        </div>
+    </div>
+</nav>
+
+    <!-- Hero Section -->
+    <section class="hero-research">
+        <video autoplay loop muted playsinline>
+            <source src="assets/videos/research-breakthrough-burst.mp4" type="video/mp4">
+        </video>
+        <div class="hero-content">
+            <h1 class="hero-title">RESEARCH</h1>
+            <p class="hero-subtitle">
+                Breakthrough discoveries in neuroscience, pharmacology, and consciousness studies. 20+ research papers challenging conventional paradigms.
+            </p>
+            <div class="hero-stats">
+                <div class="stat-box">
+                    <div class="stat-number">20+</div>
+                    <div class="stat-label">Papers</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">5+</div>
+                    <div class="stat-label">Years</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Impact</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Introduction -->
+    <div class="content-section">
+        <div class="intro-block">
+            <p>
+                Our research portfolio spans neurodevelopment, pharmacology, consciousness studies, and cognitive enhancement. Each paper represents a rigorous exploration of uncharted territory—challenging assumptions, revealing patterns, and offering new frameworks for understanding the human mind.
+            </p>
+        </div>
+    </div>
+
+    <!-- Research Categories -->
+    <div class="content-section">
+        <h2 class="section-title">RESEARCH AREAS</h2>
+        <div class="categories-filter">
+            <div class="category-badge">Neuroscience</div>
+            <div class="category-badge">Pharmacology</div>
+            <div class="category-badge">Consciousness</div>
+            <div class="category-badge">Cognitive Enhancement</div>
+            <div class="category-badge">Withdrawal Support</div>
+        </div>
+    </div>
+
+    <!-- Featured Research -->
+    <div class="content-section">
+        <h2 class="section-title">FEATURED RESEARCH</h2>
+        <div class="research-grid">
+            
+            <div class="research-card">
+                <div class="research-category">Pharmacology</div>
+                <h3>Methylphenidate Research Series</h3>
+                <p>Comprehensive analysis of methylphenidate mechanisms, withdrawal protocols, and cognitive enhancement applications. A multi-paper series exploring therapeutic windows and neuroadaptive responses.</p>
+                <div class="research-meta">
+                    <div class="meta-item"><strong>Author:</strong> Cole EverDark</div>
+                    <div class="meta-item"><strong>Papers:</strong> 8+</div>
+                </div>
+                <a href="breakthroughs.html" class="cta-button">Explore Series →</a>
+            </div>
+
+            <div class="research-card">
+                <div class="research-category">Neuroscience</div>
+                <h3>Neurodevelopment & Cognitive Architecture</h3>
+                <p>Investigations into the structural foundations of cognitive function, exploring how developmental trajectories shape adult cognition and potential intervention points.</p>
+                <div class="research-meta">
+                    <div class="meta-item"><strong>Author:</strong> Cole EverDark</div>
+                    <div class="meta-item"><strong>Papers:</strong> 5+</div>
+                </div>
+                <a href="breakthroughs.html" class="cta-button">Read Research →</a>
+            </div>
+
+            <div class="research-card">
+                <div class="research-category">Consciousness Studies</div>
+                <h3>Psychedelic Research & Consciousness Expansion</h3>
+                <p>Challenging conventional understanding of psychedelics through empirical analysis of subjective experience, neuroplasticity, and therapeutic applications.</p>
+                <div class="research-meta">
+                    <div class="meta-item"><strong>Author:</strong> Cole EverDark</div>
+                    <div class="meta-item"><strong>Papers:</strong> 4+</div>
+                </div>
+                <a href="breakthroughs.html" class="cta-button">Discover More →</a>
+            </div>
+
+            <div class="research-card">
+                <div class="research-category">Withdrawal Support</div>
+                <h3>Evidence-Based Withdrawal Protocols</h3>
+                <p>Practical frameworks for managing pharmaceutical withdrawal, combining pharmacological understanding with real-world application strategies.</p>
+                <div class="research-meta">
+                    <div class="meta-item"><strong>Author:</strong> Cole EverDark</div>
+                    <div class="meta-item"><strong>Papers:</strong> 3+</div>
+                </div>
+                <a href="breakthroughs.html" class="cta-button">View Protocols →</a>
+            </div>
+
+            <div class="research-card">
+                <div class="research-category">Cognitive Enhancement</div>
+                <h3>Nootropics & Performance Optimization</h3>
+                <p>Systematic exploration of cognitive enhancement compounds, mechanisms of action, and evidence-based protocols for sustainable performance improvement.</p>
+                <div class="research-meta">
+                    <div class="meta-item"><strong>Author:</strong> Cole EverDark</div>
+                    <div class="meta-item"><strong>Papers:</strong> 3+</div>
+                </div>
+                <a href="breakthroughs.html" class="cta-button">Learn More →</a>
+            </div>
+
+            <div class="research-card">
+                <div class="research-category">Neuropharmacology</div>
+                <h3>Receptor Dynamics & Neural Signaling</h3>
+                <p>Deep dives into receptor mechanisms, neurotransmitter systems, and the molecular basis of cognitive and emotional regulation.</p>
+                <div class="research-meta">
+                    <div class="meta-item"><strong>Author:</strong> Cole EverDark</div>
+                    <div class="meta-item"><strong>Papers:</strong> 2+</div>
+                </div>
+                <a href="breakthroughs.html" class="cta-button">Explore Science →</a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="content-section">
+        <div class="intro-block">
+            <h2 style="font-family: 'Orbitron', sans-serif; font-size: 2.5rem; color: #00FFFF; margin-bottom: 30px;">Explore All Breakthroughs</h2>
+            <p style="margin-bottom: 30px;">
+                Dive deeper into our complete research portfolio. Each breakthrough represents years of investigation, synthesis, and discovery.
+            </p>
+            <a href="breakthroughs.html" class="cta-button" style="font-size: 1.2rem; padding: 20px 50px;">View All Research Papers →</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="creators.html">Creators</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="calculator.html">Calculator</a></li>
+                    <li><a href="posters.html">Posters</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Research</h4>
+                <ul>
+                    <li><a href="breakthroughs.html">Breakthroughs</a></li>
+                    <li><a href="vision.html">Vision</a></li>
+                    <li><a href="graphics.html">Graphics</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 1142 Labs - Established December 22nd, 2019</p>
+            <p style="margin-top: 10px; color: #00FFFF;">An EverDark Production</p>
+        </div>
+    </footer>
+
+</body>
+</html>

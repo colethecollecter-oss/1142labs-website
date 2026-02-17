@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>St. Jimmy | 1142 LABS</title>
+    <meta name="description" content="St. Jimmy - A tribute to the rebel spirit that drives 1142 Labs.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/3d-effects.css">
+    <link rel="stylesheet" href="assets/css/3d-glasses-glitch.css">
+    
+    <style>
+        body {
+            background: #0F172A;
+            color: #E2E8F0;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .hero-jimmy {
+            position: relative;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0F172A;
+            overflow: hidden;
+        }
+        
+        .hero-jimmy video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            opacity: 0.4;
+            object-fit: cover;
+        }
+        
+        .hero-jimmy::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.95));
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 80px 20px;
+            max-width: 1000px;
+        }
+        
+        .hero-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(4rem, 10vw, 8rem);
+            font-weight: 900;
+            margin: 0 0 30px 0;
+            line-height: 1;
+            background: linear-gradient(135deg, #EC4899, #00FFFF, #6D28D9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 60px rgba(236, 72, 153, 0.6);
+            animation: glitchText 5s ease-in-out infinite;
+        }
+        
+        @keyframes glitchText {
+            0%, 100% { transform: translateX(0); }
+            20% { transform: translateX(-2px); }
+            40% { transform: translateX(2px); }
+            60% { transform: translateX(-2px); }
+            80% { transform: translateX(2px); }
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1.3rem, 3vw, 2rem);
+            font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            line-height: 1.7;
+            color: #EC4899;
+            text-shadow: 0 0 20px rgba(236, 72, 153, 0.5);
+        }
+        
+        .content-section {
+            max-width: 1000px;
+            margin: 80px auto;
+            padding: 0 40px;
+        }
+        
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            margin-bottom: 40px;
+            color: #EC4899;
+            text-shadow: 0 0 20px rgba(236, 72, 153, 0.5);
+            text-align: center;
+        }
+        
+        .jimmy-block {
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(0, 255, 255, 0.1));
+            border: 3px solid rgba(236, 72, 153, 0.4);
+            border-radius: 25px;
+            padding: 60px;
+            margin: 60px 0;
+            text-align: center;
+        }
+        
+        .jimmy-block h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            color: #EC4899;
+            margin-bottom: 30px;
+        }
+        
+        .jimmy-block p {
+            font-size: 1.3rem;
+            line-height: 1.9;
+            color: #E2E8F0;
+            margin-bottom: 25px;
+        }
+        
+        .manifesto {
+            background: rgba(236, 72, 153, 0.05);
+            border: 2px solid rgba(236, 72, 153, 0.3);
+            border-radius: 20px;
+            padding: 50px;
+            margin: 60px 0;
+        }
+        
+        .manifesto h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            color: #EC4899;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .manifesto-item {
+            margin: 30px 0;
+            padding-left: 30px;
+            border-left: 4px solid #EC4899;
+        }
+        
+        .manifesto-item h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: #00FFFF;
+            margin-bottom: 15px;
+        }
+        
+        .manifesto-item p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #CBD5E1;
+        }
+        
+        .quote-block {
+            background: rgba(0, 255, 255, 0.05);
+            border-left: 5px solid #00FFFF;
+            padding: 40px;
+            margin: 60px 0;
+        }
+        
+        .quote-block p {
+            font-size: 1.5rem;
+            line-height: 1.8;
+            color: #E2E8F0;
+            font-style: italic;
+            margin: 0;
+        }
+        
+        .spirit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+        
+        .spirit-card {
+            background: rgba(236, 72, 153, 0.05);
+            border: 2px solid rgba(236, 72, 153, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .spirit-card:hover {
+            border-color: #EC4899;
+            box-shadow: 0 10px 40px rgba(236, 72, 153, 0.3);
+            transform: translateY(-10px);
+        }
+        
+        .spirit-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        
+        .spirit-card h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: #EC4899;
+            margin-bottom: 15px;
+        }
+        
+        .spirit-card p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #CBD5E1;
+        }
+        
+        footer {
+            background: rgba(15, 23, 42, 0.95);
+            border-top: 2px solid #00FFFF;
+            padding: 60px 40px 30px 40px;
+            margin-top: 100px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h4 {
+            font-family: 'Orbitron', sans-serif;
+            color: #00FFFF;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #94A3B8;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #00FFFF;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(0, 255, 255, 0.2);
+            color: #64748B;
+        }
+        
+        /* Navigation Styles */
+        .nav-link:hover {
+            color: #00FFFF;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+        }
+        
+        .nav-link.active {
+            color: #00FFFF;
+            border-bottom: 3px solid #00FFFF;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+        }
+        
+        .nav-link-secondary:hover {
+            color: #00FFFF;
+            text-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
+        }
+        
+        .nav-link-secondary.active {
+            color: #00FFFF;
+            text-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
+        }
+    </style>
+</head>
+<body data-page="st-jimmy">
+
+    <!-- Navigation - Option A Design -->
+<nav style="position: sticky; top: 0; z-index: 1000; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); border-bottom: 2px solid #00FFFF; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);">
+    <div style="max-width: 1600px; margin: 0 auto; padding: 20px 40px;">
+        <!-- Logo and Main Title -->
+        <div style="text-align: center; margin-bottom: 20px;">
+            <h1 style="font-family: 'Orbitron', sans-serif; font-size: 2.5rem; font-weight: 900; margin: 0; background: linear-gradient(90deg, #00FFFF, #6D28D9, #EC4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-shadow: 0 0 30px rgba(0, 255, 255, 0.5);">
+                1142 LABS
+            </h1>
+            <p style="font-family: 'Orbitron', sans-serif; color: #64748B; font-size: 0.9rem; letter-spacing: 3px; margin: 5px 0 0 0;">TOMORROW'S SOLUTIONS TODAY</p>
+        </div>
+        
+        <!-- Main Navigation -->
+        <div style="display: flex; gap: 40px; align-items: center; flex-wrap: wrap; border-bottom: 1px solid rgba(0, 255, 255, 0.2); padding-bottom: 15px; justify-content: center;">
+            <a href="index.html" class="nav-link" data-page="home" style="font-family: 'Orbitron', sans-serif; color: #94A3B8; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease; position: relative; padding-bottom: 5px;">HOME</a>
+            <a href="about.html" class="nav-link" data-page="about" style="font-family: 'Orbitron', sans-serif; color: #94A3B8; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease; position: relative; padding-bottom: 5px;">ABOUT</a>
+            <a href="breakthroughs.html" class="nav-link" data-page="research" style="font-family: 'Orbitron', sans-serif; color: #94A3B8; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease; position: relative; padding-bottom: 5px;">RESEARCH</a>
+            <a href="vision.html" class="nav-link" data-page="creators" style="font-family: 'Orbitron', sans-serif; color: #94A3B8; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease; position: relative; padding-bottom: 5px;">CREATORS</a>
+        </div>
+        
+        <!-- Secondary Navigation -->
+        <div style="display: flex; gap: 30px; align-items: center; flex-wrap: wrap; margin-top: 15px; justify-content: center;">
+            <a href="resources.html" class="nav-link-secondary" style="font-family: 'Orbitron', sans-serif; color: #64748B; text-decoration: none; font-weight: 500; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">RESOURCES</a>
+            <a href="calculator.html" class="nav-link-secondary" style="font-family: 'Orbitron', sans-serif; color: #64748B; text-decoration: none; font-weight: 500; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">CALCULATOR</a>
+            <a href="posters.html" class="nav-link-secondary" style="font-family: 'Orbitron', sans-serif; color: #64748B; text-decoration: none; font-weight: 500; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">POSTERS</a>
+            <a href="links.html" class="nav-link-secondary" style="font-family: 'Orbitron', sans-serif; color: #64748B; text-decoration: none; font-weight: 500; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">LINKS</a>
+            <a href="st-jimmy.html" class="nav-link-secondary active" style="font-family: 'Orbitron', sans-serif; color: #00FFFF; text-decoration: none; font-weight: 500; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">ST. JIMMY</a>
+        </div>
+    </div>
+</nav>
+
+    <!-- Hero Section -->
+    <section class="hero-jimmy">
+        <video autoplay loop muted playsinline>
+            <source src="assets/videos/neural-cityscape-animated.mp4" type="video/mp4">
+        </video>
+        <div class="hero-content">
+            <h1 class="hero-title">ST. JIMMY</h1>
+            <p class="hero-subtitle">
+                The rebel spirit. The disruptor. The voice that refuses to accept "that's just how it is."
+            </p>
+        </div>
+    </section>
+
+    <!-- Introduction -->
+    <div class="content-section">
+        <div class="jimmy-block">
+            <h2>The Patron Saint of Rebellion</h2>
+            <p>
+                St. Jimmy represents the defiant energy that drives 1142 Labs. The refusal to accept conventional wisdom. The courage to challenge established paradigms. The audacity to ask "what if we're wrong?"
+            </p>
+            <p>
+                This is not rebellion for its own sake—it's rebellion in service of truth. It's the spirit that says: if the current answers are insufficient, we'll find better ones.
+            </p>
+        </div>
+    </div>
+
+    <!-- The Spirit -->
+    <div class="content-section">
+        <h2 class="section-title">THE SPIRIT OF ST. JIMMY</h2>
+        <div class="spirit-grid">
+            
+            <div class="spirit-card">
+                <div class="spirit-icon">🔥</div>
+                <h4>Defiant Curiosity</h4>
+                <p>Question everything. Accept nothing at face value. If it doesn't make sense, dig deeper.</p>
+            </div>
+
+            <div class="spirit-card">
+                <div class="spirit-icon">⚡</div>
+                <h4>Fearless Innovation</h4>
+                <p>Explore the edges. Push boundaries. The most important discoveries live where others fear to look.</p>
+            </div>
+
+            <div class="spirit-card">
+                <div class="spirit-icon">💥</div>
+                <h4>Radical Honesty</h4>
+                <p>Follow the data wherever it leads. Truth over comfort. Reality over consensus.</p>
+            </div>
+
+            <div class="spirit-card">
+                <div class="spirit-icon">🎸</div>
+                <h4>Creative Chaos</h4>
+                <p>Breakthrough comes from disruption. Embrace the chaos. Build something new from the fragments.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Manifesto -->
+    <div class="content-section">
+        <div class="manifesto">
+            <h3>THE ST. JIMMY MANIFESTO</h3>
+            
+            <div class="manifesto-item">
+                <h4>I. Challenge Authority</h4>
+                <p>Not all authority, but all claims to authority. Credentials don't guarantee truth. Consensus doesn't equal correctness. Question the experts. Verify the data. Think for yourself.</p>
+            </div>
+
+            <div class="manifesto-item">
+                <h4>II. Embrace the Uncomfortable</h4>
+                <p>The most important truths are often the most uncomfortable. If an idea makes you squirm, that's a sign it's worth exploring. Comfort is the enemy of discovery.</p>
+            </div>
+
+            <div class="manifesto-item">
+                <h4>III. Build, Don't Just Critique</h4>
+                <p>It's easy to tear down. It's hard to build. Rebellion without creation is just noise. Challenge the paradigm, then build a better one.</p>
+            </div>
+
+            <div class="manifesto-item">
+                <h4>IV. Own Your Mistakes</h4>
+                <p>Being wrong is part of the process. What matters is how quickly you recognize it and course-correct. Intellectual honesty requires admitting when you're wrong.</p>
+            </div>
+
+            <div class="manifesto-item">
+                <h4>V. Never Stop Questioning</h4>
+                <p>The moment you think you have all the answers is the moment you stop learning. Stay curious. Stay skeptical. Stay hungry for truth.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Quote -->
+    <div class="content-section">
+        <div class="quote-block">
+            <p>
+                "St. Jimmy isn't a person—it's a mindset. It's the part of you that refuses to settle for insufficient answers. It's the voice that says 'we can do better.' That's the spirit that built 1142."
+            </p>
+        </div>
+    </div>
+
+    <!-- Closing -->
+    <div class="content-section">
+        <div class="jimmy-block">
+            <h2>Channel the Spirit</h2>
+            <p>
+                You don't need permission to question. You don't need credentials to think. You don't need approval to explore.
+            </p>
+            <p>
+                St. Jimmy lives in everyone who refuses to accept "good enough" when "better" is possible. In everyone who sees a problem and thinks "I can solve this." In everyone who hears "that's impossible" and thinks "let's find out."
+            </p>
+            <p style="font-size: 1.5rem; color: #EC4899; margin-top: 40px;">
+                Be the disruptor. Be the questioner. Be St. Jimmy.
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="creators.html">Creators</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="calculator.html">Calculator</a></li>
+                    <li><a href="posters.html">Posters</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Research</h4>
+                <ul>
+                    <li><a href="breakthroughs.html">Breakthroughs</a></li>
+                    <li><a href="vision.html">Vision</a></li>
+                    <li><a href="graphics.html">Graphics</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 1142 Labs - Established December 22nd, 2019</p>
+            <p style="margin-top: 10px; color: #00FFFF;">An EverDark Production</p>
+        </div>
+    </footer>
+
+</body>
+</html>

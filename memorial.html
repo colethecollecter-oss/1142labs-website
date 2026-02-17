@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memorial | 1142 LABS</title>
+    <meta name="description" content="In memory of those lost to the struggles we research. A space for reflection and remembrance.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/3d-effects.css">
+    <link rel="stylesheet" href="assets/css/3d-glasses-glitch.css">
+    
+    <style>
+        body {
+            background: #0F172A;
+            color: #E2E8F0;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .hero-memorial {
+            position: relative;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0F172A;
+            overflow: hidden;
+        }
+        
+        .hero-memorial::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(0, 255, 255, 0.05), transparent 70%);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 80px 20px;
+            max-width: 1000px;
+        }
+        
+        .hero-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            margin: 0 0 40px 0;
+            line-height: 1.1;
+            color: #00FFFF;
+            text-shadow: 0 0 40px rgba(0, 255, 255, 0.5);
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.9;
+            color: #CBD5E1;
+        }
+        
+        .content-section {
+            max-width: 1000px;
+            margin: 80px auto;
+            padding: 0 40px;
+        }
+        
+        .memorial-block {
+            background: rgba(0, 255, 255, 0.03);
+            border: 2px solid rgba(0, 255, 255, 0.2);
+            border-radius: 25px;
+            padding: 60px;
+            margin: 60px 0;
+            text-align: center;
+        }
+        
+        .memorial-block h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            color: #00FFFF;
+            margin-bottom: 30px;
+        }
+        
+        .memorial-block p {
+            font-size: 1.3rem;
+            line-height: 1.9;
+            color: #E2E8F0;
+            margin-bottom: 25px;
+        }
+        
+        .candle-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 60px 0;
+        }
+        
+        .candle {
+            font-size: 4rem;
+            animation: flicker 3s ease-in-out infinite;
+        }
+        
+        @keyframes flicker {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+        
+        .reflection-text {
+            font-size: 1.2rem;
+            line-height: 2;
+            color: #CBD5E1;
+            text-align: center;
+            max-width: 800px;
+            margin: 40px auto;
+            font-style: italic;
+        }
+        
+        .dedication {
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(109, 40, 217, 0.1));
+            border: 3px solid rgba(0, 255, 255, 0.4);
+            border-radius: 25px;
+            padding: 60px;
+            margin: 80px 0;
+            text-align: center;
+        }
+        
+        .dedication h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            color: #00FFFF;
+            margin-bottom: 30px;
+        }
+        
+        .dedication p {
+            font-size: 1.2rem;
+            line-height: 1.9;
+            color: #E2E8F0;
+        }
+        
+        .quote-block {
+            border-left: 4px solid #00FFFF;
+            padding-left: 30px;
+            margin: 60px 0;
+        }
+        
+        .quote-block p {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            color: #E2E8F0;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        
+        .quote-author {
+            font-size: 1.1rem;
+            color: #00FFFF;
+            font-style: normal;
+        }
+        
+        footer {
+            background: rgba(15, 23, 42, 0.95);
+            border-top: 2px solid #00FFFF;
+            padding: 60px 40px 30px 40px;
+            margin-top: 100px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h4 {
+            font-family: 'Orbitron', sans-serif;
+            color: #00FFFF;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #94A3B8;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #00FFFF;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(0, 255, 255, 0.2);
+            color: #64748B;
+        }
+        
+        /* Navigation Styles */
+        .nav-link:hover {
+            color: #00FFFF;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+        }
+        
+        .nav-link.active {
+            color: #00FFFF;
+            border-bottom: 3px solid #00FFFF;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+        }
+        
+        .nav-link-secondary:hover {
+            color: #00FFFF;
+            text-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
+        }
+    </style>
+</head>
+<body data-page="memorial">
+
+    <!-- Navigation - Option A Design -->
+<nav style="position: sticky; top: 0; z-index: 1000; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); border-bottom: 2px solid #00FFFF; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);">
+    <div style="max-width: 1600px; margin: 0 auto; padding: 20px 40px;">
+        <!-- Logo and Main Title -->
+        <div style="text-align: center; margin-bottom: 20px;">
+            <h1 style="font-family: 'Orbitron', sans-serif; font-size: 2.5rem; font-weight: 900; margin: 0; background: linear-gradient(90deg, #00FFFF, #6D28D9, #EC4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-shadow: 0 0 30px rgba(0, 255, 255, 0.5);">
+                1142 LABS
+            </h1>
+            <p style="font-family: 'Orbitron', sans-serif; color: #64748B; font-size: 0.9rem; letter-spacing: 3px; margin: 5px 0 0 0;">TOMORROW'S SOLUTIONS TODAY</p>
+        </div>
+        
+        <!-- Main Navigation -->
+        <div style="display: flex; gap: 40px; align-items: center; flex-wrap: wrap; border-bottom: 1px solid rgba(0, 255, 255, 0.2); padding-bottom: 15px; justify-content: center;">
+            <a href="index.html" class="nav-link" data-page="home" style="font-family: 'Orbitron', sans-serif; color: #94A3B8; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease; position: relative; padding-bottom: 5px;">HOME</a>
+            <a href="about.html" class="nav-link" data-page="about" style="font-family: 'Orbitron', sans-serif; color: #94A3B8; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease; position: relative; padding-bottom: 5px;">ABOUT</a>
+            <a href="breakthroughs.html" class="nav-link" data-page="research" style="font-family: 'Orbitron', sans-serif; color: #94A3B8; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease; position: relative; padding-bottom: 5px;">RESEARCH</a>
+            <a href="vision.html" class="nav-link" data-page="creators" style="font-family: 'Orbitron', sans-serif; color: #94A3B8; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease; position: relative; padding-bottom: 5px;">CREATORS</a>
+        </div>
+        
+        <!-- Secondary Navigation -->
+        <div style="display: flex; gap: 30px; align-items: center; flex-wrap: wrap; margin-top: 15px; justify-content: center;">
+            <a href="resources.html" class="nav-link-secondary" style="font-family: 'Orbitron', sans-serif; color: #64748B; text-decoration: none; font-weight: 500; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">RESOURCES</a>
+            <a href="calculator.html" class="nav-link-secondary" style="font-family: 'Orbitron', sans-serif; color: #64748B; text-decoration: none; font-weight: 500; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">CALCULATOR</a>
+            <a href="posters.html" class="nav-link-secondary" style="font-family: 'Orbitron', sans-serif; color: #64748B; text-decoration: none; font-weight: 500; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">POSTERS</a>
+            <a href="links.html" class="nav-link-secondary" style="font-family: 'Orbitron', sans-serif; color: #64748B; text-decoration: none; font-weight: 500; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">LINKS</a>
+            <a href="st-jimmy.html" class="nav-link-secondary" style="font-family: 'Orbitron', sans-serif; color: #64748B; text-decoration: none; font-weight: 500; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">ST. JIMMY</a>
+        </div>
+    </div>
+</nav>
+
+    <!-- Hero Section -->
+    <section class="hero-memorial">
+        <div class="hero-content">
+            <h1 class="hero-title">IN MEMORIAM</h1>
+            <p class="hero-subtitle">
+                In memory of those lost to the struggles we research. Their stories fuel our commitment to understanding, healing, and prevention.
+            </p>
+            <div class="candle-container">
+                <div class="candle">🕯️</div>
+                <div class="candle">🕯️</div>
+                <div class="candle">🕯️</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Memorial Message -->
+    <div class="content-section">
+        <div class="memorial-block">
+            <h2>We Remember</h2>
+            <p>
+                This space is dedicated to those who have been lost to addiction, mental health struggles, pharmaceutical dependency, and the battles that our research seeks to understand and address.
+            </p>
+            <p>
+                Every data point represents a human life. Every research paper carries the weight of real suffering and real hope. We do this work not in abstraction, but in service of those who struggle and those who have been lost.
+            </p>
+        </div>
+    </div>
+
+    <!-- Reflection -->
+    <div class="content-section">
+        <div class="quote-block">
+            <p>
+                "The work we do is not just about molecules and mechanisms—it's about people. Real people facing real challenges. Every breakthrough brings us closer to solutions that could save lives."
+            </p>
+            <p class="quote-author">— Cole EverDark, Founder of 1142 Labs</p>
+        </div>
+    </div>
+
+    <!-- Purpose Statement -->
+    <div class="content-section">
+        <div class="memorial-block">
+            <h2>Our Commitment</h2>
+            <p>
+                1142 Labs exists because the current paradigms are insufficient. Too many lives are lost, too many people suffer without adequate support, too many questions remain unanswered.
+            </p>
+            <p>
+                We commit to rigorous research, evidence-based protocols, and the relentless pursuit of knowledge that can prevent future tragedies. This memorial stands as a reminder of why our work matters.
+            </p>
+        </div>
+    </div>
+
+    <!-- Reflection Text -->
+    <div class="content-section">
+        <p class="reflection-text">
+            To those we've lost: Your struggles were not in vain. Your stories inform our research. Your memory drives our mission. We will continue to seek answers, to challenge assumptions, and to build a future where fewer lives are lost to these battles.
+        </p>
+    </div>
+
+    <!-- Dedication -->
+    <div class="content-section">
+        <div class="dedication">
+            <h3>This Research is Dedicated to You</h3>
+            <p>
+                Every paper published, every protocol developed, every breakthrough achieved—it's all in service of preventing future loss. We carry your memory forward in everything we do.
+            </p>
+            <p style="margin-top: 40px; font-size: 1.4rem; color: #00FFFF;">
+                Rest in peace. Your light continues through our work.
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="creators.html">Creators</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="calculator.html">Calculator</a></li>
+                    <li><a href="posters.html">Posters</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Research</h4>
+                <ul>
+                    <li><a href="breakthroughs.html">Breakthroughs</a></li>
+                    <li><a href="vision.html">Vision</a></li>
+                    <li><a href="graphics.html">Graphics</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 1142 Labs - Established December 22nd, 2019</p>
+            <p style="margin-top: 10px; color: #00FFFF;">An EverDark Production</p>
+        </div>
+    </footer>
+
+</body>
+</html>

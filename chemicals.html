@@ -1,0 +1,636 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chemical Database | 1142 LABS</title>
+    <meta name="description" content="Comprehensive chemical database from 1142 Labs research - compounds, mechanisms, and pharmacological profiles.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/3d-effects.css">
+    <link rel="stylesheet" href="assets/css/3d-glasses-glitch.css">
+    
+    <style>
+        body {
+            background: #0F172A;
+            color: #E2E8F0;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .hero-chemicals {
+            position: relative;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0F172A;
+            overflow: hidden;
+        }
+        
+        .hero-chemicals video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            opacity: 0.3;
+            object-fit: cover;
+        }
+        
+        .hero-chemicals::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.95));
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 60px 20px;
+            max-width: 1200px;
+        }
+        
+        .hero-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            margin: 0 0 30px 0;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #00FFFF, #6D28D9, #EC4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px rgba(0, 255, 255, 0.5);
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: 300;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.7;
+            color: #94A3B8;
+        }
+        
+        .content-section {
+            max-width: 1400px;
+            margin: 80px auto;
+            padding: 0 40px;
+        }
+        
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 900;
+            margin-bottom: 40px;
+            color: #00FFFF;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            text-align: center;
+        }
+        
+        .chemical-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+        
+        .chemical-card {
+            background: rgba(0, 255, 255, 0.05);
+            border: 2px solid rgba(0, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 35px;
+            transition: all 0.3s ease;
+        }
+        
+        .chemical-card:hover {
+            border-color: #00FFFF;
+            box-shadow: 0 10px 40px rgba(0, 255, 255, 0.3);
+            transform: translateY(-5px);
+        }
+        
+        .chemical-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 20px;
+        }
+        
+        .chemical-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            color: #00FFFF;
+            margin-bottom: 5px;
+        }
+        
+        .chemical-class {
+            font-size: 0.9rem;
+            color: #EC4899;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        
+        .chemical-formula {
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            color: #6D28D9;
+            background: rgba(109, 40, 217, 0.1);
+            padding: 8px 15px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        
+        .chemical-info {
+            margin: 20px 0;
+        }
+        
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+        }
+        
+        .info-label {
+            font-weight: 600;
+            color: #94A3B8;
+        }
+        
+        .info-value {
+            color: #E2E8F0;
+            text-align: right;
+        }
+        
+        .chemical-description {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #CBD5E1;
+            margin-top: 20px;
+        }
+        
+        .mechanism-box {
+            background: rgba(0, 255, 255, 0.08);
+            border-left: 3px solid #00FFFF;
+            padding: 15px 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        
+        .mechanism-box h5 {
+            font-family: 'Orbitron', sans-serif;
+            color: #00FFFF;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .mechanism-box p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #CBD5E1;
+            margin: 0;
+        }
+        
+        .category-filter {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 40px 0;
+        }
+        
+        .filter-badge {
+            padding: 10px 25px;
+            background: rgba(0, 255, 255, 0.1);
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            border-radius: 25px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            color: #00FFFF;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-badge:hover {
+            background: rgba(0, 255, 255, 0.2);
+            border-color: #00FFFF;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+        }
+        
+        .intro-block {
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(109, 40, 217, 0.1));
+            border: 3px solid rgba(0, 255, 255, 0.4);
+            border-radius: 25px;
+            padding: 50px;
+            text-align: center;
+            margin: 60px 0;
+        }
+        
+        .intro-block p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #E2E8F0;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        footer {
+            background: rgba(15, 23, 42, 0.95);
+            border-top: 2px solid #00FFFF;
+            padding: 60px 40px 30px 40px;
+            margin-top: 100px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h4 {
+            font-family: 'Orbitron', sans-serif;
+            color: #00FFFF;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #94A3B8;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #00FFFF;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(0, 255, 255, 0.2);
+            color: #64748B;
+        }
+        
+        @media (max-width: 768px) {
+            .chemical-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Navigation Styles */
+        .nav-link:hover {
+            color: #00FFFF;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+        }
+        
+        .nav-link.active {
+            color: #00FFFF;
+            border-bottom: 3px solid #00FFFF;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+        }
+        
+        .nav-link-secondary:hover {
+            color: #00FFFF;
+            text-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
+        }
+    </style>
+</head>
+<body data-page="chemicals">
+
+    <!-- Navigation - Option A Design -->
+<nav style="position: sticky; top: 0; z-index: 1000; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); border-bottom: 2px solid #00FFFF; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);">
+    <div style="max-width: 1600px; margin: 0 auto; padding: 20px 40px;">
+        <!-- Logo and Main Title -->
+        <div style="text-align: center; margin-bottom: 20px;">
+            <h1 style="font-family: 'Orbitron', sans-serif; font-size: 2.5rem; font-weight: 900; margin: 0; background: linear-gradient(90deg, #00FFFF, #6D28D9, #EC4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-shadow: 0 0 30px rgba(0, 255, 255, 0.5);">
+                1142 LABS
+            </h1>
+            <p style="font-family: 'Orbitron', sans-serif; color: #64748B; font-size: 0.9rem; letter-spacing: 3px; margin: 5px 0 0 0;">TOMORROW'S SOLUTIONS TODAY</p>
+        </div>
+        
+        <!-- Main Navigation -->
+        <div style="display: flex; gap: 40px; align-items: center; flex-wrap: wrap; border-bottom: 1px solid rgba(0, 255, 255, 0.2); padding-bottom: 15px; justify-content: center;">
+            <a href="index.html" class="nav-link" data-page="home" style="font-family: 'Orbitron', sans-serif; color: #94A3B8; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease; position: relative; padding-bottom: 5px;">HOME</a>
+            <a href="about.html" class="nav-link" data-page="about" style="font-family: 'Orbitron', sans-serif; color: #94A3B8; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease; position: relative; padding-bottom: 5px;">ABOUT</a>
+            <a href="breakthroughs.html" class="nav-link" data-page="research" style="font-family: 'Orbitron', sans-serif; color: #94A3B8; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease; position: relative; padding-bottom: 5px;">RESEARCH</a>
+            <a href="vision.html" class="nav-link" data-page="creators" style="font-family: 'Orbitron', sans-serif; color: #94A3B8; text-decoration: none; font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease; position: relative; padding-bottom: 5px;">CREATORS</a>
+        </div>
+        
+        <!-- Secondary Navigation -->
+        <div style="display: flex; gap: 30px; align-items: center; flex-wrap: wrap; margin-top: 15px; justify-content: center;">
+            <a href="resources.html" class="nav-link-secondary" style="font-family: 'Orbitron', sans-serif; color: #64748B; text-decoration: none; font-weight: 500; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">RESOURCES</a>
+            <a href="calculator.html" class="nav-link-secondary" style="font-family: 'Orbitron', sans-serif; color: #64748B; text-decoration: none; font-weight: 500; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">CALCULATOR</a>
+            <a href="posters.html" class="nav-link-secondary" style="font-family: 'Orbitron', sans-serif; color: #64748B; text-decoration: none; font-weight: 500; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">POSTERS</a>
+            <a href="links.html" class="nav-link-secondary" style="font-family: 'Orbitron', sans-serif; color: #64748B; text-decoration: none; font-weight: 500; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">LINKS</a>
+            <a href="st-jimmy.html" class="nav-link-secondary" style="font-family: 'Orbitron', sans-serif; color: #64748B; text-decoration: none; font-weight: 500; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">ST. JIMMY</a>
+        </div>
+    </div>
+</nav>
+
+    <!-- Hero Section -->
+    <section class="hero-chemicals">
+        <video autoplay loop muted playsinline>
+            <source src="assets/videos/circuit-brain-animated.mp4" type="video/mp4">
+        </video>
+        <div class="hero-content">
+            <h1 class="hero-title">CHEMICAL DATABASE</h1>
+            <p class="hero-subtitle">
+                Comprehensive reference of compounds studied in 1142 Labs research.
+            </p>
+        </div>
+    </section>
+
+    <!-- Introduction -->
+    <div class="content-section">
+        <div class="intro-block">
+            <p>
+                A curated database of pharmaceutical and psychoactive compounds explored in 1142 Labs research. Each entry includes mechanisms of action, pharmacological profiles, and research-backed insights.
+            </p>
+        </div>
+    </div>
+
+    <!-- Category Filters -->
+    <div class="content-section">
+        <div class="category-filter">
+            <div class="filter-badge">Stimulants</div>
+            <div class="filter-badge">Psychedelics</div>
+            <div class="filter-badge">Nootropics</div>
+            <div class="filter-badge">Neurotransmitters</div>
+            <div class="filter-badge">All Compounds</div>
+        </div>
+    </div>
+
+    <!-- Chemical Database -->
+    <div class="content-section">
+        <h2 class="section-title">COMPOUND PROFILES</h2>
+        <div class="chemical-grid">
+            
+            <!-- Methylphenidate -->
+            <div class="chemical-card">
+                <div class="chemical-header">
+                    <div>
+                        <h3 class="chemical-name">Methylphenidate</h3>
+                        <div class="chemical-class">Stimulant / NDRI</div>
+                    </div>
+                    <div class="chemical-formula">C₁₄H₁₉NO₂</div>
+                </div>
+                <div class="chemical-info">
+                    <div class="info-row">
+                        <span class="info-label">Common Names:</span>
+                        <span class="info-value">Ritalin, Concerta</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Primary Action:</span>
+                        <span class="info-value">Dopamine/Norepinephrine Reuptake Inhibition</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Half-Life:</span>
+                        <span class="info-value">2-4 hours (IR), 3.5 hours (ER)</span>
+                    </div>
+                </div>
+                <div class="mechanism-box">
+                    <h5>Mechanism of Action</h5>
+                    <p>Blocks dopamine and norepinephrine transporters (DAT/NET), increasing synaptic concentrations of these neurotransmitters in the prefrontal cortex and striatum. Enhances executive function and attention.</p>
+                </div>
+                <p class="chemical-description">
+                    Subject of extensive 1142 research. Multiple papers explore therapeutic windows, withdrawal protocols, and cognitive enhancement applications.
+                </p>
+            </div>
+
+            <!-- Dopamine -->
+            <div class="chemical-card">
+                <div class="chemical-header">
+                    <div>
+                        <h3 class="chemical-name">Dopamine</h3>
+                        <div class="chemical-class">Neurotransmitter / Catecholamine</div>
+                    </div>
+                    <div class="chemical-formula">C₈H₁₁NO₂</div>
+                </div>
+                <div class="chemical-info">
+                    <div class="info-row">
+                        <span class="info-label">System:</span>
+                        <span class="info-value">Mesolimbic, Mesocortical, Nigrostriatal</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Primary Receptors:</span>
+                        <span class="info-value">D1-D5</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Functions:</span>
+                        <span class="info-value">Motivation, Reward, Movement</span>
+                    </div>
+                </div>
+                <div class="mechanism-box">
+                    <h5>Neurological Role</h5>
+                    <p>Central neurotransmitter governing motivation, reward processing, motor control, and executive function. Dysregulation implicated in ADHD, Parkinson's, and addiction.</p>
+                </div>
+                <p class="chemical-description">
+                    Core focus of 1142 neuroscience research. Understanding dopamine dynamics is essential to cognitive enhancement and pharmacological interventions.
+                </p>
+            </div>
+
+            <!-- Psilocybin -->
+            <div class="chemical-card">
+                <div class="chemical-header">
+                    <div>
+                        <h3 class="chemical-name">Psilocybin</h3>
+                        <div class="chemical-class">Psychedelic / Serotonergic</div>
+                    </div>
+                    <div class="chemical-formula">C₁₂H₁₇N₂O₄P</div>
+                </div>
+                <div class="chemical-info">
+                    <div class="info-row">
+                        <span class="info-label">Source:</span>
+                        <span class="info-value">Psilocybe mushrooms</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Active Metabolite:</span>
+                        <span class="info-value">Psilocin (4-HO-DMT)</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Primary Action:</span>
+                        <span class="info-value">5-HT2A Agonist</span>
+                    </div>
+                </div>
+                <div class="mechanism-box">
+                    <h5>Mechanism of Action</h5>
+                    <p>Metabolized to psilocin, which acts as a serotonin 5-HT2A receptor agonist. Induces altered states of consciousness, neuroplasticity, and default mode network disruption.</p>
+                </div>
+                <p class="chemical-description">
+                    Featured in 1142 consciousness studies. Research challenges conventional understanding of psychedelics and explores therapeutic applications.
+                </p>
+            </div>
+
+            <!-- Serotonin -->
+            <div class="chemical-card">
+                <div class="chemical-header">
+                    <div>
+                        <h3 class="chemical-name">Serotonin</h3>
+                        <div class="chemical-class">Neurotransmitter / Monoamine</div>
+                    </div>
+                    <div class="chemical-formula">C₁₀H₁₂N₂O</div>
+                </div>
+                <div class="chemical-info">
+                    <div class="info-row">
+                        <span class="info-label">Alternative Name:</span>
+                        <span class="info-value">5-Hydroxytryptamine (5-HT)</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Primary Receptors:</span>
+                        <span class="info-value">5-HT1-7 families</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Functions:</span>
+                        <span class="info-value">Mood, Sleep, Appetite</span>
+                    </div>
+                </div>
+                <div class="mechanism-box">
+                    <h5>Neurological Role</h5>
+                    <p>Regulates mood, emotional processing, sleep-wake cycles, and appetite. Implicated in depression, anxiety, and consciousness modulation.</p>
+                </div>
+                <p class="chemical-description">
+                    Central to 1142 research on mood regulation and psychedelic mechanisms. Understanding serotonin systems is key to consciousness studies.
+                </p>
+            </div>
+
+            <!-- Norepinephrine -->
+            <div class="chemical-card">
+                <div class="chemical-header">
+                    <div>
+                        <h3 class="chemical-name">Norepinephrine</h3>
+                        <div class="chemical-class">Neurotransmitter / Catecholamine</div>
+                    </div>
+                    <div class="chemical-formula">C₈H₁₁NO₃</div>
+                </div>
+                <div class="chemical-info">
+                    <div class="info-row">
+                        <span class="info-label">Alternative Name:</span>
+                        <span class="info-value">Noradrenaline</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Primary Receptors:</span>
+                        <span class="info-value">α1, α2, β1, β2, β3</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Functions:</span>
+                        <span class="info-value">Arousal, Attention, Stress Response</span>
+                    </div>
+                </div>
+                <div class="mechanism-box">
+                    <h5>Neurological Role</h5>
+                    <p>Mediates arousal, alertness, and stress response. Critical for attention, working memory, and fight-or-flight activation.</p>
+                </div>
+                <p class="chemical-description">
+                    Important component of stimulant research at 1142 Labs. Norepinephrine modulation affects cognitive performance and stress resilience.
+                </p>
+            </div>
+
+            <!-- Caffeine -->
+            <div class="chemical-card">
+                <div class="chemical-header">
+                    <div>
+                        <h3 class="chemical-name">Caffeine</h3>
+                        <div class="chemical-class">Stimulant / Adenosine Antagonist</div>
+                    </div>
+                    <div class="chemical-formula">C₈H₁₀N₄O₂</div>
+                </div>
+                <div class="chemical-info">
+                    <div class="info-row">
+                        <span class="info-label">Source:</span>
+                        <span class="info-value">Coffee, Tea, Cacao</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Primary Action:</span>
+                        <span class="info-value">Adenosine Receptor Antagonist</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Half-Life:</span>
+                        <span class="info-value">3-5 hours</span>
+                    </div>
+                </div>
+                <div class="mechanism-box">
+                    <h5>Mechanism of Action</h5>
+                    <p>Blocks adenosine receptors (A1 and A2A), preventing adenosine-mediated drowsiness. Indirectly increases dopamine and norepinephrine activity.</p>
+                </div>
+                <p class="chemical-description">
+                    Most widely used cognitive enhancer globally. 1142 research explores synergistic effects with other compounds and optimal dosing protocols.
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Research Notice -->
+    <div class="content-section">
+        <div class="intro-block">
+            <h2 style="font-family: 'Orbitron', sans-serif; font-size: 2.5rem; color: #00FFFF; margin-bottom: 30px;">Research-Based Information</h2>
+            <p>
+                All compound profiles are derived from 1142 Labs research and peer-reviewed scientific literature. This database is for educational purposes only. Always consult qualified healthcare professionals before using any pharmaceutical or psychoactive substance.
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="creators.html">Creators</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="calculator.html">Calculator</a></li>
+                    <li><a href="posters.html">Posters</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Research</h4>
+                <ul>
+                    <li><a href="breakthroughs.html">Breakthroughs</a></li>
+                    <li><a href="vision.html">Vision</a></li>
+                    <li><a href="graphics.html">Graphics</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 1142 Labs - Established December 22nd, 2019</p>
+            <p style="margin-top: 10px; color: #00FFFF;">An EverDark Production</p>
+        </div>
+    </footer>
+
+</body>
+</html>
