@@ -199,13 +199,19 @@
 
         .poster-title {
             color: #00FFFF;
-            font-family: 'Orbitron', sans-serif;
+            font-family: var(--font-display);
             font-size: 1.2rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 2px;
             text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
         }
+
+        /* Font Assignments by Category */
+        .poster-card[data-category="retrowave"] .poster-title { font-family: var(--font-retro); }
+        .poster-card[data-category="research"] .poster-title { font-family: var(--font-data); }
+        .poster-card[data-category="propaganda"] .poster-title { font-family: var(--font-tech); }
+        .poster-card[data-category="collection"] .poster-title { font-family: var(--font-action); }
 
         .poster-category {
             color: #EC4899;
